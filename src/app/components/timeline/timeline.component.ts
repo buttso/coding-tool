@@ -1,64 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
+import { ICodeEventTimeline, ICodingEvent } from '../../../../typings/domain';
 
 @Component({
-  selector: 'timeline',
-  templateUrl: './timeline.component.html',
-  styles: []
+    selector: 'timeline',
+    templateUrl: './timeline.component.html',
+    styles: []
 })
-export class TimelineComponent implements OnInit {
+export class TimelineComponent implements ICodeEventTimeline {
 
-  private codeEventUnsubscribe: any;
-  private list = new Array<any>();
+    list = new Array<any>();
 
-  public constructor(private timerService: TimerService) { }
+    public constructor(private timerService: TimerService) { }
 
-  ngOnInit() {
-      this.codeEventUnsubscribe = this.timerService.CodeEvent$.subscribe((res: any) => this.onCodeEvent(res));
-  }
+    addCodingEvent(codingEvent: ICodingEvent): void {
+        let item = this.list.find(e => e.eventType === codingEvent.eventType);
+        let obj = { seconds: codingEvent.time, color: codingEvent.color, classString: `label label-${codingEvent.color}` };
 
-  ngOnDestroy() {
-      this.codeEventUnsubscribe.unsubscribe();;
-  }
+        if (item === null || item === undefined) {
+            this.list.push({
+                eventType: codingEvent.eventType,
+                items: [obj]
+            })
+        }
+        else {
+            item.items.push(obj);
+        }
 
-  onCodeEvent(args: any): any {
-
-      let item = this.list.find(e => e.eventType === args.eventType);
-      let obj = { ticks: args.ticks, color: args.eventColor, classString: `label label-${args.eventColor}` };
-
-      if (item === null || item === undefined) {
-          this.list.push({
-              eventType: args.eventType,
-              items: [obj]
-          })
-      }
-      else {
-          item.items.push(obj);
-      }
-
-      this.list = this.list.sort((a,b) => {
-          if (a.eventType < b.eventType) {
-              return -1;
-          }
-          if (a.eventType > b.eventType) {
-              return 1;
-          }
-
-          // names must be equal
-          return 0;
-      });
-  }
+        this.list = this.list.sort((a, b) => {
+            if (a.eventType < b.eventType) {
+                return -1;
+            }
+            if (a.eventType > b.eventType) {
+                return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+    }
 
 
-  getLeftPixels(item: any): number {
-      let containerWidth = 800;
-      return containerWidth * this.getLeftPercent(item.ticks);
-  }
+    getLeftPixels(item: any): number {
+        let containerWidth = 800;
+        let val = containerWidth * this.getLeftPercent(item.seconds);
+        console.info(val);
+        return val;
+    }
 
-  public getLeftPercent(elapsed: number): number
-  {
-      let maximumSeconds = 60 * 70;
-      return elapsed / maximumSeconds;
-  }
+    public getLeftPercent(elapsed: number): number {
+        let maximumSeconds = 60 * 70;
+        return elapsed / maximumSeconds;
+    }
 
 }

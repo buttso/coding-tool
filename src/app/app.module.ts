@@ -3,23 +3,23 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { CodeToolComponent } from './components/code-tool/code-tool.component';
-import { MediaPresenterComponent } from './components/media-presenter/media-presenter.component';
+import { CodeToolHostComponent } from './components/code-tool-host/code-tool-host.component';
 import { CodeButtonsComponent } from './components/code-buttons/code-buttons.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
-import { TimerControlsComponent } from './components/timer-controls/timer-controls.component';
+import { MediaPlayerControlsComponent } from './components/media-player-controls/media-player-controls.component';
 import { TimerProgressComponent } from './components/timer-progress/timer-progress.component';
 import { TimerService } from './services/timer.service';
+import { AzureMediaPlayerComponent } from './components/azure-media-player/azure-media-player.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CodeToolComponent,
-    MediaPresenterComponent,
+    CodeToolHostComponent,
+    AzureMediaPlayerComponent,
     CodeButtonsComponent,
     TimelineComponent,
-    TimerControlsComponent,
+    MediaPlayerControlsComponent,
     TimerProgressComponent
   ],
   imports: [

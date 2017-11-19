@@ -4,16 +4,21 @@
             <div class="container-fluid">
                 <div class="row">
                     <div>
-                        <media-presenter></media-presenter>
+                        <azure-media-player></azure-media-player>    
                     </div>
                 </div>
                 <div class="row">
-                    <timer-controls></timer-controls>
+                    <media-player-controls 
+                        (onplay)="onPlay($event)"
+                        (onpause)="onPause($event)"
+                        (onreset)="onReset($event)"></media-player-controls>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <code-buttons></code-buttons>
+            <code-buttons 
+                [buttons]="selectedButtonConfiguration" 
+                (oncodeevent)="onCodeEvent($event)"></code-buttons>
         </div>
     </div>
     <div class="row">

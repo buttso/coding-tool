@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MediaPresenterComponent } from './media-presenter.component';
+import { AzureMediaPlayerComponent } from './azure-media-player.component';
 
 describe('MediaPresenterComponent', () => {
-  let component: MediaPresenterComponent;
-  let fixture: ComponentFixture<MediaPresenterComponent>;
+  let component: AzureMediaPlayerComponent;
+  let fixture: ComponentFixture<AzureMediaPlayerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MediaPresenterComponent ]
+      declarations: [ AzureMediaPlayerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MediaPresenterComponent);
+    fixture = TestBed.createComponent(AzureMediaPlayerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

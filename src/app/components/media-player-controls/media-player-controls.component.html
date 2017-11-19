@@ -1,0 +1,5 @@
+<div>
+  <button [disabled]="!canPlay()" (click)="play()">Play</button>
+  <button [disabled]="!canPause()" (click)="pause()">Pause</button>
+  <button [disabled]="!canStop()" (click)="stop()">Stop</button>
+</div>
