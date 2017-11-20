@@ -1,6 +1,6 @@
 # Coding Tool
 
-This project is a prototype for a simple coding tool.  The following image shows the main components of the tool.
+This project is a prototype for a simple coding tool.  The following diagram shows the main components of the tool.
 
 ![Coding Tool Components](https://github.com/dneimke/coding-tool/blob/master/images/coding-tool-components.png?raw=true)
 
