@@ -1,6 +1,6 @@
 # Coding Tool
 
-This project is a prototype for a simple coding tool.
+This project is a prototype for a simple coding tool that enables the identification of specific points of interest within a video, and the storage of them to enable them to be recalled and aligned with the video for future videwing. 
 
 ## Ideas
 
