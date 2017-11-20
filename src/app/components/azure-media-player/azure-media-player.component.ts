@@ -23,7 +23,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
 
     let myOptions = {
       "nativeControlsForTouch": false,
-      controls: false,
+      controls: true,
       autoplay: false,
       poster: "https://openclipart.org/image/2400px/svg_to_png/272339/angular.png",
       height: 280,

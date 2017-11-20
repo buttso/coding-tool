@@ -7,7 +7,7 @@
                         <azure-media-player></azure-media-player>    
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="false">
                     <media-player-controls 
                         (onplay)="onPlay($event)"
                         (onpause)="onPause($event)"
@@ -17,8 +17,7 @@
         </div>
         <div class="col-md-3">
             <code-buttons 
-                [buttons]="selectedButtonConfiguration" 
-                (oncodeevent)="onCodeEvent($event)"></code-buttons>
+                [buttons]="selectedButtonConfiguration"></code-buttons>
         </div>
     </div>
     <div class="row">

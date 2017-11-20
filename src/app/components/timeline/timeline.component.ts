@@ -1,25 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICodeEventTimeline, ICodingEvent } from '../../../../typings/domain';
+import { TimelineEventService } from '../../services/timeline-event.service';
 
 @Component({
     selector: 'timeline',
     templateUrl: './timeline.component.html',
     styles: []
 })
-export class TimelineComponent implements OnInit, ICodeEventTimeline {
+export class TimelineComponent implements ICodeEventTimeline {
   
     list = []; 
     listLength = 0;
 
-    constructor() {}
+    constructor(private timelineEventService: TimelineEventService) {
 
-    ngOnInit(): void {
-        // Adds an initial test item so that we can see something in the UI
-        this.addCodingEvent({
-            color: 'blue',
-            eventType: 'A',
-            time: 2
-        })
+        this.timelineEventService.eventAdded$.subscribe(
+            codingEvent => {
+              this.addCodingEvent(codingEvent);
+            });
+
     }
 
     // Called from code-tool-host.  
@@ -41,6 +40,8 @@ export class TimelineComponent implements OnInit, ICodeEventTimeline {
         this.sortList();
         this.listLength = this.list.length;
     }
+
+    
 
     private sortList() {
         this.list = this.list.sort((a, b) => {

@@ -1,7 +1,8 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { CodeToolHostComponent } from '../code-tool-host/code-tool-host.component';
 import { IButtonConfiguration, ICodeButtonPanel, ICodingEvent } from '../../../../typings/domain';
+import { TimelineEventService } from '../../services/timeline-event.service';
 
 @Component({
   selector: 'code-buttons',
@@ -10,19 +11,19 @@ import { IButtonConfiguration, ICodeButtonPanel, ICodingEvent } from '../../../.
 })
 export class CodeButtonsComponent implements ICodeButtonPanel {
   
-  @Output() oncodeevent = new EventEmitter<ICodingEvent>();
   @Input() buttons: IButtonConfiguration[];
   
-  constructor(private timerService: TimerService) { }
+  constructor(private timerService: TimerService, private timelineEventService: TimelineEventService) { }
 
   onButtonClick(button: IButtonConfiguration) {
       let time = this.timerService.getTime();
-      
-      this.oncodeevent.emit({
+      let codingEvent = {
         time: time,
         eventType: button.eventType,
         color: button.color
-      });
+      } as ICodingEvent;
+
+      this.timelineEventService.addCodingEvent(codingEvent);
   }
 
 }

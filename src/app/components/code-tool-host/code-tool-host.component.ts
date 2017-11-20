@@ -4,12 +4,18 @@ import { MediaPlayerControlsComponent } from '../media-player-controls/media-pla
 import { TimerService } from '../../services/timer.service';
 import { AzureMediaPlayerComponent } from '../azure-media-player/azure-media-player.component';
 import { TimelineComponent } from '../timeline/timeline.component';
+import { TimelineEventService } from '../../services/timeline-event.service';
 
 @Component({
   selector: 'code-tool-host',
   templateUrl: './code-tool-host.component.html',
   styles: [],
-  providers: [AzureMediaPlayerComponent, MediaPlayerControlsComponent, TimelineComponent]
+  providers: [
+    AzureMediaPlayerComponent, 
+    MediaPlayerControlsComponent, 
+    TimelineEventService,
+    TimelineComponent
+  ]
 })
 export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostComponent {
   
@@ -62,10 +68,10 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
   }
 
   // handles event from code-buttons and adds it to the Timeline
-  onCodeEvent(codingEvent: ICodingEvent): void {
-    console.log(`Event added for ${codingEvent.eventType}`)
-    this.timeline.addCodingEvent(codingEvent);
-  } 
+  // onCodeEvent(codingEvent: ICodingEvent): void {
+  //   console.log(`Event added for ${codingEvent.eventType}`)
+  //   this.timeline.addCodingEvent(codingEvent);
+  // } 
 
 
   onPlay(args: any): void {
