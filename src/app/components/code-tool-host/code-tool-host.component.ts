@@ -61,6 +61,7 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     console.log('CodeTool - Timer Change')
   }
 
+  // handles event from code-buttons and adds it to the Timeline
   onCodeEvent(codingEvent: ICodingEvent): void {
     console.log(`Event added for ${codingEvent.eventType}`)
     this.timeline.addCodingEvent(codingEvent);

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { TimerService } from '../../services/timer.service';
+import { Component, OnInit } from '@angular/core';
 import { ICodeEventTimeline, ICodingEvent } from '../../../../typings/domain';
 
 @Component({
@@ -7,12 +6,24 @@ import { ICodeEventTimeline, ICodingEvent } from '../../../../typings/domain';
     templateUrl: './timeline.component.html',
     styles: []
 })
-export class TimelineComponent implements ICodeEventTimeline {
+export class TimelineComponent implements OnInit, ICodeEventTimeline {
+  
+    list = []; 
+    listLength = 0;
 
-    list = new Array<any>();
+    constructor() {}
 
-    public constructor(private timerService: TimerService) { }
+    ngOnInit(): void {
+        // Adds an initial test item so that we can see something in the UI
+        this.addCodingEvent({
+            color: 'blue',
+            eventType: 'A',
+            time: 2
+        })
+    }
 
+    // Called from code-tool-host.  
+    // Issue with UI not being updated when coding events are added to the list
     addCodingEvent(codingEvent: ICodingEvent): void {
         let item = this.list.find(e => e.eventType === codingEvent.eventType);
         let obj = { seconds: codingEvent.time, color: codingEvent.color, classString: `label label-${codingEvent.color}` };
@@ -27,23 +38,27 @@ export class TimelineComponent implements ICodeEventTimeline {
             item.items.push(obj);
         }
 
+        this.sortList();
+        this.listLength = this.list.length;
+    }
+
+    private sortList() {
         this.list = this.list.sort((a, b) => {
             if (a.eventType < b.eventType) {
                 return -1;
             }
+
             if (a.eventType > b.eventType) {
                 return 1;
-            }
-            // names must be equal
-            return 0;
+            } 
+
+            return 0; // names must be equal
         });
     }
-
 
     getLeftPixels(item: any): number {
         let containerWidth = 800;
         let val = containerWidth * this.getLeftPercent(item.seconds);
-        console.info(val);
         return val;
     }
 
@@ -51,5 +66,4 @@ export class TimelineComponent implements ICodeEventTimeline {
         let maximumSeconds = 60 * 70;
         return elapsed / maximumSeconds;
     }
-
 }

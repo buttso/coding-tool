@@ -1,10 +1,11 @@
+<p>{{listLength}}</p>
 <ul>
   <li *ngFor="let item of list">
       <div>
           {{item.eventType}}
           <ul class="list list-inline">
               <li *ngFor="let subItem of item.items">
-                  <span [class]="subItem.classString" [style.left]="getLeftPixels(subItem)">{{subItem.ticks}}</span>
+                  <span [class]="subItem.classString" [style.left]="getLeftPixels(subItem)">{{subItem.seconds}}</span>
               </li>
           </ul>
       </div>

@@ -17,8 +17,7 @@ export class CodeButtonsComponent implements ICodeButtonPanel {
 
   onButtonClick(button: IButtonConfiguration) {
       let time = this.timerService.getTime();
-      console.info(`Adding event for ${button.eventType} (${time})`);
-
+      
       this.oncodeevent.emit({
         time: time,
         eventType: button.eventType,
