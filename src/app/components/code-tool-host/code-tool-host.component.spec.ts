@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CodeToolComponent } from './code-tool.component';
+import { CodeToolHostComponent } from './code-tool-host.component';
 
 describe('CodeToolComponent', () => {
-  let component: CodeToolComponent;
-  let fixture: ComponentFixture<CodeToolComponent>;
+  let component: CodeToolHostComponent;
+  let fixture: ComponentFixture<CodeToolHostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CodeToolComponent ]
+      declarations: [ CodeToolHostComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CodeToolComponent);
+    fixture = TestBed.createComponent(CodeToolHostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

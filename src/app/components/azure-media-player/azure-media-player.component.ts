@@ -26,8 +26,8 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       controls: true,
       autoplay: false,
       poster: "https://openclipart.org/image/2400px/svg_to_png/272339/angular.png",
-      height: 280,
-      width: 600
+      height:680,
+      width: 800
     };
 
     this.player = amp("azuremediaplayer", myOptions);
@@ -51,6 +51,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
     this.player.play();
   }
 
+  // This is the pause function
   pause(): void {
     console.info('receiving pause')
     this.player.pause();

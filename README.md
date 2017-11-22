@@ -12,6 +12,7 @@ This project is a prototype for a simple coding tool that enables the identifica
 
 * [Azure Media Player](http://amp.azure.net/libs/amp/latest/docs/index.html)
 * [VIS JS Timeline](http://visjs.org/timeline_examples.html)
+* [Videogular2 - HTML5 Component](https://github.com/videogular/videogular2)
 
 ## Meta
 

@@ -25,7 +25,7 @@ export class TimelineComponent implements ICodeEventTimeline {
     // Issue with UI not being updated when coding events are added to the list
     addCodingEvent(codingEvent: ICodingEvent): void {
         let item = this.list.find(e => e.eventType === codingEvent.eventType);
-        let obj = { seconds: codingEvent.time, color: codingEvent.color, classString: `label label-${codingEvent.color}` };
+        let obj = { seconds: codingEvent.time, color: codingEvent.color, classString: `circle ${codingEvent.color}` };
 
         if (item === null || item === undefined) {
             this.list.push({
@@ -60,6 +60,7 @@ export class TimelineComponent implements ICodeEventTimeline {
     getLeftPixels(item: any): number {
         let containerWidth = 800;
         let val = containerWidth * this.getLeftPercent(item.seconds);
+        console.log(val)
         return val;
     }
 
