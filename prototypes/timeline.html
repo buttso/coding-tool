@@ -12,7 +12,7 @@
             font-size: 11px;
             line-height: 1.42857143;
             color: #333;
-            background-color: #fff;
+            background-color: #555;
             margin-top: 50px;
         }
 
@@ -25,7 +25,6 @@
             height: 480px;
             background-color: #193549;
             border: 1px solid #555;
-            /* border-radius: 4px; */
             float: left;
             margin-left: 188px;
             padding: 3px;
@@ -36,8 +35,7 @@
             width: 1100px;
             height: 20px;
             background-color: #193549;
-            border: 1px solid #555;
-            /* border-radius: 4px; */
+            border-bottom: 1px solid #555;
             margin: auto;
             padding: 3px;
             color: #fff;
@@ -45,12 +43,12 @@
 
         .timeline-row-addon {
             height: 20px;
-            margin: 5px 2px 2px 0;
+            margin: 2px 1px 1px 0;
             float: left;
             color: #fff;
             width: 120px;
             text-align: right;
-            /* border: 1px solid rgba(102, 107, 109, 0.623); */
+            font-size: 0.9em; 
         }
 
         .timeline-timer-spacer {
@@ -59,7 +57,6 @@
             color: #fff;
             width: 120px;
             text-align: right;
-            /* border: 1px solid rgba(102, 107, 109, 0.623); */
         }
 
         .timeline-timer {
@@ -72,19 +69,17 @@
 
         .timeline-item-container {
             margin-left: 125px;
-            height: 20px;
+            height: 16px;
             color: #555;
-            background-color: #1F4662;
-            border: 1px solid #555;
-            border-radius: 4px;
+            
             vertical-align: middle;
             padding-left: 1px;
         }
 
         .timeline-item {
             position: absolute;
-            width: 18px;
-            height: 8px;
+            width: 12px;
+            height: 6px;
             float: left;
             margin: 5px 2px 2px 0;
             border-radius: 10px;
@@ -99,7 +94,7 @@
         }
 
         .timeline-timer-label {
-            font-size: 0.8em;
+            font-size: 0.9em;
             color: #fff;
         }
 
@@ -109,7 +104,6 @@
             background-color: #193549;
             border: 1px solid #555;
             margin-left: 1108px;
-            /* border-radius: 4px; */
             padding: 3px;
             font-style: italic;
         }
@@ -126,9 +120,6 @@
 
         .buttons-list>li {
             margin: 6px 2px 16px -26px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            padding: 4px 2px
         }
 
         .buttons-list>li>a {
@@ -138,6 +129,17 @@
             line-height: 1.2em;
             text-align: center;
             color: #FF7200;
+            border-radius: 10px;
+            border: 1px solid #555;
+            padding: 4px 2px
+        }
+
+        .buttons-list>li>a:active { 
+            color: #ffc600;
+            background-color: #555;
+            border-radius: 10px;
+            border: 1px solid #555;
+            padding: 4px 2px
         }
 
         .orange {
@@ -174,16 +176,19 @@
         <div class="buttons-panel">
             <ul class="buttons-list">
                 <li>
-                    <a href="#" class="buttons-link">Free kick</a>
+                    <a href="#" class="buttons-link"><u>F</u>ree kick</a>
                 </li>
                 <li>
-                    <a href="#" class="buttons-link">Goal attempt</a>
+                    <a href="#" class="buttons-link">Goal <u>a</u>ttempt</a>
                 </li>
                 <li>
-                    <a href="#" class="buttons-link">Goal</a>
+                    <a href="#" class="buttons-link"><u>G</u>oal</a>
                 </li>
                 <li>
-                    <a href="#" class="buttons-link">Penalty</a>
+                    <a href="#" class="buttons-link"><u>P</u>enalty</a>
+                </li>
+                <li>
+                    <a href="#" class="buttons-link"><u>S</u>pecial</a>
                 </li>
             </ul>
         </div>
@@ -242,6 +247,16 @@
                 <span class="timeline-item yellow" style="margin-left: 715px">&nbsp;</span>
             </div>
         </div>
+        <div class="row timeline-row">
+                <div class="timeline-row-addon">
+                    <strong>Special</strong>
+                </div>
+                <div class="timeline-item-container">
+                    <span class="timeline-item red" style="margin-left: 195px">&nbsp;</span>
+                    <span class="timeline-item red" style="margin-left: 456px">&nbsp;</span>
+                    <span class="timeline-item red" style="margin-left: 822px">&nbsp;</span>
+                </div>
+            </div>
         <div class="row timeline-row">
             <div class="timeline-timer-spacer">
                 <span class="timeline-timer-label">Minutes</span>
