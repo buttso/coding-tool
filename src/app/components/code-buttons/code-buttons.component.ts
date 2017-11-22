@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { CodeToolHostComponent } from '../code-tool-host/code-tool-host.component';
-import { IButtonConfiguration, ICodeButtonPanel, ICodingEvent } from '../../../../typings/domain';
+import { IButtonConfiguration, ICodeButtonPanel, ICodingEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
 
 @Component({

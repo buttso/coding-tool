@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Timeline</title>
+  <link rel = "stylesheet"
+    type = "text/css"
+    href = "../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style type="text/css">
+
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .timeline-row {
+            width: 80%;
+            height: 24px;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            /* border-radius: 4px; */
+            margin: auto;
+            padding: 3px;
+        }
+
+        .timeline-row-addon {
+            height: 22px;
+            float: left;
+            color: #555;
+            width: 12%;
+            text-align: right;
+            /* border: 1px solid rgba(102, 107, 109, 0.623); */
+        }
+
+        .timeline-item-container {
+            margin-left: 13%;
+            height: 22px;
+            color: #555;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            vertical-align: middle;
+            padding-left: 1px;
+        }
+
+        .timeline-item {
+            width: 25px;
+            height: 12px;
+            float: left;
+            margin: 5px 1px 1px 0;   
+            border-radius: 10px;
+        }
+
+        .green {
+            background: #BADA55;
+        }
+
+        .red {
+            background: #C95D63;
+        }
+
+        .blue {
+            background: #496DDB;
+        }
+
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="timeline-row">
+            <span class="timeline-row-addon"><strong>Free kick</strong></span>
+            <div class="timeline-item-container">
+                <span class="timeline-item green" style="margin-left: 25px">&nbsp;</span>
+                <span class="timeline-item green" style="margin-left: 185px">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="timeline-row">
+            <span class="timeline-row-addon"><strong>Goal</strong></span>
+            <div class="timeline-item-container">
+                <span class="timeline-item blue" style="margin-left: 85px">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="timeline-row">
+            <span class="timeline-row-addon"><strong>Goal attempt</strong></span>
+            <div class="timeline-item-container">
+                <span class="timeline-item red" style="margin-left: 75px">&nbsp;</span>
+                <span class="timeline-item red" style="margin-left: 225px">&nbsp;</span>
+                <span class="timeline-item red" style="margin-left: 255px">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="timeline-row">
+            <span class="timeline-row-addon"><strong>Penalty</strong></span>
+            <div class="timeline-item-container">
+                <span class="timeline-item green" style="margin-left: 95px">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
+

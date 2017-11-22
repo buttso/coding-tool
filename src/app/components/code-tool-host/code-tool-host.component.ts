@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ICodeToolHostComponent, ICodingEvent, IButtonConfiguration } from '../../../../typings/domain';
+import { ICodeToolHostComponent, ICodingEvent, IButtonConfiguration } from '../../typings/domain';
 import { MediaPlayerControlsComponent } from '../media-player-controls/media-player-controls.component';
 import { TimerService } from '../../services/timer.service';
 import { AzureMediaPlayerComponent } from '../azure-media-player/azure-media-player.component';
@@ -36,7 +36,7 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     this.playerPlayHandle = this.mediaPlayer.onplay.subscribe((args: any) => this.playerPlay(args));
     this.playerPausedHandle = this.mediaPlayer.onpause.subscribe((args: any) => this.playerPaused(args));
     this.playerResetHandle = this.mediaPlayer.onreset.subscribe((args: any) => this.playerReset(args));
-    this.timerChangedHandle = this.timerService.onchange.subscribe((args: any) => this.timerChanged(args));
+    this.timerChangedHandle = this.timerService.onTimeChange.subscribe((args: any) => this.timerChanged(args));
 
     this.selectedButtonConfiguration = this.createDefaultButtonConfiguration();
   }

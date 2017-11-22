@@ -1,13 +1,14 @@
-// https://dmkcode.com/2016/09/simple-timer-using-angular-2-and-rxjs-part-2/
-
 import { Injectable, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class TimerService {
 
     private currentTime = 0;
     private formattedTime = '';
-    public onchange = new EventEmitter(); // TODO: strong typed event args
+    
+    // Observable source
+    public onTimeChange = new Subject<any>();
 
     
     public getTime(): number {
@@ -19,6 +20,6 @@ export class TimerService {
     }
 
     public onChange(args: any) {
-        this.onchange.emit(args);
+        this.onTimeChange.next(args);
     }
 }

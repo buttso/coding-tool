@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ICodeEventTimeline, ICodingEvent } from '../../../../typings/domain';
+import { ICodeEventTimeline, ICodingEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class TimelineComponent implements ICodeEventTimeline {
     // Issue with UI not being updated when coding events are added to the list
     addCodingEvent(codingEvent: ICodingEvent): void {
         let item = this.list.find(e => e.eventType === codingEvent.eventType);
-        let obj = { seconds: codingEvent.time, color: codingEvent.color, classString: `circle ${codingEvent.color}` };
+        let obj = { seconds: codingEvent.time, color: codingEvent.color, classString: `timeline-item ${codingEvent.color}` };
 
         if (item === null || item === undefined) {
             this.list.push({

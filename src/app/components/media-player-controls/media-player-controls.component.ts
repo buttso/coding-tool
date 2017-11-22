@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { IMediaPlayerControls } from '../../../../typings/domain';
+import { IMediaPlayerControls } from '../../typings/domain';
 
 @Component({
   selector: 'media-player-controls',

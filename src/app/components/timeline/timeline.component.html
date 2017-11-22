@@ -3,9 +3,9 @@
   <li *ngFor="let item of list">
       <div>
           {{item.eventType}}
-          <ul class="timelineitem">
+          <ul class="timeline-row">
               <li *ngFor="let subItem of item.items">
-                  <span [class]="subItem.classString" [style.left]="getLeftPixels(subItem)">{{subItem.seconds}}</span>
+                  <span [class]="subItem.classString" [style.left]="getLeftPixels(subItem)">&nbsp;</span>
               </li>
           </ul>
       </div>

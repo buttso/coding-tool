@@ -1,8 +1,8 @@
-/// <reference path="../../../../typings/azuremediaplayer" />
+/// <reference path="../../typings/azuremediaplayer" />
 
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
-import { IMediaPlayer, IMediaPlayerControls } from '../../../../typings/domain';
+import { IMediaPlayer, IMediaPlayerControls } from '../../typings/domain';
 
 @Component({
   selector: 'azure-media-player',
@@ -25,9 +25,9 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       "nativeControlsForTouch": false,
       controls: true,
       autoplay: false,
-      poster: "https://openclipart.org/image/2400px/svg_to_png/272339/angular.png",
-      height:680,
-      width: 800
+      poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png",
+      height:480,
+      width: 600
     };
 
     this.player = amp("azuremediaplayer", myOptions);

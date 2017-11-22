@@ -2,12 +2,12 @@
 
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
-import { ICodingEvent } from '../../../typings/domain';
+import { ICodingEvent } from '../typings/domain';
  
 @Injectable()
 export class TimelineEventService {
  
-  // Observable string sources
+  // Observable string source
   private eventAddedSource = new Subject<ICodingEvent>();
  
   // Observable string streams
