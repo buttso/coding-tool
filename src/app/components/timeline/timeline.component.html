@@ -1,13 +1,34 @@
-<p>{{listLength}}</p>
-<ul class="timeline">
-  <li *ngFor="let item of list">
-      <div>
-          {{item.eventType}}
-          <ul class="timeline-row">
-              <li *ngFor="let subItem of item.items">
-                  <span [class]="subItem.classString" [style.left]="getLeftPixels(subItem)">&nbsp;</span>
-              </li>
-          </ul>
-      </div>
-  </li>
-</ul>
+<div class="container timeline">
+    <ng-container *ngFor="let item of list">
+        <div class="row timeline-row">
+            <div class="timeline-row-title">
+                <strong>{{item.eventType}}</strong>
+            </div>
+            <div class="timeline-items">
+                <ng-container *ngFor="let subItem of item.items">
+                    <span class="timeline-item green" style="left: 8.25%">&nbsp;</span>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+        
+    <div class="row timeline-row">
+        <div class="timeline-row-title">
+            Minutes
+        </div>
+        <div class="timeline-items">
+            <span class="timeline-item" style="left: 8%">5</span>
+            <span class="timeline-item" style="left: 16%">10</span>
+            <span class="timeline-item" style="left: 24%">15</span>
+            <span class="timeline-item" style="left: 32%">20</span>
+            <span class="timeline-item" style="left: 40%">25</span>
+            <span class="timeline-item" style="left: 48%">30</span>
+            <span class="timeline-item" style="left: 56%">35</span>
+            <span class="timeline-item" style="left: 64%">40</span>
+            <span class="timeline-item" style="left: 72%">45</span>
+            <span class="timeline-item" style="left: 80%">50</span>
+            <span class="timeline-item" style="left: 88%">55</span>
+            <span class="timeline-item" style="left: 96%">60</span>
+        </div>
+    </div>
+</div>

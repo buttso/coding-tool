@@ -1,28 +1,14 @@
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-md-9">
-            <div class="container-fluid">
-                <div class="row">
-                    <div>
-                        <azure-media-player></azure-media-player>    
-                    </div>
-                </div>
-                <div class="row" *ngIf="false">
-                    <media-player-controls 
-                        (onplay)="onPlay($event)"
-                        (onpause)="onPause($event)"
-                        (onreset)="onReset($event)"></media-player-controls>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <code-buttons 
-                [buttons]="selectedButtonConfiguration"></code-buttons>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <timeline></timeline>
-        </div>
+        <azure-media-player style="width: 85%"></azure-media-player>    
+        <code-buttons style="width: 15%" [buttons]="selectedButtonConfiguration"></code-buttons>
     </div>
 </div>
+<timeline></timeline>
+
+<!-- <div class="row" *ngIf="false">
+    <media-player-controls 
+        (onplay)="onPlay($event)"
+        (onpause)="onPause($event)"
+        (onreset)="onReset($event)"></media-player-controls>
+</div> -->

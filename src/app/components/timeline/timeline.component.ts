@@ -5,7 +5,7 @@ import { TimelineEventService } from '../../services/timeline-event.service';
 @Component({
     selector: 'timeline',
     templateUrl: './timeline.component.html',
-    styles: []
+    styles: ['./timeline.component.css']
 })
 export class TimelineComponent implements ICodeEventTimeline {
   

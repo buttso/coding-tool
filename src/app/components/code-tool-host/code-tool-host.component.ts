@@ -9,7 +9,7 @@ import { TimelineEventService } from '../../services/timeline-event.service';
 @Component({
   selector: 'code-tool-host',
   templateUrl: './code-tool-host.component.html',
-  styles: [],
+  styles: ['./code-tool-host.component.css'],
   providers: [
     AzureMediaPlayerComponent, 
     MediaPlayerControlsComponent, 

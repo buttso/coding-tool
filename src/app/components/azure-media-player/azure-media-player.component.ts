@@ -7,7 +7,7 @@ import { IMediaPlayer, IMediaPlayerControls } from '../../typings/domain';
 @Component({
   selector: 'azure-media-player',
   templateUrl: './azure-media-player.component.html',
-  styles: []
+  styles: ['./azure-media-player.component.css']
 })
 export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPlayerControls {
 
@@ -25,9 +25,9 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       "nativeControlsForTouch": false,
       controls: true,
       autoplay: false,
-      poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png",
-      height:480,
-      width: 600
+      width: "100%",
+      height: "100%",
+      poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
     };
 
     this.player = amp("azuremediaplayer", myOptions);
