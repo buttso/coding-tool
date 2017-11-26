@@ -3,277 +3,143 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Timeline</title>
-    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <title>Timeline Shell mockup</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="timeline.css" />
 
-    <style type="text/css">
-        body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 11px;
-            line-height: 1.42857143;
-            color: #333;
-            background-color: #555;
-            margin-top: 50px;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .media-presenter {
-            width: 920px;
-            height: 480px;
-            background-color: #193549;
-            border: 1px solid #555;
-            float: left;
-            margin-left: 188px;
-            padding: 3px;
-            color: #fff;
-        }
-
-        .timeline-row {
-            width: 1100px;
-            height: 20px;
-            background-color: #193549;
-            border-bottom: 1px solid #555;
-            margin: auto;
-            padding: 3px;
-            color: #fff;
-        }
-
-        .timeline-row-addon {
-            height: 20px;
-            margin: 2px 1px 1px 0;
-            float: left;
-            color: #fff;
-            width: 120px;
-            text-align: right;
-            font-size: 0.9em; 
-        }
-
-        .timeline-timer-spacer {
-            height: 20px;
-            float: left;
-            color: #fff;
-            width: 120px;
-            text-align: right;
-        }
-
-        .timeline-timer {
-            height: 20px;
-            color: #555;
-            border-radius: 4px;
-            vertical-align: middle;
-            padding-left: 1px;
-        }
-
-        .timeline-item-container {
-            margin-left: 125px;
-            height: 16px;
-            color: #555;
-            
-            vertical-align: middle;
-            padding-left: 1px;
-        }
-
-        .timeline-item {
-            position: absolute;
-            width: 12px;
-            height: 6px;
-            float: left;
-            margin: 5px 2px 2px 0;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-        }
-
-        .timer-marker {
-            margin: 5px 6px 6px 0;
-            position: absolute;
-            font-size: 0.8em;
-            color: #fff;
-        }
-
-        .timeline-timer-label {
-            font-size: 0.9em;
-            color: #fff;
-        }
-
-        .buttons-panel {
-            width: 180px;
-            height: 480px;
-            background-color: #193549;
-            border: 1px solid #555;
-            margin-left: 1108px;
-            padding: 3px;
-            font-style: italic;
-        }
-
-        .buttons-list {
-            margin-top: 48px;
-            font-size: 1.2em;
-        }
-
-
-        .buttons-list {
-            list-style: none;
-        }
-
-        .buttons-list>li {
-            margin: 6px 2px 16px -26px;
-        }
-
-        .buttons-list>li>a {
-            display: block;
-            font-size: 1.1em;
-            font-weight: bold;
-            line-height: 1.2em;
-            text-align: center;
-            color: #FF7200;
-            border-radius: 10px;
-            border: 1px solid #555;
-            padding: 4px 2px
-        }
-
-        .buttons-list>li>a:active { 
-            color: #ffc600;
-            background-color: #555;
-            border-radius: 10px;
-            border: 1px solid #555;
-            padding: 4px 2px
-        }
-
-        .orange {
-            color: #FF7200;
-        }
-
-        .green {
-            background: #BADA55;
-            color: #193549;
-        }
-
-        .red {
-            background: #C95D63;
-            color: #fff;
-        }
-
-        .blue {
-            background: #496DDB;
-            color: #fff;
-        }
-
-        .yellow {
-            background: #ffc600;
-            color: #193549;
-        }
-    </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="media-presenter">
-
-        </div>
-        <div class="buttons-panel">
-            <ul class="buttons-list">
-                <li>
-                    <a href="#" class="buttons-link"><u>F</u>ree kick</a>
-                </li>
-                <li>
-                    <a href="#" class="buttons-link">Goal <u>a</u>ttempt</a>
-                </li>
-                <li>
-                    <a href="#" class="buttons-link"><u>G</u>oal</a>
-                </li>
-                <li>
-                    <a href="#" class="buttons-link"><u>P</u>enalty</a>
-                </li>
-                <li>
-                    <a href="#" class="buttons-link"><u>S</u>pecial</a>
-                </li>
-            </ul>
+        <div class="row">
+            <div class="media-presenter">Media Presenter</div>
+            <div class="button-panel">
+                <ul class="button-list">
+                    <li>
+                        <a href="#" class="button-link">
+                            <u>F</u>ree kick</a>
+                    </li>
+                    <li>
+                        <a href="#" class="button-link">Goal
+                            <u>a</u>ttempt</a>
+                    </li>
+                    <li>
+                        <a href="#" class="button-link">
+                            <u>G</u>oal</a>
+                    </li>
+                    <li>
+                        <a href="#" class="button-link">
+                            <u>P</u>enalty</a>
+                    </li>
+                    <li>
+                        <a href="#" class="button-link">
+                            <u>S</u>pecial</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+
+
     <div class="container timeline">
         <div class="row timeline-row">
-            <div class="timeline-row-addon">
+            <div class="timeline-row-title">
                 <strong>Free kick</strong>
             </div>
-            <div class="timeline-item-container">
-                <span class="timeline-item green" style="margin-left: 25px">&nbsp;</span>
-                <span class="timeline-item green" style="margin-left: 185px">&nbsp;</span>
-                <span class="timeline-item green" style="margin-left: 225px">&nbsp;</span>
-                <span class="timeline-item green" style="margin-left: 285px">&nbsp;</span>
-                <span class="timeline-item green" style="margin-left: 325px">&nbsp;</span>
-                <span class="timeline-item green" style="margin-left: 485px">&nbsp;</span>
-                <span class="timeline-item green" style="margin-left: 525px">&nbsp;</span>
-                <span class="timeline-item green" style="margin-left: 685px">&nbsp;</span>
-                <span class="timeline-item green" style="margin-left: 885px">&nbsp;</span>
+            <div class="timeline-items">
+                <span class="timeline-item green" style="left: 8.25%">&nbsp;</span>
+                <span class="timeline-item green" style="left: 16.5%">&nbsp;</span>
+                <span class="timeline-item green" style="left: 24.75%">&nbsp;</span>
+                <span class="timeline-item green" style="left: 33%">&nbsp;</span>
+                <span class="timeline-item green" style="left: 41.25%">&nbsp;</span>
+                <span class="timeline-item green" style="left: 49.5%">&nbsp;</span>
+                <span class="timeline-item green" style="left: 57.75%">&nbsp;</span>
+                <span class="timeline-item green" style="left: 66%">&nbsp;</span>
+                <span class="timeline-item green" style="left: 74.25%">&nbsp;</span>
             </div>
         </div>
         <div class="row timeline-row">
-            <div class="timeline-row-addon">
+            <div class="timeline-row-title">
                 <strong>Goal attempt</strong>
             </div>
-            <div class="timeline-item-container">
-                <span class="timeline-item red" style="margin-left: 75px">&nbsp;</span>
-                <span class="timeline-item red" style="margin-left: 225px">&nbsp;</span>
-                <span class="timeline-item red" style="margin-left: 255px">&nbsp;</span>
-                <span class="timeline-item red" style="margin-left: 375px">&nbsp;</span>
-                <span class="timeline-item red" style="margin-left: 525px">&nbsp;</span>
-                <span class="timeline-item red" style="margin-left: 755px">&nbsp;</span>
+            <div class="timeline-items">
+                <span class="timeline-item red" style="left: 8.25%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 16.5%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 24.75%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 33%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 41.25%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 49.5%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 57.75%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 66%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 74.25%">&nbsp;</span>
             </div>
         </div>
         <div class="row timeline-row">
-            <div class="timeline-row-addon">
+            <div class="timeline-row-title">
                 <strong>Goal</strong>
             </div>
-            <div class="timeline-item-container">
-                <span class="timeline-item blue" style="margin-left: 85px">&nbsp;</span>
-                <span class="timeline-item blue" style="margin-left: 195px">&nbsp;</span>
-                <span class="timeline-item blue" style="margin-left: 335px">&nbsp;</span>
-                <span class="timeline-item blue" style="margin-left: 485px">&nbsp;</span>
-                <span class="timeline-item blue" style="margin-left: 595px">&nbsp;</span>
-                <span class="timeline-item blue" style="margin-left: 835px">&nbsp;</span>
+            <div class="timeline-items">
+                <span class="timeline-item blue" style="left: 8.25%">&nbsp;</span>
+                <span class="timeline-item blue" style="left: 16.5%">&nbsp;</span>
+                <span class="timeline-item blue" style="left: 24.75%">&nbsp;</span>
+                <span class="timeline-item blue" style="left: 33%">&nbsp;</span>
+                <span class="timeline-item blue" style="left: 41.25%">&nbsp;</span>
+                <span class="timeline-item blue" style="left: 49.5%">&nbsp;</span>
+                <span class="timeline-item blue" style="left: 57.75%">&nbsp;</span>
+                <span class="timeline-item blue" style="left: 66%">&nbsp;</span>
+                <span class="timeline-item blue" style="left: 74.25%">&nbsp;</span>
             </div>
         </div>
         <div class="row timeline-row">
-            <div class="timeline-row-addon">
+            <div class="timeline-row-title">
                 <strong>Penalty</strong>
             </div>
-            <div class="timeline-item-container">
-                <span class="timeline-item yellow" style="margin-left: 95px">&nbsp;</span>
-                <span class="timeline-item yellow" style="margin-left: 165px">&nbsp;</span>
-                <span class="timeline-item yellow" style="margin-left: 535px">&nbsp;</span>
-                <span class="timeline-item yellow" style="margin-left: 715px">&nbsp;</span>
+            <div class="timeline-items">
+                <span class="timeline-item orange" style="left: 8.25%">&nbsp;</span>
+                <span class="timeline-item orange" style="left: 16.5%">&nbsp;</span>
+                <span class="timeline-item orange" style="left: 24.75%">&nbsp;</span>
+                <span class="timeline-item orange" style="left: 33%">&nbsp;</span>
+                <span class="timeline-item orange" style="left: 41.25%">&nbsp;</span>
+                <span class="timeline-item orange" style="left: 49.5%">&nbsp;</span>
+                <span class="timeline-item orange" style="left: 57.75%">&nbsp;</span>
+                <span class="timeline-item orange" style="left: 66%">&nbsp;</span>
+                <span class="timeline-item orange" style="left: 74.25%">&nbsp;</span>
             </div>
         </div>
         <div class="row timeline-row">
-                <div class="timeline-row-addon">
-                    <strong>Special</strong>
-                </div>
-                <div class="timeline-item-container">
-                    <span class="timeline-item red" style="margin-left: 195px">&nbsp;</span>
-                    <span class="timeline-item red" style="margin-left: 456px">&nbsp;</span>
-                    <span class="timeline-item red" style="margin-left: 822px">&nbsp;</span>
-                </div>
+            <div class="timeline-row-title">
+                <strong>Special</strong>
             </div>
+            <div class="timeline-items">
+                <span class="timeline-item red" style="left: 8.25%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 16.5%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 24.75%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 33%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 41.25%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 49.5%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 57.75%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 66%">&nbsp;</span>
+                <span class="timeline-item red" style="left: 74.25%">&nbsp;</span>
+            </div>
+        </div>
         <div class="row timeline-row">
-            <div class="timeline-timer-spacer">
-                <span class="timeline-timer-label">Minutes</span>
+            <div class="timeline-row-title">
+                Minutes
             </div>
-            <div class="timeline-timer">
-                <span class="timer-marker" style="margin-left: 76px">5</span>
-                <span class="timer-marker" style="margin-left: 152px">10</span>
-                <span class="timer-marker" style="margin-left: 228px">15</span>
-                <span class="timer-marker" style="margin-left: 304px">20</span>
-                <span class="timer-marker" style="margin-left: 380px">25</span>
-                <span class="timer-marker" style="margin-left: 456px">30</span>
-                <span class="timer-marker" style="margin-left: 532px">35</span>
-                <span class="timer-marker" style="margin-left: 608px">40</span>
-                <span class="timer-marker" style="margin-left: 684px">45</span>
-                <span class="timer-marker" style="margin-left: 760px">50</span>
-                <span class="timer-marker" style="margin-left: 836px">55</span>
-                <span class="timer-marker" style="margin-left: 912px">60</span>
+            <div class="timeline-items">
+                <span class="timeline-item" style="left: 8%">5</span>
+                <span class="timeline-item" style="left: 16%">10</span>
+                <span class="timeline-item" style="left: 24%">15</span>
+                <span class="timeline-item" style="left: 32%">20</span>
+                <span class="timeline-item" style="left: 40%">25</span>
+                <span class="timeline-item" style="left: 48%">30</span>
+                <span class="timeline-item" style="left: 56%">35</span>
+                <span class="timeline-item" style="left: 64%">40</span>
+                <span class="timeline-item" style="left: 72%">45</span>
+                <span class="timeline-item" style="left: 80%">50</span>
+                <span class="timeline-item" style="left: 88%">55</span>
+                <span class="timeline-item" style="left: 96%">60</span>
             </div>
         </div>
     </div>
