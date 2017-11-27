@@ -6,7 +6,7 @@
             </div>
             <div class="timeline-items">
                 <ng-container *ngFor="let subItem of item.items">
-                    <span class="timeline-item green" style="left: 8.25%">&nbsp;</span>
+                    <span class="timeline-item green" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">&nbsp;</span>
                 </ng-container>
             </div>
         </div>
@@ -17,18 +17,10 @@
             Minutes
         </div>
         <div class="timeline-items">
-            <span class="timeline-item" style="left: 8%">5</span>
-            <span class="timeline-item" style="left: 16%">10</span>
-            <span class="timeline-item" style="left: 24%">15</span>
-            <span class="timeline-item" style="left: 32%">20</span>
-            <span class="timeline-item" style="left: 40%">25</span>
-            <span class="timeline-item" style="left: 48%">30</span>
-            <span class="timeline-item" style="left: 56%">35</span>
-            <span class="timeline-item" style="left: 64%">40</span>
-            <span class="timeline-item" style="left: 72%">45</span>
-            <span class="timeline-item" style="left: 80%">50</span>
-            <span class="timeline-item" style="left: 88%">55</span>
-            <span class="timeline-item" style="left: 96%">60</span>
+            <ng-container *ngFor="let item of segments; let i = index;">
+                <span class="timeline-item" [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
+            </ng-container>
+            
         </div>
     </div>
 </div>

@@ -11,14 +11,39 @@ export class TimelineComponent implements ICodeEventTimeline {
   
     list = []; 
     listLength = 0;
+    videoDuration = 60 * 60; // 60 minutes in seconds
+    timerSegments = 12;
+    segments: number[]; // = [1,2,3,4,5,6,7,8,9,10,11,12];
 
     constructor(private timelineEventService: TimelineEventService) {
+        this.segments = Array(this.timerSegments).fill(1).map((x,i)=>i + 1);
 
         this.timelineEventService.eventAdded$.subscribe(
             codingEvent => {
               this.addCodingEvent(codingEvent);
             });
+    }
 
+
+    calculateStyleOffsetFromIndex(index: number): string {
+        let totalMinutes = this.videoDuration / 60;
+        let minutesPerSegment = totalMinutes / this.segments.length;
+        let currentMinutes = minutesPerSegment * index;
+        let percentage = currentMinutes / totalMinutes * 100;
+        return `${percentage}%`;
+    }
+
+
+    calculateStyleOffsetFromSeconds(seconds: number): string {
+        console.info(seconds)
+        let percentage = seconds / this.videoDuration * 100;
+        return `${percentage}%`;
+    }
+
+    calculateTimeInterval(index: number): number {
+        let totalMinutes = this.videoDuration / 60;
+        let minutesPerSegment = totalMinutes / this.segments.length;
+        return minutesPerSegment * index;
     }
 
     // Called from code-tool-host.  

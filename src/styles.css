@@ -16,7 +16,7 @@ a { text-decoration: none; }
 .yellow { background: #ffc600; color: #193549; }
 
 
-.media-presenter {
+azure-media-player, .media-presenter {
     width: 85%;
     height: 500px;
     float: left;
@@ -25,9 +25,7 @@ a { text-decoration: none; }
     background-color: #193549;
 }
 
-
-
-.button-panel {
+code-buttons, .button-panel {
     width: 15%;
     height: 500px;
     float: left;
@@ -53,7 +51,8 @@ a { text-decoration: none; }
     color: #FF7200;
     border-radius: 10px;
     border: 1px solid #555;
-    padding: 4px 0px
+    padding: 4px 0px;
+    width: 110px;
 }
 
 .button-list>li>a:active {
@@ -61,7 +60,8 @@ a { text-decoration: none; }
     background-color: #555;
     border-radius: 10px;
     border: 1px solid #555;
-    padding: 4px 2px
+    padding: 4px 2px;
+    width: 110px;
 }
 
 

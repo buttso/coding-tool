@@ -21,16 +21,16 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
 
   ngOnInit() {
 
-    let myOptions = {
+    let playerOptions = {
       "nativeControlsForTouch": false,
-      controls: true,
-      autoplay: false,
-      width: "100%",
-      height: "100%",
-      poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
+        controls: true,
+        autoplay: false,
+        width: "100%",
+        height: "100%",
+        poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
     };
 
-    this.player = amp("azuremediaplayer", myOptions);
+    this.player = amp("azuremediaplayer", playerOptions);
     this.player.src([
       {
         "src": "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
@@ -42,8 +42,6 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       let currentTime = this.player.currentTime();
       this.timerService.setTime(currentTime);
     });
-
-    console.log('player initialized')
   }
 
   play(): void {
