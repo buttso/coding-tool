@@ -88,8 +88,8 @@ code-buttons, .button-panel {
 
 .timeline-item {
     position: relative;
-    width: 15px;
-    height: 15px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     color: #fff;
     font-size: 0.9em;

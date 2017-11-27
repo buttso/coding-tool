@@ -6,7 +6,9 @@
             </div>
             <div class="timeline-items">
                 <ng-container *ngFor="let subItem of item.items">
-                    <span class="timeline-item green" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">&nbsp;</span>
+                    <span class="tooltip" [attr.data-seconds]="subItem.seconds" class="timeline-item green" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">
+                        &nbsp;
+                    </span>
                 </ng-container>
             </div>
         </div>
