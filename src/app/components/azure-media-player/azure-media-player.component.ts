@@ -17,7 +17,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
   onpause = new EventEmitter(); // TODO: strong typed event args
   onreset = new EventEmitter(); // TODO: strong typed event args
   
-  constructor(private timerService: TimerService) { }
+  constructor(private videoService: TimerService) { }
 
   ngOnInit() {
 
@@ -40,7 +40,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
 
     this.player.addEventListener('timeupdate', e => {
       let currentTime = this.player.currentTime();
-      this.timerService.setTime(currentTime);
+      this.videoService.setTime(currentTime);
     });
   }
 

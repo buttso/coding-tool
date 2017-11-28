@@ -93,5 +93,12 @@ code-buttons, .button-panel {
     border-radius: 50%;
     color: #fff;
     font-size: 0.9em;
+}
+
+.timeline-item-event {
+    display: contents;
+}
+
+.timeline-item-marker {
     display: inline-block;
 }

@@ -6,7 +6,7 @@
             </div>
             <div class="timeline-items">
                 <ng-container *ngFor="let subItem of item.items">
-                    <span class="tooltip" [attr.data-seconds]="subItem.seconds" class="timeline-item green" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">
+                    <span class="tooltip" [attr.data-seconds]="subItem.seconds" class="timeline-item timeline-item-event green" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">
                         &nbsp;
                     </span>
                 </ng-container>
@@ -20,7 +20,7 @@
         </div>
         <div class="timeline-items">
             <ng-container *ngFor="let item of segments; let i = index;">
-                <span class="timeline-item" [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
+                <span class="timeline-item  timeline-item-marker" [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
             </ng-container>
             
         </div>
