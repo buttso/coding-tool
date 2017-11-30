@@ -3,17 +3,18 @@
         <div>
             <ul class="accordian">
                 <li *ngFor="let item of list" class="timeline-row2">
-                    <div class="timeline-row-title">
+                    <div class="row-title">
                             <strong>{{item.eventType}}</strong>
                     </div>
-                    <ul class="timeline-items">
-                        <li *ngFor="let subItem of item.items">
-                            <span class="tooltip" [attr.data-seconds]="subItem.seconds" class="timeline-item timeline-item-event green" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">
+                    <div class="row-items">
+                            
+                        <ng-container *ngFor="let subItem of item.items">
+                            <span class="row-item row-item-event  green" [attr.data-seconds]="subItem.seconds" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">
                                 &nbsp;
                             </span>
-                        </li>
-                            
-                    </ul>
+                        </ng-container>
+                    </div>
+                    
                 </li>
             </ul>
         </div>

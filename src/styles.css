@@ -136,6 +136,7 @@ li {
     min-height: 18px;
     color: #efefef;
     font-weight: 300;
+    clear: both;
 }
 
 .timeline-row2 ul {
@@ -144,7 +145,51 @@ li {
 }
 
 .timeline-row2 ul li {
+    position: relative;
+    top: 0px;
+    margin-top: 3px;
     list-style: none;
+    left: 0;
+}
+
+.row-title {
+    position: relative;
+    /* width: 10%; 
+    border-bottom: 1px solid #555;*/
+    padding: 3px;
+    /* display: inline; */
+    float: left;
+    clear: both;
+}
+
+.row-items {
+    position: relative;
+    margin-left: 10%;
+    /* width: 90%; 
+    border-bottom: 1px solid #555;*/
+    padding: 3px;
+    /* display: inline;
+    clear: both; */
+}
+
+
+.row-item {
+    position: relative;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 0.9em;
+}
+
+.row-item-event {
+    display: inherit;
+}
+
+.row-item-event {
+    position: absolute;
+    top: 0px;
+    margin-top: 3px;
 }
 
 /* .gutter-row {
