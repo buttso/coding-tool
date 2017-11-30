@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ICodeEventTimeline, ICodingEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
 
+
 @Component({
     selector: 'timeline',
     templateUrl: './timeline.component.html',
@@ -93,4 +94,14 @@ export class TimelineComponent implements ICodeEventTimeline {
         let maximumSeconds = 60 * 70;
         return elapsed / maximumSeconds;
     }
+}
+
+
+@Component({
+    selector: 'timeline2',
+    templateUrl: './timeline.component.1.html',
+    styles: ['./timeline.component.1.css']
+})
+export class TimelineComponent2 extends TimelineComponent implements ICodeEventTimeline {
+    
 }

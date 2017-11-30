@@ -96,9 +96,61 @@ code-buttons, .button-panel {
 }
 
 .timeline-item-event {
-    display: contents;
+    display: inherit;
 }
 
 .timeline-item-marker {
     display: inline-block;
 }
+
+
+/* Second version of timeline */
+
+.timeline2 {
+    min-height: 30px; 
+}
+
+.accordian {
+    list-style: none;
+    margin-left: 0;
+    background-color: #193549;
+}
+
+*, :after, :before {
+    box-sizing: inherit;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+
+.table-of-contents__header {
+    white-space: nowrap;
+}
+.timeline-row2 {
+    background-color: #193549;
+    position: relative;
+    border-bottom: 1px solid #555;
+    min-height: 18px;
+    color: #efefef;
+    font-weight: 300;
+}
+
+.timeline-row2 ul {
+    list-style: none;
+    float: left;
+}
+
+.timeline-row2 ul li {
+    list-style: none;
+}
+
+/* .gutter-row {
+    
+    color: #758587;
+    font-size: 10px;
+    font-size: .71429rem;
+    line-height: 2.4;
+} */

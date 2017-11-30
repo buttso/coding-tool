@@ -30,10 +30,13 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
         poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
     };
 
+    let hockeySrc = "https://codingtoolproto.blob.core.windows.net/asset-a5cee9d2-664a-4a0e-9422-bb2ddc40c5b8?sv=2015-07-08&sr=c&si=90089173-fd33-4b94-85f0-a4aff1b2f8ad&sig=2ylsqIcKVfeaUw6d5qKD%2FEc7VjkJLMZsRPjvCe23npg%3D&st=2017-11-27T22%3A39%3A18Z&se=2117-11-27T22%3A39%3A18Z"
+    let sampleSrc = "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest";
+
     this.player = amp("azuremediaplayer", playerOptions);
     this.player.src([
       {
-        "src": "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
+        "src": sampleSrc,
         "type": "application/vnd.ms-sstr+xml"
       }
     ]);

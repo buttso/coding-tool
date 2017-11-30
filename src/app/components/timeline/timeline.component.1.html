@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="timeline2">
+        <div>
+            <ul class="accordian">
+                <li *ngFor="let item of list" class="timeline-row2">
+                    <div class="timeline-row-title">
+                            <strong>{{item.eventType}}</strong>
+                    </div>
+                    <ul class="timeline-items">
+                        <li *ngFor="let subItem of item.items">
+                            <span class="tooltip" [attr.data-seconds]="subItem.seconds" class="timeline-item timeline-item-event green" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">
+                                &nbsp;
+                            </span>
+                        </li>
+                            
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    
+    
+        
+    <div class="row gutter-row">
+        <div class="timeline-row-title">
+            Minutes
+        </div>
+        <div class="timeline-items">
+            <ng-container *ngFor="let item of segments; let i = index;">
+                <span class="timeline-item  timeline-item-marker" [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
+            </ng-container>
+            
+        </div>
+    </div>
+</div>
