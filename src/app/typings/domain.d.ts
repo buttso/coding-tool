@@ -20,11 +20,25 @@ interface IButtonConfiguration {
     lagSeconds: number;
 }
 
+// model type
 interface ICodingEvent {
     eventType: string;
     color: string;
     time: number;
 }
+
+
+// used to display in UI
+interface ICodingEventItem {
+    seconds: number, 
+    color: string, 
+    classString: string;
+}
+
+interface MediaLoadedEvent {
+    duration: number;
+}
+
 
 interface IMediaPlayer {
     /**

@@ -1,15 +1,23 @@
-<div class="container">
+<div class="container" style="padding: 0px; margin-top: -1px;">
     <div class="timeline2">
         <div>
             <ul class="accordian">
                 <li *ngFor="let item of list" class="timeline-row2">
+                    
                     <div class="row-title">
-                            <strong>{{item.eventType}}</strong>
+                        <strong>{{item.eventType}}</strong>
                     </div>
                     <div class="row-items">
-                            
                         <ng-container *ngFor="let subItem of item.items">
-                            <span class="row-item row-item-event  green" [attr.data-seconds]="subItem.seconds" [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)">
+                            <span class="row-item row-item-event"
+                                    [class.orange]="subItem.color === 'orange'"
+                                    [class.green]="subItem.color === 'green'"
+                                    [class.red]="subItem.color === 'red'"
+                                    [class.blue]="subItem.color === 'blue'"
+                                    [class.yellow]="subItem.color === 'yellow'"
+                                    [attr.data-seconds]="subItem.seconds" 
+                                    [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)"
+                                    (click)="onEventItemClicked(subItem)">
                                 &nbsp;
                             </span>
                         </ng-container>
@@ -20,18 +28,16 @@
         </div>
         
     </div>
-    
-    
         
-    <div class="row gutter-row">
+    <div class="gutter-row">
         <div class="timeline-row-title">
-            Minutes
+            {{intervalMode}}
         </div>
         <div class="timeline-items">
             <ng-container *ngFor="let item of segments; let i = index;">
-                <span class="timeline-item  timeline-item-marker" [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
+                <span class="timeline-item timeline-item-marker" 
+                        [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
             </ng-container>
-            
         </div>
     </div>
 </div>

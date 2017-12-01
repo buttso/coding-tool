@@ -184,6 +184,7 @@ li {
 
 .row-item-event {
     display: inherit;
+    cursor: pointer;
 }
 
 .row-item-event {

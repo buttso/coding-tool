@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ICodeEventTimeline, ICodingEvent } from '../../typings/domain';
+import { ICodeEventTimeline, ICodingEvent, ICodingEventItem, MediaLoadedEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
 
 
@@ -10,13 +10,14 @@ import { TimelineEventService } from '../../services/timeline-event.service';
 })
 export class TimelineComponent implements ICodeEventTimeline {
   
+    intervalMode = 'Minutes'
     list = []; 
     listLength = 0;
-    videoDuration = 60 * 60; // 60 minutes in seconds
+    protected videoDuration = 60 * 60; // 60 minutes in seconds
     timerSegments = 12;
     segments: number[]; // = [1,2,3,4,5,6,7,8,9,10,11,12];
 
-    constructor(private timelineEventService: TimelineEventService) {
+    constructor(protected timelineEventService: TimelineEventService) {
         this.segments = Array(this.timerSegments).fill(1).map((x,i)=>i + 1);
 
         this.timelineEventService.eventAdded$.subscribe(
@@ -36,22 +37,37 @@ export class TimelineComponent implements ICodeEventTimeline {
 
 
     calculateStyleOffsetFromSeconds(seconds: number): string {
-        console.info(seconds)
+        // console.info(seconds)
         let percentage = seconds / this.videoDuration * 100;
         return `${percentage}%`;
     }
 
     calculateTimeInterval(index: number): number {
-        let totalMinutes = this.videoDuration / 60;
-        let minutesPerSegment = totalMinutes / this.segments.length;
-        return minutesPerSegment * index;
+        let interval = -1;
+
+        if(this.videoDuration > 300) {
+            this.intervalMode = 'Minutes'
+            let totalMinutes = this.videoDuration / 60;
+            let minutesPerSegment = totalMinutes / this.segments.length;
+            interval = minutesPerSegment * index;
+        }else{
+            let secondsPerSegment = this.videoDuration / this.segments.length;
+            interval = secondsPerSegment * index;
+            this.intervalMode = 'Seconds'
+        }
+        
+        return Math.round(interval)
     }
 
     // Called from code-tool-host.  
     // Issue with UI not being updated when coding events are added to the list
     addCodingEvent(codingEvent: ICodingEvent): void {
         let item = this.list.find(e => e.eventType === codingEvent.eventType);
-        let obj = { seconds: codingEvent.time, color: codingEvent.color, classString: `timeline-item ${codingEvent.color}` };
+        let obj = { 
+            seconds: codingEvent.time, 
+            color: codingEvent.color, 
+            classString: `timeline-item ${codingEvent.color}`
+         } as ICodingEventItem;
 
         if (item === null || item === undefined) {
             this.list.push({
@@ -66,8 +82,6 @@ export class TimelineComponent implements ICodeEventTimeline {
         this.sortList();
         this.listLength = this.list.length;
     }
-
-    
 
     private sortList() {
         this.list = this.list.sort((a, b) => {
@@ -86,7 +100,7 @@ export class TimelineComponent implements ICodeEventTimeline {
     getLeftPixels(item: any): number {
         let containerWidth = 800;
         let val = containerWidth * this.getLeftPercent(item.seconds);
-        console.log(val)
+        // console.log(val)
         return val;
     }
 
@@ -104,4 +118,28 @@ export class TimelineComponent implements ICodeEventTimeline {
 })
 export class TimelineComponent2 extends TimelineComponent implements ICodeEventTimeline {
     
+    constructor(timelineEventService: TimelineEventService){
+        super(timelineEventService);
+
+        this.timelineEventService.mediaLoaded$.subscribe(
+            (e: MediaLoadedEvent) => {
+              this.mediaLoaded(e);
+            });
+    }
+
+    onEventItemClicked(codingEventItem: ICodingEventItem) {
+
+        const codingEvent = {
+            color: codingEventItem.color,
+            time: codingEventItem.seconds
+        } as ICodingEvent;
+
+        this.timelineEventService.navigateTo(codingEvent);
+    }
+
+
+    mediaLoaded(e: MediaLoadedEvent) {
+        console.log(e.duration);
+        this.videoDuration = e.duration;
+     }
 }

@@ -91,10 +91,10 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   createDefaultButtonConfiguration(): IButtonConfiguration[] {
     return [
-      {eventType: "A", color: "Blue", lagSeconds: 5, leadSeconds: 5},
-      {eventType: "B", color: "Blue", lagSeconds: 5, leadSeconds: 5},
-      {eventType: "C", color: "Blue", lagSeconds: 5, leadSeconds: 5},
-      {eventType: "D", color: "Blue", lagSeconds: 5, leadSeconds: 5}
+      {eventType: "A", color: "green", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "B", color: "red", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "C", color: "blue", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "D", color: "yellow", lagSeconds: 5, leadSeconds: 5}
     ];
   }
 

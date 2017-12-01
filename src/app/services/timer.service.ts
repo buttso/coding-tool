@@ -9,6 +9,7 @@ export class TimerService {
     
     // Observable source
     public onTimeChange = new Subject<any>();
+    
 
     
     public getTime(): number {

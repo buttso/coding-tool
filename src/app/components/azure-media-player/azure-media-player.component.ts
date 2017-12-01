@@ -2,7 +2,8 @@
 
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
-import { IMediaPlayer, IMediaPlayerControls } from '../../typings/domain';
+import { IMediaPlayer, IMediaPlayerControls, ICodingEvent } from '../../typings/domain';
+import { TimelineEventService } from '../../services/timeline-event.service';
 
 @Component({
   selector: 'azure-media-player',
@@ -17,7 +18,12 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
   onpause = new EventEmitter(); // TODO: strong typed event args
   onreset = new EventEmitter(); // TODO: strong typed event args
   
-  constructor(private videoService: TimerService) { }
+  constructor(private videoService: TimerService, private timelineEventService: TimelineEventService) {
+    this.timelineEventService.navigateTo$.subscribe(
+      codingEvent => {
+        this.navigateTo(codingEvent);
+      });
+  }
 
   ngOnInit() {
 
@@ -34,17 +40,24 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
     let sampleSrc = "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest";
 
     this.player = amp("azuremediaplayer", playerOptions);
+    
+
+    this.player.addEventListener('timeupdate', e => {
+      let currentTime = this.player.currentTime();
+      this.videoService.setTime(currentTime);
+    });
+
+    this.player.addEventListener('durationchange', (e:ProgressEvent) => {
+      console.log('firing')
+      this.timelineEventService.mediaLoaded({duration: this.player.duration()});
+    });
+
     this.player.src([
       {
         "src": sampleSrc,
         "type": "application/vnd.ms-sstr+xml"
       }
     ]);
-
-    this.player.addEventListener('timeupdate', e => {
-      let currentTime = this.player.currentTime();
-      this.videoService.setTime(currentTime);
-    });
   }
 
   play(): void {
@@ -92,6 +105,12 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
     }
     else  
     return this.player.currentSrc();    
+  }
+
+
+  navigateTo(codingEvent: ICodingEvent): void {
+    console.info(codingEvent.time);
+    this.currentTime(codingEvent.time);
   }
 
 
