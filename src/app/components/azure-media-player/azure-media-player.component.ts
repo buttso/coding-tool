@@ -35,9 +35,21 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
         height: "100%",
         poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
     };
+    
+    let prelimFinalSrc = {
+      src: "https://codingtoolproto.blob.core.windows.net/asset-f44bed4f-598a-4467-94c3-503426b3f1e9/R24_PF_AHCvFHC_FullGame.mp4?sv=2015-07-08&sr=c&si=cb841b3c-ffc9-4d6f-b18c-188877b38fa8&sig=frdhRSpqbMGHjVuJVIRbwjjhx4HyKJx2nit71zSv0F0%3D&st=2017-11-28T05%3A31%3A15Z&se=2117-11-28T05%3A31%3A15Z",
+      type: "video/mp4"
+    }
 
-    let hockeySrc = "https://codingtoolproto.blob.core.windows.net/asset-a5cee9d2-664a-4a0e-9422-bb2ddc40c5b8?sv=2015-07-08&sr=c&si=90089173-fd33-4b94-85f0-a4aff1b2f8ad&sig=2ylsqIcKVfeaUw6d5qKD%2FEc7VjkJLMZsRPjvCe23npg%3D&st=2017-11-27T22%3A39%3A18Z&se=2117-11-27T22%3A39%3A18Z"
-    let sampleSrc = "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest";
+    let grandFinalSrc = {
+      src: "https://codingtoolproto.blob.core.windows.net/asset-883ab032-7cb1-4d85-b6fb-e882a8c8ae2d/R25_GF_SHCvAHC_FullGame_1920x1080_AACAudio_5690.mp4?sv=2015-07-08&sr=c&si=3701f404-eb15-4ab8-8b7d-4a2648be8db7&sig=lXNXI3xytOuT7fWayOOcTdZqBYW3m5H%2B2d0oCaxaZqI%3D&st=2017-11-28T20%3A57%3A26Z&se=2117-11-28T20%3A57%3A26Z",
+      type: "video/mp4"
+    }
+
+    let sampleSrc = {
+      src: "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
+      type: "application/vnd.ms-sstr+xml"
+    }
 
     this.player = amp("azuremediaplayer", playerOptions);
     
@@ -52,12 +64,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       this.timelineEventService.mediaLoaded({duration: this.player.duration()});
     });
 
-    this.player.src([
-      {
-        "src": sampleSrc,
-        "type": "application/vnd.ms-sstr+xml"
-      }
-    ]);
+    this.player.src([prelimFinalSrc]);
   }
 
   play(): void {

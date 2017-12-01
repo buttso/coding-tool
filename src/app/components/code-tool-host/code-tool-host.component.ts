@@ -91,10 +91,17 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   createDefaultButtonConfiguration(): IButtonConfiguration[] {
     return [
-      {eventType: "A", color: "green", lagSeconds: 5, leadSeconds: 5},
-      {eventType: "B", color: "red", lagSeconds: 5, leadSeconds: 5},
-      {eventType: "C", color: "blue", lagSeconds: 5, leadSeconds: 5},
-      {eventType: "D", color: "yellow", lagSeconds: 5, leadSeconds: 5}
+      {eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "Circle Entry For", color: "blue", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "Circle Entry Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "Goal Shot Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "Goal Shot For.", color: "blue", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "Goal For", color: "blue", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "Goal Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "APC", color: "blue", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "DPC", color: "yellow", lagSeconds: 5, leadSeconds: 5},
+      {eventType: "Special", color: "red", lagSeconds: 5, leadSeconds: 5},
     ];
   }
 

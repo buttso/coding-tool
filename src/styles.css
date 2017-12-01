@@ -48,7 +48,7 @@ code-buttons, .button-panel {
 .button-list>li>a {
     display: block;
     text-align: center;
-    color: #FF7200;
+    /* color: #FF7200; */
     border-radius: 10px;
     border: 1px solid #555;
     padding: 4px 0px;
@@ -88,8 +88,8 @@ code-buttons, .button-panel {
 
 .timeline-item {
     position: relative;
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     color: #fff;
     font-size: 0.9em;
