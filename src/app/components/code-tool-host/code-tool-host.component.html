@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
-        <azure-media-player></azure-media-player>    
-        <code-buttons [buttons]="selectedButtonConfiguration"></code-buttons>
+        <azure-media-player [source]="currentMatch.media"></azure-media-player>    
+        <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>
     </div>
 </div>
-<timeline2></timeline2>
+<timeline2 [list]="currentMatch.events"></timeline2>
 
 <hr />
 

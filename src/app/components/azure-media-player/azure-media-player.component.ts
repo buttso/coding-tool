@@ -1,9 +1,10 @@
 /// <reference path="../../typings/azuremediaplayer" />
 
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { IMediaPlayer, IMediaPlayerControls, ICodingEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
+import { IMediaSource } from '../../typings/model-metadata';
 
 @Component({
   selector: 'azure-media-player',
@@ -11,6 +12,8 @@ import { TimelineEventService } from '../../services/timeline-event.service';
   styles: ['./azure-media-player.component.css']
 })
 export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPlayerControls {
+
+  @Input() source: IMediaSource;
 
   player: amp.Player;
 
@@ -49,7 +52,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       this.timelineEventService.mediaLoaded({duration: this.player.duration()});
     });
 
-    // this.player.src([prelimFinalSrc]);
+    this.player.src(this.source);
   }
 
   play(): void {

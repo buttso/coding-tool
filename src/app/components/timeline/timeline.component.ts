@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICodeEventTimeline, ICodingEvent, ICodingEventItem, MediaLoadedEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
 
@@ -11,7 +11,7 @@ import { TimelineEventService } from '../../services/timeline-event.service';
 export class TimelineComponent implements ICodeEventTimeline {
   
     intervalMode = 'Minutes'
-    list = []; 
+    @Input() list: any[] = []; 
     listLength = 0;
     protected videoDuration = 60 * 60; // 60 minutes in seconds
     timerSegments = 12;

@@ -31,7 +31,7 @@ export class JsonDataService {
                 type: "video/mp4",
                 offlineSrc: ""
             },
-            timelineEvents: [],
+            events: [],
             buttonConfiguration: [
                 { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
                 { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
@@ -63,7 +63,7 @@ export class JsonDataService {
                 type: "video/mp4",
                 offlineSrc: ""
             },
-            timelineEvents: [],
+            events: [],
             buttonConfiguration: [
                 { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
                 { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
@@ -95,7 +95,7 @@ export class JsonDataService {
                 type: "application/vnd.ms-sstr+xml",
                 offlineSrc: ""
             },
-            timelineEvents: [],
+            events: [],
             buttonConfiguration: [
                 { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
                 { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },

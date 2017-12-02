@@ -4,7 +4,7 @@ export interface IMatchMetadata {
     identifier: string;
     properties: IMatchProperties, 
     media: IMediaSource,
-    timelineEvents: ICodingEvent[],
+    events: ICodingEvent[],
     buttonConfiguration: IButtonConfiguration[]
 }
 
