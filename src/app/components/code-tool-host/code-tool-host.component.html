@@ -1,14 +1,34 @@
 <div class="page-header">
-    <h1>{{currentMatch.properties.year}} {{currentMatch.properties.matchName}}  <small>{{currentMatch.properties.homeTeam}} vs {{currentMatch.properties.awayTeam}}</small></h1>
-  </div>
+<h1>{{currentMatch.properties.year}} {{currentMatch.properties.matchName}}  
+    <small>{{currentMatch.properties.homeTeam}} vs {{currentMatch.properties.awayTeam}}</small></h1>
+</div>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <azure-media-player [source]="currentMatch.media"></azure-media-player>    
-        <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>
+        <div class="col-md-10 col-md-push-2">
+                <div class="container">
+                    <div class="row">
+                        <azure-media-player [source]="currentMatch.media"></azure-media-player>    
+                        <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>
+                    </div>
+                </div>
+                <timeline2 [list]="currentMatch.events"></timeline2>
+        </div>
+        <div class="col-md-2 col-md-pull-10 well">
+            <div class="form-group">
+                <select class="form-control input-lg" 
+                        [(ngModel)]="currentMatch"
+                        (ngModelChange)="onGameChanged($event)" required>
+                    <option *ngFor="let match of allMatches" 
+                        [attr.selected]="currentMatch"
+                        [ngValue]="match">{{match.properties.matchName}}</option>
+                </select>
+            </div>
+        </div>
     </div>
 </div>
-<timeline2 [list]="currentMatch.events"></timeline2>
+
+
 
 <hr />
 

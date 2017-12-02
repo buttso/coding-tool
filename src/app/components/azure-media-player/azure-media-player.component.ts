@@ -9,7 +9,7 @@ import { IMediaSource } from '../../typings/model-metadata';
 @Component({
   selector: 'azure-media-player',
   templateUrl: './azure-media-player.component.html',
-  styles: ['./azure-media-player.component.css']
+  styles: []
 })
 export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPlayerControls {
 
@@ -20,10 +20,9 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
   onplay = new EventEmitter(); // TODO: strong typed event args
   onpause = new EventEmitter(); // TODO: strong typed event args
   onreset = new EventEmitter(); // TODO: strong typed event args
-  
+
   constructor(private timerService: TimerService, private timelineEventService: TimelineEventService) {
-    this.timelineEventService.navigateTo$.subscribe(
-      codingEvent => {
+    timelineEventService.navigateTo$.subscribe((codingEvent: ICodingEvent) => {
         this.navigateTo(codingEvent);
       });
   }
@@ -32,39 +31,37 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
 
     let playerOptions = {
       "nativeControlsForTouch": false,
-        controls: true,
-        autoplay: false,
-        playbackSpeed: {
-            enabled: true,
-            initialSpeed: 1.0,
-            speedLevels: [
-                { name: "x4.0", value: 4.0 },
-                { name: "x3.0", value: 3.0 },
-                { name: "x2.0", value: 2.0 },
-                { name: "x1.75", value: 1.75 },
-                { name: "x1.5", value: 1.5 },
-                { name: "x1.25", value: 1.25 },
-                { name: "normal", value: 1.0 },
-                { name: "x0.75", value: 0.75 },
-                { name: "x0.5", value: 0.5 },
-            ]
-        },
-        width: "100%",
-        height: "100%",
-        poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
+      controls: true,
+      autoplay: false,
+      playbackSpeed: {
+        enabled: true,
+        initialSpeed: 1.0,
+        speedLevels: [
+          { name: "x4.0", value: 4.0 },
+          { name: "x3.0", value: 3.0 },
+          { name: "x2.0", value: 2.0 },
+          { name: "x1.75", value: 1.75 },
+          { name: "x1.5", value: 1.5 },
+          { name: "x1.25", value: 1.25 },
+          { name: "normal", value: 1.0 },
+          { name: "x0.75", value: 0.75 },
+          { name: "x0.5", value: 0.5 },
+        ]
+      },
+      width: "100%",
+      height: "100%",
+      poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
     };
-    
+
     this.player = amp("azuremediaplayer", playerOptions);
-    
 
     this.player.addEventListener('timeupdate', e => {
       let currentTime = this.player.currentTime();
       this.timerService.setTime(currentTime);
     });
 
-    this.player.addEventListener('durationchange', (e:ProgressEvent) => {
-      console.log('firing')
-      this.timelineEventService.mediaLoaded({duration: this.player.duration()});
+    this.player.addEventListener('durationchange', (e: ProgressEvent) => {
+      this.timelineEventService.mediaLoaded({ duration: this.player.duration() });
     });
 
     this.player.src(this.source);
@@ -98,14 +95,13 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
   currentTime(seconds?: number): number {
     if (seconds && typeof seconds == "number")
       this.player.currentTime(seconds);
-    else  
+    else
       return this.player.currentTime();
   }
-    
+
   media(source?: string, type?: string) {
 
-    if (source && type)
-    {
+    if (source && type) {
       this.player.src([
         {
           "src": source,
@@ -113,8 +109,8 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
         }
       ]);
     }
-    else  
-    return this.player.currentSrc();    
+    else
+      return this.player.currentSrc();
   }
 
 

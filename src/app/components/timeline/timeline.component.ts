@@ -6,7 +6,7 @@ import { TimelineEventService } from '../../services/timeline-event.service';
 @Component({
     selector: 'timeline',
     templateUrl: './timeline.component.html',
-    styles: ['./timeline.component.css']
+    styles: []
 })
 export class TimelineComponent implements ICodeEventTimeline {
   
@@ -115,7 +115,7 @@ export class TimelineComponent implements ICodeEventTimeline {
 @Component({
     selector: 'timeline2',
     templateUrl: './timeline.component.1.html',
-    styles: ['./timeline.component.1.css']
+    styles: []
 })
 export class TimelineComponent2 extends TimelineComponent implements ICodeEventTimeline {
     

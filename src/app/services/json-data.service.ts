@@ -2,7 +2,11 @@ import { IMatchMetadata } from '../typings/model-metadata';
 
 export class JsonDataService {
 
-    findByIdentifier(identifier: string) {
+    fetchAll(): IMatchMetadata[] {
+        return this.matchData;
+    }
+
+    findByIdentifier(identifier: string): IMatchMetadata {
         let foundItem = this.matchData.filter(e => e.identifier === identifier);
 
         if (foundItem !== undefined) {
@@ -11,7 +15,6 @@ export class JsonDataService {
 
         return null;
     }
-
 
     private matchData: IMatchMetadata[] = [
         {

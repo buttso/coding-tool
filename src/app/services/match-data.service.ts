@@ -11,6 +11,10 @@ export class MatchDataService {
         
     }
 
+    getAllMatches(): IMatchMetadata[] {
+        return this.jsonDataService.fetchAll();
+    }
+
     getMatch(identifier: string): IMatchMetadata {
         return this.jsonDataService.findByIdentifier(identifier);
     }

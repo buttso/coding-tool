@@ -14,11 +14,13 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   private timerChangedHandle: any;
   private currentMatch: IMatchMetadata;
+  allMatches: IMatchMetadata[];
 
   constructor(private timerService: TimerService, private matchDataService: MatchDataService) { }
 
   ngOnInit() {
-    this.timerChangedHandle = this.timerService.onTimeChange.subscribe((args: any) => this.timerChanged(args));
+    this.timerChangedHandle = this.timerService.onTimeChange.subscribe((args: number) => this.timerChanged(args));
+    this.allMatches = this.matchDataService.getAllMatches();
     this.setCurrentMatch("1");
   }
 
@@ -32,6 +34,10 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   timerChanged(args: any): void {
     console.log('CodeTool - Timer Change')
+  }
+
+  onGameChanged(game){
+   console.info(game)
   }
 
 }

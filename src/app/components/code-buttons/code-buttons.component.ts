@@ -7,7 +7,7 @@ import { TimelineEventService } from '../../services/timeline-event.service';
 @Component({
   selector: 'code-buttons',
   templateUrl: './code-buttons.component.html',
-  styles: ['./code-buttons.component.css']
+  styles: []
 })
 export class CodeButtonsComponent implements ICodeButtonPanel {
   
