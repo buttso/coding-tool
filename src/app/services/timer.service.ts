@@ -6,17 +6,17 @@ export class TimerService {
     private formattedTime = '';
     
     // Observable source
-    public onTimeChange = new Subject<any>();
+    public onTimeChange = new Subject<number>();
     
     public getTime(): number {
         return this.currentTime;
     }
     public setTime(time: number) {
         this.currentTime = time;
-        this.onChange({currentTime: time});
+        this.onChange(time);
     }
 
-    public onChange(args: any) {
-        this.onTimeChange.next(args);
+    public onChange(currentTime: number) {
+        this.onTimeChange.next(currentTime);
     }
 }
