@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { CodeToolHostComponent } from './components/code-tool-host/code-tool-host.component';
 import { CodeButtonsComponent } from './components/code-buttons/code-buttons.component';
@@ -10,7 +9,9 @@ import { MediaPlayerControlsComponent } from './components/media-player-controls
 import { TimerProgressComponent } from './components/timer-progress/timer-progress.component';
 import { TimerService } from './services/timer.service';
 import { AzureMediaPlayerComponent } from './components/azure-media-player/azure-media-player.component';
-
+import { JsonDataService } from './services/json-data.service';
+import { MatchDataService } from './services/match-data.service';
+import { TimelineEventService } from './services/timeline-event.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import { AzureMediaPlayerComponent } from './components/azure-media-player/azure
   imports: [
     BrowserModule
   ],
-  providers: [TimerService],
+  providers: [
+    JsonDataService, 
+    MatchDataService,
+    TimelineEventService, 
+    TimerService
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

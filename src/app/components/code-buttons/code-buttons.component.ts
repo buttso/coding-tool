@@ -20,7 +20,9 @@ export class CodeButtonsComponent implements ICodeButtonPanel {
       let codingEvent = {
         time: time,
         eventType: button.eventType,
-        color: button.color
+        color: button.color,
+        leadSeconds: button.leadSeconds,
+        lagSeconds: button.lagSeconds
       } as ICodingEvent;
 
       this.timelineEventService.addCodingEvent(codingEvent);

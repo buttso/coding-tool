@@ -26,7 +26,6 @@ export class TimelineComponent implements ICodeEventTimeline {
             });
     }
 
-
     calculateStyleOffsetFromIndex(index: number): string {
         let totalMinutes = this.videoDuration / 60;
         let minutesPerSegment = totalMinutes / this.segments.length;
@@ -34,7 +33,6 @@ export class TimelineComponent implements ICodeEventTimeline {
         let percentage = currentMinutes / totalMinutes * 100;
         return `${percentage}%`;
     }
-
 
     calculateStyleOffsetFromSeconds(seconds: number): string {
         // console.info(seconds)
@@ -63,8 +61,11 @@ export class TimelineComponent implements ICodeEventTimeline {
     // Issue with UI not being updated when coding events are added to the list
     addCodingEvent(codingEvent: ICodingEvent): void {
         let item = this.list.find(e => e.eventType === codingEvent.eventType);
+
+        let seconds = Math.max(codingEvent.time - codingEvent.leadSeconds, 0)
+
         let obj = { 
-            seconds: codingEvent.time, 
+            seconds: seconds, 
             color: codingEvent.color, 
             classString: `timeline-item ${codingEvent.color}`
          } as ICodingEventItem;

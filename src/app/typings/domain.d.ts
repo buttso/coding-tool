@@ -1,6 +1,5 @@
 import { EventEmitter } from "@angular/core";
 
-
 interface ICodeToolHostComponent {
     
 }
@@ -25,10 +24,11 @@ interface ICodingEvent {
     eventType: string;
     color: string;
     time: number;
+    leadSeconds: number;
+    lagSeconds: number;
 }
 
-
-// used to display in UI
+// used to display in timeline UI
 interface ICodingEventItem {
     seconds: number, 
     color: string, 
@@ -38,7 +38,6 @@ interface ICodingEventItem {
 interface MediaLoadedEvent {
     duration: number;
 }
-
 
 interface IMediaPlayer {
     /**

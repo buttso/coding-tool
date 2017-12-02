@@ -1,19 +1,15 @@
 // https://angular.io/guide/component-interaction#parent-and-children-communicate-via-a-service
 // http://amp.azure.net/libs/amp/latest/docs/index.html#release-notes
 
-
-import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
 import { ICodingEvent, MediaLoadedEvent } from '../typings/domain';
  
-@Injectable()
 export class TimelineEventService {
- 
+
   // Observable string source
   private eventAddedSource = new Subject<ICodingEvent>();
   private navigateToSource = new Subject<ICodingEvent>();
-  private mediaLoadedSource = new Subject<MediaLoadedEvent>();
- 
+  private mediaLoadedSource = new Subject<MediaLoadedEvent>(); 
  
   // Observable string streams
   eventAdded$ = this.eventAddedSource.asObservable();

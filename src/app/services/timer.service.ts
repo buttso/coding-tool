@@ -1,7 +1,5 @@
-import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 
-@Injectable()
 export class TimerService {
 
     private currentTime = 0;
@@ -9,8 +7,6 @@ export class TimerService {
     
     // Observable source
     public onTimeChange = new Subject<any>();
-    
-
     
     public getTime(): number {
         return this.currentTime;

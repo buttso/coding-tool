@@ -18,7 +18,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
   onpause = new EventEmitter(); // TODO: strong typed event args
   onreset = new EventEmitter(); // TODO: strong typed event args
   
-  constructor(private videoService: TimerService, private timelineEventService: TimelineEventService) {
+  constructor(private timerService: TimerService, private timelineEventService: TimelineEventService) {
     this.timelineEventService.navigateTo$.subscribe(
       codingEvent => {
         this.navigateTo(codingEvent);
@@ -36,27 +36,12 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
         poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
     };
     
-    let prelimFinalSrc = {
-      src: "https://codingtoolproto.blob.core.windows.net/asset-f44bed4f-598a-4467-94c3-503426b3f1e9/R24_PF_AHCvFHC_FullGame.mp4?sv=2015-07-08&sr=c&si=cb841b3c-ffc9-4d6f-b18c-188877b38fa8&sig=frdhRSpqbMGHjVuJVIRbwjjhx4HyKJx2nit71zSv0F0%3D&st=2017-11-28T05%3A31%3A15Z&se=2117-11-28T05%3A31%3A15Z",
-      type: "video/mp4"
-    }
-
-    let grandFinalSrc = {
-      src: "https://codingtoolproto.blob.core.windows.net/asset-883ab032-7cb1-4d85-b6fb-e882a8c8ae2d/R25_GF_SHCvAHC_FullGame_1920x1080_AACAudio_5690.mp4?sv=2015-07-08&sr=c&si=3701f404-eb15-4ab8-8b7d-4a2648be8db7&sig=lXNXI3xytOuT7fWayOOcTdZqBYW3m5H%2B2d0oCaxaZqI%3D&st=2017-11-28T20%3A57%3A26Z&se=2117-11-28T20%3A57%3A26Z",
-      type: "video/mp4"
-    }
-
-    let sampleSrc = {
-      src: "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
-      type: "application/vnd.ms-sstr+xml"
-    }
-
     this.player = amp("azuremediaplayer", playerOptions);
     
 
     this.player.addEventListener('timeupdate', e => {
       let currentTime = this.player.currentTime();
-      this.videoService.setTime(currentTime);
+      this.timerService.setTime(currentTime);
     });
 
     this.player.addEventListener('durationchange', (e:ProgressEvent) => {
@@ -64,7 +49,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       this.timelineEventService.mediaLoaded({duration: this.player.duration()});
     });
 
-    this.player.src([prelimFinalSrc]);
+    // this.player.src([prelimFinalSrc]);
   }
 
   play(): void {
