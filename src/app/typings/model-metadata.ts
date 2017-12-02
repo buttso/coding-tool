@@ -4,7 +4,7 @@ export interface IMatchMetadata {
     identifier: string;
     properties: IMatchProperties, 
     media: IMediaSource,
-    events: ICodingEvent[],
+    events: ICodedEventType[],
     buttonConfiguration: IButtonConfiguration[]
 }
 
@@ -23,4 +23,15 @@ export interface IMediaSource {
     src: string,
     type: string,
     offlineSrc?: string
+}
+
+export interface ICodedEventType {
+    eventType: string, 
+    events: ICodedEventItem[]
+}
+
+// used to display in timeline UI
+export interface ICodedEventItem {
+    seconds: number, 
+    color: string
 }

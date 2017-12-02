@@ -12,11 +12,14 @@
                         <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>
                     </div>
                 </div>
-                <timeline2 [list]="currentMatch.events"></timeline2>
+                <timeline2 [eventItems]="currentMatch.events"></timeline2>
         </div>
         <div class="col-md-2 col-md-pull-10 well">
             <div class="form-group">
+                <label for="selectedMatch" style="color: #000">Select Match</label>
                 <select class="form-control input-lg" 
+                        name="selectedMatch"
+                        id="selectedMatch"
                         [(ngModel)]="currentMatch"
                         (ngModelChange)="onGameChanged($event)" required>
                     <option *ngFor="let match of allMatches" 

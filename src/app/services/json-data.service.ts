@@ -1,4 +1,4 @@
-import { IMatchMetadata } from '../typings/model-metadata';
+import { IMatchMetadata, ICodedEventType } from '../typings/model-metadata';
 
 export class JsonDataService {
 
@@ -34,7 +34,76 @@ export class JsonDataService {
                 type: "video/mp4",
                 offlineSrc: ""
             },
-            events: [],
+            events: [
+                {
+                    "eventType": "Circle Entry For",
+                    "events": [
+                        {
+                            "time": 22.429159,
+                            "color": "blue"
+                        },
+                        {
+                            "seconds": 218.943117,
+                            "color": "blue"
+                        },
+                        {
+                            "seconds": 261.075204,
+                            "color": "blue"
+                        }
+                    ]
+                },
+                {
+                    "eventType": "Outlet",
+                    "events": [
+                        {
+                            "seconds": 80.185615,
+                            "color": "blue"
+                        },
+                        {
+                            "seconds": 101.187035,
+                            "color": "blue"
+                        },
+                        {
+                            "seconds": 178.371353,
+                            "color": "blue"
+                        }
+                    ]
+                },
+                {
+                    "eventType": "Press",
+                    "events": [
+                        {
+                            "seconds": 12.684826000000001,
+                            "color": "blue"
+                        },
+                        {
+                            "seconds": 142.398306,
+                            "color": "blue"
+                        },
+                        {
+                            "seconds": 199.435638,
+                            "color": "blue"
+                        }
+                    ]
+                },
+                {
+                    "eventType": "Special",
+                    "events": [
+                        {
+                            "seconds": 16.442906,
+                            "color": "red"
+                        },
+                        {
+                            "seconds": 107.942185,
+                            "color": "red"
+                        },
+                        {
+                            "seconds": 203.140577,
+                            "color": "red"
+                        }
+                    ]
+                }
+            ] as ICodedEventType[],
             buttonConfiguration: [
                 { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
                 { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },

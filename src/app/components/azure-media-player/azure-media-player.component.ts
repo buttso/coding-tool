@@ -4,7 +4,7 @@ import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { IMediaPlayer, IMediaPlayerControls, ICodingEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
-import { IMediaSource } from '../../typings/model-metadata';
+import { IMediaSource, IMatchMetadata, ICodedEventItem } from '../../typings/model-metadata';
 
 @Component({
   selector: 'azure-media-player',
@@ -22,8 +22,12 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
   onreset = new EventEmitter(); // TODO: strong typed event args
 
   constructor(private timerService: TimerService, private timelineEventService: TimelineEventService) {
-    timelineEventService.navigateTo$.subscribe((codingEvent: ICodingEvent) => {
+      timelineEventService.navigateTo$.subscribe((codingEvent: ICodedEventItem) => {
         this.navigateTo(codingEvent);
+      });
+
+      timelineEventService.matchChanged$.subscribe((matchMetadata: IMatchMetadata) => {
+        this.changeMedia(matchMetadata.media);
       });
   }
 
@@ -113,10 +117,14 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       return this.player.currentSrc();
   }
 
+  changeMedia(mediaSource: IMediaSource) {
+    this.media(mediaSource.src, mediaSource.type);
+  }
 
-  navigateTo(codingEvent: ICodingEvent): void {
-    console.info(codingEvent.time);
-    this.currentTime(codingEvent.time);
+
+  navigateTo(codingEvent: ICodedEventItem): void {
+    console.info(codingEvent.seconds);
+    this.currentTime(codingEvent.seconds);
   }
 
 

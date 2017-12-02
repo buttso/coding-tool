@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ICodeEventTimeline, ICodingEvent, ICodingEventItem, MediaLoadedEvent } from '../../typings/domain';
+import { ICodeEventTimeline, ICodingEvent, MediaLoadedEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
+import { ICodedEventType, ICodedEventItem } from '../../typings/model-metadata';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { TimelineEventService } from '../../services/timeline-event.service';
 export class TimelineComponent implements ICodeEventTimeline {
   
     intervalMode = 'Minutes'
-    @Input() list: any[] = []; 
+    @Input() eventItems: ICodedEventType[] = []; 
     listLength = 0;
     protected videoDuration = 60 * 60; // 60 minutes in seconds
     timerSegments = 12;
@@ -60,7 +61,7 @@ export class TimelineComponent implements ICodeEventTimeline {
     // Called from code-tool-host.  
     // Issue with UI not being updated when coding events are added to the list
     addCodingEvent(codingEvent: ICodingEvent): void {
-        let item = this.list.find(e => e.eventType === codingEvent.eventType);
+        let item = this.eventItems.find(e => e.eventType === codingEvent.eventType);
 
         let seconds = Math.max(codingEvent.time - codingEvent.leadSeconds, 0)
 
@@ -68,24 +69,24 @@ export class TimelineComponent implements ICodeEventTimeline {
             seconds: seconds, 
             color: codingEvent.color, 
             classString: `timeline-item ${codingEvent.color}`
-         } as ICodingEventItem;
+         } as ICodedEventItem;
 
         if (item === null || item === undefined) {
-            this.list.push({
+            this.eventItems.push({
                 eventType: codingEvent.eventType,
-                items: [obj]
+                events: [obj]
             })
         }
         else {
-            item.items.push(obj);
+            item.events.push(obj);
         }
 
         this.sortList();
-        this.listLength = this.list.length;
+        this.listLength = this.eventItems.length;
     }
 
     private sortList() {
-        this.list = this.list.sort((a, b) => {
+        this.eventItems = this.eventItems.sort((a, b) => {
             if (a.eventType < b.eventType) {
                 return -1;
             }
@@ -128,14 +129,8 @@ export class TimelineComponent2 extends TimelineComponent implements ICodeEventT
             });
     }
 
-    onEventItemClicked(codingEventItem: ICodingEventItem) {
-
-        const codingEvent = {
-            color: codingEventItem.color,
-            time: codingEventItem.seconds
-        } as ICodingEvent;
-
-        this.timelineEventService.navigateTo(codingEvent);
+    onEventItemClicked(codingEventItem: ICodedEventItem) {
+        this.timelineEventService.navigateTo(codingEventItem);
     }
 
 

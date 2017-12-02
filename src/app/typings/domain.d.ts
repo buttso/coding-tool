@@ -28,13 +28,6 @@ interface ICodingEvent {
     lagSeconds: number;
 }
 
-// used to display in timeline UI
-interface ICodingEventItem {
-    seconds: number, 
-    color: string, 
-    classString: string;
-}
-
 interface MediaLoadedEvent {
     duration: number;
 }

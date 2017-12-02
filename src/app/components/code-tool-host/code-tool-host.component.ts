@@ -3,6 +3,7 @@ import { ICodeToolHostComponent } from '../../typings/domain';
 import { TimerService } from '../../services/timer.service';
 import { IMatchMetadata } from '../../typings/model-metadata';
 import { MatchDataService } from '../../services/match-data.service';
+import { TimelineEventService } from '../../services/timeline-event.service';
 
 @Component({
   selector: 'code-tool-host',
@@ -16,7 +17,9 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
   private currentMatch: IMatchMetadata;
   allMatches: IMatchMetadata[];
 
-  constructor(private timerService: TimerService, private matchDataService: MatchDataService) { }
+  constructor(private timerService: TimerService, 
+      private matchDataService: MatchDataService,
+      private timelineEventService: TimelineEventService) { }
 
   ngOnInit() {
     this.timerChangedHandle = this.timerService.onTimeChange.subscribe((args: number) => this.timerChanged(args));
@@ -36,8 +39,8 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     console.log('CodeTool - Timer Change')
   }
 
-  onGameChanged(game){
-   console.info(game)
+  onGameChanged(game: IMatchMetadata){
+   this.timelineEventService.matchChanged(game);
   }
 
 }
