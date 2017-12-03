@@ -3,7 +3,6 @@ import { ICodeEventTimeline, ICodingEvent, MediaLoadedEvent } from '../../typing
 import { TimelineEventService } from '../../services/timeline-event.service';
 import { ICodedEventType, ICodedEventItem } from '../../typings/model-metadata';
 
-
 @Component({
     selector: 'timeline',
     templateUrl: './timeline.component.html',

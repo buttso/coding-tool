@@ -53,6 +53,15 @@ export class JsonDataService {
                     ]
                 },
                 {
+                    "eventType": "Goal For",
+                    "events": [
+                      {
+                        "seconds": 2097.169531,
+                        "color": "blue",
+                      }
+                    ]
+                },
+                {
                     "eventType": "Outlet",
                     "events": [
                         {
