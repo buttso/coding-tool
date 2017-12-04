@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Converter</title>
+
+  
+  <script src="FileConverter.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <p>Enter your input source and <a href="#" id="processLink">click to process</a></p>
+    <textarea rows="20" cols="100" id="input"></textarea>
+
+    <hr />
+
+    <pre id="output"></pre>
+
+
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            var link = document.getElementById("processLink");
+            var input = document.getElementById("input");
+            var output = document.getElementById("output");
+            
+            link.addEventListener("click", function() {
+                var obj = JSON.parse(input.value);
+                var converter = new FileConverter();
+                var convertedText = converter.Convert(obj);
+                var json = JSON.stringify(convertedText, null, 4);
+                // console.log(json);
+                output.innerHTML = json;
+            }, false);
+        });
+
+    </script>
+
+</body>
+</html>

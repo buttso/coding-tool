@@ -13,6 +13,7 @@ interface ICodeButtonPanel {
 }
 
 interface IButtonConfiguration {
+    identifier: string;
     eventType: string;
     color: string;
     leadSeconds: number;

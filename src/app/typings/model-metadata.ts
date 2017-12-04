@@ -15,7 +15,8 @@ export interface IMatchProperties {
     grade: string, 
     homeTeam: string, 
     awayTeam: string, 
-    venue: string
+    venue: string,
+    date: Date
 }
 
 export interface IMediaSource {
