@@ -16,7 +16,7 @@ export interface IMatchProperties {
     homeTeam: string, 
     awayTeam: string, 
     venue: string,
-    date: Date
+    date: string
 }
 
 export interface IMediaSource {

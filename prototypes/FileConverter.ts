@@ -24,13 +24,20 @@ export class FileConverter {
         if(dashboard !== undefined && dashboard !== null) {
             
             let events = (dashboard.List as any[]).map(e => {
-                return {
-                    identifier: e.$id,
-                    eventType: e.Name,
-                    color: "blue",
-                    leadSeconds: e.Start / 1000,
-                    lagSeconds: e.Stop / 1000
-                } as IButtonConfiguration;
+
+                if(e.EventType !== undefined && e.EventType.$id !== undefined)
+                {
+                    var identifier = e.EventType.$id;
+                    
+                    return {
+                        identifier: e.EventType.$id,
+                        eventType: e.Name,
+                        color: "blue",
+                        leadSeconds: e.Start / 1000,
+                        lagSeconds: e.Stop / 1000
+                    } as IButtonConfiguration;
+                }
+                
                 
             }) as IButtonConfiguration[];     
             
@@ -51,24 +58,26 @@ export class FileConverter {
 
                 let button = buttons.find(b => b.identifier === e.EventType.$ref)[0];
 
-                let item = codedEventTypes.find(e => e.eventType == button.eventType)
-                if(item === null || item === undefined) {
-                    item = {
-                        eventType: button.eventType,
-                        events: []
-                    } as ICodedEventType;
-
-                    codedEventTypes.push(item);
+                if(button !== undefined) {
+                    let item = codedEventTypes.find(e => e.eventType == button.eventType);
+                    
+                    if(item === null || item === undefined) {
+                        item = {
+                            eventType: button.eventType,
+                            events: []
+                        } as ICodedEventType;
+    
+                        codedEventTypes.push(item);
+                    }
+    
+                    item.events.push({
+                        color: button.color,
+                        seconds: e.EventTime / 1000
+                    } as ICodedEventItem);
                 }
-
-                item.events.push({
-                    color: button.color,
-                    seconds: e.EventTime / 1000
-                } as ICodedEventItem);
-
             });
 
-            return codedEventTypes;
+            return codedEventTypes.filter(e => e !== undefined);;
         }
         
         return [] as ICodedEventType[];
@@ -84,7 +93,9 @@ export class FileConverter {
                 grade: metadata.Competition,
                 year: metadata.Season,
                 matchName: metadata.Description,
-                date: metadata.MatchDate
+                date: metadata.MatchDate,
+                roundNumber: 1,
+                venue: ""
             } as IMatchProperties;
 
             return properties;            
