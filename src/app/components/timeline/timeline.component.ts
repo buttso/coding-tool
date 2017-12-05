@@ -5,7 +5,7 @@ import { ICodedEventType, ICodedEventItem } from '../../typings/model-metadata';
 
 @Component({
     selector: 'timeline',
-    templateUrl: '' ,// './timeline.component.html',
+    template: '' ,// './timeline.component.html',
     styles: []
 })
 export class TimelineComponent implements ICodeEventTimeline {
