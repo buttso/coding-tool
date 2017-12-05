@@ -21,9 +21,14 @@
                                     [attr.data-seconds]="subItem.seconds" 
                                     [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)"
                                     (click)="onEventItemClicked(subItem)"
-                                    [matTooltip]="formatTooltipTime(subItem.seconds)" matTooltipPosition="above">
+                                    [matTooltip]="formatTooltipTime(subItem.seconds)" matTooltipPosition="above"
+                                    [matMenuTriggerFor]="appMenu">
                                 &nbsp;
                             </span>
+                            <mat-menu #appMenu="matMenu">
+                                <button mat-menu-item (click)="onDeleteItem($event, subItem)"> Delete </button>
+                                <button mat-menu-item (click)="onShowInformation($event, subItem)"> Information </button>
+                            </mat-menu>
                         </ng-container>
                     </div>
                     

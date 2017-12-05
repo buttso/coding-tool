@@ -5,7 +5,7 @@ import { ICodedEventType, ICodedEventItem } from '../../typings/model-metadata';
 
 @Component({
     selector: 'timeline',
-    templateUrl: './timeline.component.html',
+    templateUrl: '' ,// './timeline.component.html',
     styles: []
 })
 export class TimelineComponent implements ICodeEventTimeline {
@@ -98,7 +98,7 @@ export class TimelineComponent implements ICodeEventTimeline {
         });
     }
 
-    getLeftPixels(item: any): number {
+    getLeftPixels(item: ICodedEventItem): number {
         let containerWidth = 800;
         let val = containerWidth * this.getLeftPercent(item.seconds);
         // console.log(val)
@@ -113,6 +113,11 @@ export class TimelineComponent implements ICodeEventTimeline {
     formatTooltipTime(time: string): string {
         // let t = Math.round(seconds); // moment.duration(seconds).asSeconds();
         let sec_num = parseInt(time, 10); // don't forget the second param
+
+        if(isNaN(sec_num)) {
+            return null;
+        }
+
         let hours   = Math.floor(sec_num / 3600);
         let minutes = Math.floor((sec_num - (hours * 3600)) / 60);
         let seconds = sec_num - (hours * 3600) - (minutes * 60);
@@ -122,6 +127,14 @@ export class TimelineComponent implements ICodeEventTimeline {
         let sSeconds = (seconds < 10) ? "0"+seconds : seconds.toString();
         
         return sHours+':'+sMinutes+':'+sSeconds;
+    }
+
+    onDeleteItem(e: MouseEvent, item: ICodedEventItem) {
+        console.info(item)
+    }
+
+    onShowInformation(e: MouseEvent, item: ICodedEventItem) {
+        alert(`color: ${item.color}, seconds: ${item.seconds}`)
     }
 }
 

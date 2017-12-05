@@ -14,7 +14,7 @@ import { TimelineEventService } from '../../services/timeline-event.service';
 export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostComponent {
 
   private timerChangedHandle: any;
-  private currentMatch: IMatchMetadata;
+  currentMatch: IMatchMetadata;
   allMatches: IMatchMetadata[];
 
   constructor(private timerService: TimerService, 
