@@ -25,7 +25,7 @@ export class TimerProgressComponent {
     constructor(private timerService: TimerService) {
     }
 
-    private timerChanged(args: any) {
+    timerChanged(args: any) {
         this.currentTime = args.currentTime;
 
         this.secondsDisplay = this.getSeconds(this.currentTime);
@@ -33,23 +33,23 @@ export class TimerProgressComponent {
         this.hoursDisplay = this.getHours(this.currentTime);
     }
 
-    private getSeconds(ticks: number) {
+    getSeconds(ticks: number) {
         return this.pad(ticks % 60);
     }
 
-    private getMinutes(ticks: number) {
+    getMinutes(ticks: number) {
         return this.pad((Math.floor(ticks / 60)) % 60);
     }
 
-    private getHours(ticks: number) {
+    getHours(ticks: number) {
         return this.pad(Math.floor((ticks / 60) / 60));
     }
 
-    private pad(digit: any) {
+    pad(digit: any) {
         return digit <= 9 ? '0' + digit : digit;
     }
 
-    private formattedTime(): string {
+    formattedTime(): string {
         let hours = this.hoursDisplay ? this.hoursDisplay : '00';
         let minutes = (this.minutesDisplay) && (this.minutesDisplay <= 59) ? this.minutesDisplay : '00';
         let seconds = (this.secondsDisplay) && (this.secondsDisplay <= 59) ? this.secondsDisplay : '00';
