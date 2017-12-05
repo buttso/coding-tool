@@ -1,9 +1,12 @@
 <div class="container" style="padding: 0px; margin-top: -1px;">
     <div class="timeline2">
         <div>
-            <ul class="accordian">
+            <ul class="accordian" style="-webkit-margin-before: 0em;
+                    -webkit-margin-after: 0em;
+                    -webkit-margin-start: 0px;
+                    -webkit-margin-end: 0px;
+                    -webkit-padding-start: 2px;">
                 <li *ngFor="let item of eventItems" class="timeline-row2">
-                    
                     <div class="row-title">
                         <strong>{{item.eventType}}</strong>
                     </div>
@@ -17,19 +20,34 @@
                                     [class.yellow]="subItem.color === 'yellow'"
                                     [attr.data-seconds]="subItem.seconds" 
                                     [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)"
-                                    (click)="onEventItemClicked(subItem)">
+                                    (click)="onEventItemClicked(subItem)"
+                                    [matTooltip]="formatTooltipTime(subItem.seconds)" matTooltipPosition="above">
                                 &nbsp;
                             </span>
                         </ng-container>
                     </div>
                     
                 </li>
+                <li class="timeline-row2 gutter-row">
+                        
+                    <div class="row-title">
+                        <strong>{{intervalMode}}</strong>
+                    </div>
+                    <div class="row-items">
+                        <ng-container *ngFor="let item of segments; let i = index;">
+                            <span class="timeline-item timeline-item-marker" 
+                            [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
+                        </ng-container>
+                    </div>
+                    
+                </li>
             </ul>
+            
         </div>
         
     </div>
         
-    <div class="gutter-row">
+    <!-- <div class="gutter-row">
         <div class="timeline-row-title">
             {{intervalMode}}
         </div>
@@ -39,5 +57,5 @@
                         [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
             </ng-container>
         </div>
-    </div>
+    </div> -->
 </div>

@@ -105,9 +105,23 @@ export class TimelineComponent implements ICodeEventTimeline {
         return val;
     }
 
-    public getLeftPercent(elapsed: number): number {
+    getLeftPercent(elapsed: number): number {
         let maximumSeconds = 60 * 70;
         return elapsed / maximumSeconds;
+    }
+
+    formatTooltipTime(time: string): string {
+        // let t = Math.round(seconds); // moment.duration(seconds).asSeconds();
+        let sec_num = parseInt(time, 10); // don't forget the second param
+        let hours   = Math.floor(sec_num / 3600);
+        let minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+        let seconds = sec_num - (hours * 3600) - (minutes * 60);
+    
+        let sHours = (hours < 10) ? "0"+hours : hours.toString();
+        let sMinutes = (minutes < 10) ? "0"+minutes : minutes.toString();
+        let sSeconds = (seconds < 10) ? "0"+seconds : seconds.toString();
+        
+        return sHours+':'+sMinutes+':'+sSeconds;
     }
 }
 

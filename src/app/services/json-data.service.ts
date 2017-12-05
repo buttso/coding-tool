@@ -1307,7 +1307,12 @@ export class JsonDataService {
                     "lagSeconds": 10
                 }
             ],
-            "media": {},
+            media: {
+                name: "2017 PLM Grand Final",
+                src: "https://codingtoolproto.blob.core.windows.net/asset-883ab032-7cb1-4d85-b6fb-e882a8c8ae2d/R25_GF_SHCvAHC_FullGame_1920x1080_AACAudio_5690.mp4?sv=2015-07-08&sr=c&si=3701f404-eb15-4ab8-8b7d-4a2648be8db7&sig=lXNXI3xytOuT7fWayOOcTdZqBYW3m5H%2B2d0oCaxaZqI%3D&st=2017-11-28T20%3A57%3A26Z&se=2117-11-28T20%3A57%3A26Z",
+                type: "video/mp4",
+                offlineSrc: ""
+            },
             "identifier": "4"
         } as IMatchMetadata
     ]
