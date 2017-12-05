@@ -22,13 +22,12 @@
                                     [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)"
                                     (click)="onEventItemClicked(subItem)"
                                     [matTooltip]="formatTooltipTime(subItem.seconds)" matTooltipPosition="above"
-                                    [matMenuTriggerFor]="appMenu">
+                                    [contextMenu]="basicMenu" [contextMenuSubject]="subItem"
+                                    
+                                    >
                                 &nbsp;
                             </span>
-                            <mat-menu #appMenu="matMenu">
-                                <button mat-menu-item (click)="onDeleteItem($event, subItem)"> Delete </button>
-                                <button mat-menu-item (click)="onShowInformation($event, subItem)"> Information </button>
-                            </mat-menu>
+                            
                         </ng-container>
                     </div>
                     
@@ -51,16 +50,14 @@
         </div>
         
     </div>
-        
-    <!-- <div class="gutter-row">
-        <div class="timeline-row-title">
-            {{intervalMode}}
-        </div>
-        <div class="timeline-items">
-            <ng-container *ngFor="let item of segments; let i = index;">
-                <span class="timeline-item timeline-item-marker" 
-                        [style.left]="calculateStyleOffsetFromIndex(i)">{{calculateTimeInterval(i)}}</span>
-            </ng-container>
-        </div>
-    </div> -->
+
+    <context-menu>
+        <ng-template contextMenuItem  (execute)="onContextItemClicked($event.item)">
+            Menu Item 1
+        </ng-template>
+        <ng-template contextMenuItem (execute)="onContextItemClicked($event.item)">
+            Menu Item 2
+        </ng-template>
+    </context-menu>
+   
 </div>

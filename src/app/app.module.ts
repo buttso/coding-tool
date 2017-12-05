@@ -16,6 +16,7 @@ import { JsonDataService } from './services/json-data.service';
 import { MatchDataService } from './services/match-data.service';
 import { TimelineEventService } from './services/timeline-event.service';
 import { AppMaterialModule } from './modules/app-material/app-material.module';
+import { ContextMenuModule } from 'ngx-contextmenu'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AppMaterialModule } from './modules/app-material/app-material.module';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ContextMenuModule
   ],
   providers: [
     JsonDataService, 

@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ICodeEventTimeline, ICodingEvent, MediaLoadedEvent } from '../../typings/domain';
 import { TimelineEventService } from '../../services/timeline-event.service';
 import { ICodedEventType, ICodedEventItem } from '../../typings/model-metadata';
+import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
     selector: 'timeline',
@@ -145,6 +146,8 @@ export class TimelineComponent implements ICodeEventTimeline {
     styles: []
 })
 export class TimelineComponent2 extends TimelineComponent implements ICodeEventTimeline {
+
+    @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
     
     constructor(timelineEventService: TimelineEventService){
         super(timelineEventService);
@@ -161,7 +164,12 @@ export class TimelineComponent2 extends TimelineComponent implements ICodeEventT
 
 
     mediaLoaded(e: MediaLoadedEvent) {
-        console.log(e.duration);
         this.videoDuration = e.duration;
      }
+
+     onContextItemClicked(item: ICodedEventItem) {
+         alert(`You clicked on a ${item.color} colored button at ${item.seconds} seconds.`)
+     }
+
+     
 }

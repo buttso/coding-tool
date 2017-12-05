@@ -23,6 +23,7 @@ Good article on [how to deploy to Azure](https://johnpapa.net/deploy-angular-to-
 * [Azure Media Player](http://amp.azure.net/libs/amp/latest/docs/index.html)
 * [VIS JS Timeline](http://visjs.org/timeline_examples.html)
 * [Videogular2 - HTML5 Component](https://github.com/videogular/videogular2)
+* [ContextMenu](https://github.com/isaacplmann/ngx-contextmenu)
 
 ## Meta
 
