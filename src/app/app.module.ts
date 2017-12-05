@@ -16,7 +16,9 @@ import { JsonDataService } from './services/json-data.service';
 import { MatchDataService } from './services/match-data.service';
 import { TimelineEventService } from './services/timeline-event.service';
 import { AppMaterialModule } from './modules/app-material/app-material.module';
-import { ContextMenuModule } from 'ngx-contextmenu'
+import { ContextMenuModule } from 'ngx-contextmenu';
+import { HomeComponent } from './components/home/home.component'
+import { AppRoutingModule } from './modules/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,14 @@ import { ContextMenuModule } from 'ngx-contextmenu'
     TimelineComponent,
     TimelineComponent2,
     MediaPlayerControlsComponent,
-    TimerProgressComponent
+    TimerProgressComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     AppMaterialModule,
     ContextMenuModule
   ],

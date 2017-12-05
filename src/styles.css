@@ -6,7 +6,6 @@ body {
     line-height: 1.42857143;
     color: #fff;
     background-color: #555;
-    margin-top: 50px;
 }
 
 a { text-decoration: none; }
@@ -22,6 +21,11 @@ a { text-decoration: none; }
     border: none;
     box-shadow: none;
 }
+
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+  }
 
 
 azure-media-player, .media-presenter {
