@@ -1,7 +1,8 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
     font-size: 11px;
     line-height: 1.42857143;
     color: #fff;
@@ -25,7 +26,13 @@ a { text-decoration: none; }
 
 .toolbar-spacer {
     flex: 1 1 auto;
-  }
+}
+
+
+
+mat-sidenav {
+    width: 17.5%;
+}
 
 
 azure-media-player, .media-presenter {

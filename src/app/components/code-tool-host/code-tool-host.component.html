@@ -12,17 +12,24 @@
                         [attr.selected]="currentMatch"
                         [ngValue]="match">{{match.properties.matchName}}</option>
                 </select>
-
-                <hr />
-                <div style="color: black">
-                    <strong>{{currentMatch.properties.year}} {{currentMatch.properties.matchName}}</strong>
-                    <small>{{currentMatch.properties.homeTeam}} vs {{currentMatch.properties.awayTeam}}</small>
-                </div>
             </div>
+                
+            <button mat-raised-button (click)="newGame()"> <mat-icon>add_box</mat-icon> New </button>
+            
+
+            <hr />
+
+            <div style="color: black; padding-left: 3px">
+                    
+                <h3>Currently Playing</h3>
+                <strong>{{currentMatch.properties.year}} {{currentMatch.properties.matchName}}</strong><br />
+                <small>{{currentMatch.properties.homeTeam}} vs {{currentMatch.properties.awayTeam}}</small>
+            </div>
+            
 
     </mat-sidenav>
     <mat-sidenav-content>
-            <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+            <button mat-button (click)="sidenav.toggle()"> <mat-icon>slideshow</mat-icon> </button>
             <div class="container">
                 <div class="row">
                     <azure-media-player [source]="currentMatch.media"></azure-media-player>    

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule, MatInputModule, MatMenuModule, MatTooltipModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatCheckboxModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatMenuModule, MatTooltipModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatIconModule,
     MatInputModule,    
     MatMenuModule,
@@ -17,6 +18,7 @@ import { MatIconModule, MatInputModule, MatMenuModule, MatTooltipModule, MatTool
   exports: [
     MatButtonModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatInputModule,
     MatIconModule,
     MatMenuModule,
