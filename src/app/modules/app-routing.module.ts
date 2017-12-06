@@ -4,7 +4,7 @@ import { CodeToolHostComponent } from '../components/code-tool-host/code-tool-ho
 import { HomeComponent } from '../components/home/home.component';
 
 const routes: Routes = [
-{ path: '', pathMatch: 'full', redirectTo: 'home' },
+{ path: '', pathMatch: 'full', redirectTo: 'editor' },
 { path: 'home', component: HomeComponent },
 { path: 'editor', component: CodeToolHostComponent }
 ];
