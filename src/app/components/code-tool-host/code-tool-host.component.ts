@@ -21,6 +21,7 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
   private timerChangedHandle: any;
   currentMatch: IMatchMetadata;
   allMatches: IMatchMetadata[];
+  opened = false;
 
   constructor(private timerService: TimerService, 
       private matchDataService: MatchDataService,
