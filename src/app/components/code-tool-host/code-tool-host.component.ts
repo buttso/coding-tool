@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICodeToolHostComponent } from '../../typings/domain';
 import { TimerService } from '../../services/timer.service';
 import { IMatchMetadata } from '../../typings/model-metadata';
 import { MatchDataService } from '../../services/match-data.service';
 import { TimelineEventService } from '../../services/timeline-event.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { AddGameDialog } from './add-game-dialog.component';
+import { CreateGameModel } from '../../models/create-game-model';
 
 
 
@@ -50,30 +52,16 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   newGame(): void {
     let dialogRef = this.dialog.open(AddGameDialog, {
-      width: '250px',
+      width: '350px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      let name = result;
+    dialogRef.afterClosed().subscribe((result: CreateGameModel) => {
+      console.log(result);
     });
   }
 
 }
 
 
-@Component({
-  selector: 'add-game-dialog',
-  templateUrl: './add-game-dialog.html',
-})
-export class AddGameDialog {
 
-  constructor(
-    public dialogRef: MatDialogRef<AddGameDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
 

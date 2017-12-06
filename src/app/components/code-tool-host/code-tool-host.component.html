@@ -30,7 +30,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
             <button mat-button (click)="sidenav.toggle()"> <mat-icon>slideshow</mat-icon> </button>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <azure-media-player [source]="currentMatch.media"></azure-media-player>    
                     <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>

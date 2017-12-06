@@ -6,13 +6,15 @@ To run the app, type the following command:
 
   > npm start
 
-Good article on [how to deploy to Azure](https://johnpapa.net/deploy-angular-to-azure-vsts-angular-cli/):
-
-
+Article on [how to deploy to Azure](https://johnpapa.net/deploy-angular-to-azure-vsts-angular-cli/):
 
 ## High level component overview
 
 ![Coding Tool Components](https://github.com/dneimke/coding-tool/blob/master/images/coding-tool-components.png?raw=true)
+
+## User Stories
+
+* As a user I want to create a new game so that I can code match events.
 
 ## Ideas
 
