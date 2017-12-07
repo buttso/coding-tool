@@ -14,18 +14,15 @@
                 </select>
             </div>
                 
-            <button mat-raised-button (click)="newGame()"> <mat-icon>add_box</mat-icon> New </button>
+            <!-- <button mat-raised-button (click)="newGame()"> <mat-icon>add_box</mat-icon> New </button> -->
             
-
-            <hr />
-
             <div style="color: black; padding-left: 3px">
-                    
                 <h3>Currently Playing</h3>
                 <strong>{{currentMatch.properties.year}} {{currentMatch.properties.matchName}}</strong><br />
                 <small>{{currentMatch.properties.homeTeam}} vs {{currentMatch.properties.awayTeam}}</small>
             </div>
-            
+
+            <button mat-fab (click)="newGame()"> <mat-icon>add</mat-icon> </button>
 
     </mat-sidenav>
     <mat-sidenav-content>

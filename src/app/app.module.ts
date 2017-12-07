@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { AppComponent } from './app.component';
 import { CodeToolHostComponent } from './components/code-tool-host/code-tool-host.component';
 import { CodeButtonsComponent } from './components/code-buttons/code-buttons.component';
@@ -19,6 +23,9 @@ import { ContextMenuModule } from 'ngx-contextmenu';
 import { HomeComponent } from './components/home/home.component'
 import { AppRoutingModule } from './modules/app-routing.module';
 import { AddGameDialog } from './components/code-tool-host/add-game-dialog.component';
+
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +45,9 @@ import { AddGameDialog } from './components/code-tool-host/add-game-dialog.compo
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AppMaterialModule,
     ContextMenuModule
   ],

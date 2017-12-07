@@ -14,18 +14,21 @@ Article on [how to deploy to Azure](https://johnpapa.net/deploy-angular-to-azure
 
 ## User Stories
 
-* As a user I want to create a new game so that I can code match events.
+* [User logs in](https://github.com/dneimke/coding-tool/wiki/Login-User-Story).
+* [User creates a new game](https://github.com/dneimke/coding-tool/wiki/Create-Game-User-Story).
 
 ## Ideas
 
 * [Work with video located on the filesystem](https://stackoverflow.com/questions/8885701/play-local-hard-drive-video-file-with-html5-video-tag)
 
-## Dependencies
+## Third-party
 
 * [Azure Media Player](http://amp.azure.net/libs/amp/latest/docs/index.html)
 * [VIS JS Timeline](http://visjs.org/timeline_examples.html)
 * [Videogular2 - HTML5 Component](https://github.com/videogular/videogular2)
 * [ContextMenu](https://github.com/isaacplmann/ngx-contextmenu)
+* [Angular Material](https://material.angular.io)
+* [Firebase](https://firebase.google.com/)
 
 ## Meta
 

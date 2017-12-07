@@ -13,7 +13,7 @@ import { CreateGameModel } from '../../models/create-game-model';
 @Component({
   selector: 'code-tool-host',
   templateUrl: './code-tool-host.component.html',
-  styles: [],
+  styleUrls: ['./code-tool-host.component.css'],
   providers: []
 })
 export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostComponent {
