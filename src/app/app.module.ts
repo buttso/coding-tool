@@ -25,6 +25,7 @@ import { AppRoutingModule } from './modules/app-routing.module';
 import { AddGameDialog } from './components/code-tool-host/add-game-dialog.component';
 
 import { environment } from '../environments/environment';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { environment } from '../environments/environment';
     JsonDataService, 
     MatchDataService,
     TimelineEventService, 
-    TimerService    
+    TimerService,
+    AuthService
   ],
   entryComponents: [
     AddGameDialog

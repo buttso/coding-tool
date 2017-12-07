@@ -1,39 +1,38 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
         
-            <div class="form-group">
-                <label for="selectedMatch" style="color: #000">Select Match</label>
-                <select class="form-control input-lg" 
-                        name="selectedMatch"
-                        id="selectedMatch"
-                        [(ngModel)]="currentMatch"
-                        (ngModelChange)="onGameChanged($event)" required>
-                    <option *ngFor="let match of allMatches" 
-                        [attr.selected]="currentMatch"
-                        [ngValue]="match">{{match.properties.matchName}}</option>
-                </select>
-            </div>
+            <mat-form-field *ngIf="(allMatches$ | async)?.length > 0">
+                <mat-select placeholder="Select game" [(value)]="currentMatch" (ngModelChange)="onGameChanged()">
+                    <mat-option *ngFor="let game of allMatches" [value]="game">
+                    {{ game.properties.matchName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
                 
-            <!-- <button mat-raised-button (click)="newGame()"> <mat-icon>add_box</mat-icon> New </button> -->
-            
-            <div style="color: black; padding-left: 3px">
-                <h3>Currently Playing</h3>
-                <strong>{{currentMatch.properties.year}} {{currentMatch.properties.matchName}}</strong><br />
-                <small>{{currentMatch.properties.homeTeam}} vs {{currentMatch.properties.awayTeam}}</small>
+            <div style="color: black; padding-left: 3px" *ngIf="currentMatch">
+                <strong>Information</strong>
+                <p>{{currentMatch.properties.year}} {{currentMatch.properties.matchName}}</p>
+                <p>{{currentMatch.properties.homeTeam}} vs {{currentMatch.properties.awayTeam}}</p>
             </div>
 
-            <button mat-fab (click)="newGame()"> <mat-icon>add</mat-icon> </button>
+            <button mat-fab 
+                matTooltip="New Game" matTooltipPosition="right" 
+                (click)="newGame()"> <mat-icon>add</mat-icon> </button>
 
     </mat-sidenav>
     <mat-sidenav-content>
-            <button mat-button (click)="sidenav.toggle()"> <mat-icon>slideshow</mat-icon> </button>
-            <div class="container-fluid">
-                <div class="row">
-                    <azure-media-player [source]="currentMatch.media"></azure-media-player>    
-                    <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>
+            <button mat-button (click)="sidenav.toggle()" *ngIf="(allMatches$ | async)?.length > 0">
+                 <mat-icon>slideshow</mat-icon> </button>
+            <div *ngIf="currentMatch">
+                <div class="container-fluid">
+                    <div class="row">
+                        <azure-media-player [source]="currentMatch.media"></azure-media-player>    
+                        <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>
+                    </div>
                 </div>
+                <timeline2 [eventItems]="currentMatch.events"></timeline2>
             </div>
-            <timeline2 [eventItems]="currentMatch.events"></timeline2>
+            
 
     </mat-sidenav-content>
 </mat-sidenav-container>

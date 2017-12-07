@@ -8,6 +8,10 @@ import { MatDialog } from '@angular/material';
 import { AddGameDialog } from './add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
 
+import { AngularFirestore } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
+
 
 
 @Component({
@@ -20,34 +24,41 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   private timerChangedHandle: any;
   currentMatch: IMatchMetadata;
-  allMatches: IMatchMetadata[];
-  opened = false;
+  allMatches$: Observable<IMatchMetadata[]>;
+  opened = true;
 
-  constructor(private timerService: TimerService, 
+  constructor(private db: AngularFirestore, 
+      private timerService: TimerService, 
       private matchDataService: MatchDataService,
       private timelineEventService: TimelineEventService,
-      public dialog: MatDialog) { }
+      public dialog: MatDialog,
+    ) { }
+
+    
 
   ngOnInit() {
     this.timerChangedHandle = this.timerService.onTimeChange.subscribe((args: number) => this.timerChanged(args));
-    this.allMatches = this.matchDataService.getAllMatches();
-    this.setCurrentMatch("1");
+    this.allMatches$ = this.matchDataService.getAllMatches();
+
+    
+    
+    // this.setCurrentMatch("1");
   }
 
   ngOnDestroy() {
     this.timerChangedHandle.unsubscribe();
   }
 
-  setCurrentMatch(identifier: string) {
-    this.currentMatch = this.matchDataService.getMatch(identifier);
-  }
+  // setCurrentMatch(identifier: string) {
+  //   this.currentMatch = this.matchDataService.getMatch(identifier);
+  // }
 
   timerChanged(args: any): void {
     console.log('CodeTool - Timer Change')
   }
 
-  onGameChanged(game: IMatchMetadata){
-   this.timelineEventService.matchChanged(game);
+  onGameChanged(){
+   this.timelineEventService.matchChanged(this.currentMatch);
   }
 
 
@@ -57,7 +68,8 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     });
 
     dialogRef.afterClosed().subscribe((result: CreateGameModel) => {
-      console.log(result);
+      // db.collection('items').valueChanges()
+      //   .subscribe(console.log);
     });
   }
 

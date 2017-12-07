@@ -1,13 +1,19 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-body {
+body { 
     font-family: Roboto, Arial, sans-serif;
     margin: 0;
-    font-size: 11px;
-    line-height: 1.42857143;
     color: #fff;
     background-color: #555;
-}
+  }
+  
+  .basic-container {
+    padding: 5px;
+  }
+
+.mat-sidenav {
+    padding: 10px;
+} 
 
 a { text-decoration: none; }
 
@@ -28,12 +34,13 @@ a { text-decoration: none; }
     flex: 1 1 auto;
 }
 
-
-
 mat-sidenav {
     width: 17.5%;
 }
 
+.mat-sidenav-container {
+    min-height: 680px;
+}
 
 azure-media-player, .media-presenter {
     width: 85%;
@@ -124,6 +131,7 @@ code-buttons, .button-panel {
 
 .timeline2 {
     min-height: 30px; 
+    font-size: 0.7em;
 }
 
 .accordian {

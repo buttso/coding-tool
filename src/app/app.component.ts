@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,10 @@ import { AngularFirestore } from 'angularfire2/firestore';
 export class AppComponent {
   title = 'Code Tool';
 
-  constructor(private db: AngularFirestore) {
-    // db.collection('items').valueChanges()
-    //   .subscribe(console.log);
+  constructor(public authService: AuthService) {
+    
+    // authService.user$.subscribe(e => console.log(e))
+      
   }
+    
 }
