@@ -1,0 +1,17 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="false">
+    
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-card *ngFor="let match of matches$ | async" fxLayoutAlign="space-between center">
+          <span>{{match.properties.matchName}}</span>
+          <button mat-button [routerLink]="['/match-view', match.identifier]">Edit</button>
+        </mat-card>
+
+        <button mat-fab 
+                matTooltip="New Game" matTooltipPosition="right" 
+                (click)="newGame()"> <mat-icon>add</mat-icon> </button>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+        
+       

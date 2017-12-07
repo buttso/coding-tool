@@ -1,11 +1,7 @@
 <div class="container-fluid" style="padding: 0px; margin-top: -1px;">
     <div class="timeline2">
         <div>
-            <ul class="accordian" style="-webkit-margin-before: 0em;
-                    -webkit-margin-after: 0em;
-                    -webkit-margin-start: 0px;
-                    -webkit-margin-end: 0px;
-                    -webkit-padding-start: 2px;">
+            <ul class="accordian accordian-list">
                 <li *ngFor="let item of eventItems" class="timeline-row2">
                     <div class="row-title">
                         <strong>{{item.eventType}}</strong>
@@ -22,18 +18,14 @@
                                     [style.left]="calculateStyleOffsetFromSeconds(subItem.seconds)"
                                     (click)="onEventItemClicked(subItem)"
                                     [matTooltip]="formatTooltipTime(subItem.seconds)" matTooltipPosition="above"
-                                    [contextMenu]="basicMenu" [contextMenuSubject]="subItem"
-                                    
-                                    >
+                                    [contextMenu]="basicMenu" [contextMenuSubject]="subItem">
                                 &nbsp;
-                            </span>
-                            
+                            </span>                            
                         </ng-container>
                     </div>
                     
                 </li>
                 <li class="timeline-row2 gutter-row">
-                        
                     <div class="row-title">
                         <strong>{{intervalMode}}</strong>
                     </div>
@@ -52,11 +44,11 @@
     </div>
 
     <context-menu>
-        <ng-template contextMenuItem  (execute)="onContextItemClicked($event.item)">
-            Menu Item 1
+        <ng-template contextMenuItem (execute)="onCommentItemClicked($event.item)">
+            Comment
         </ng-template>
-        <ng-template contextMenuItem (execute)="onContextItemClicked($event.item)">
-            Menu Item 2
+        <ng-template contextMenuItem  (execute)="onDeleteItemClicked($event.item)">
+            Delete
         </ng-template>
     </context-menu>
    

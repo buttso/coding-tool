@@ -6,11 +6,13 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
     selector: 'timeline',
-    template: '' ,// './timeline.component.html',
+    templateUrl: './timeline.component.1.html',
     styles: []
 })
 export class TimelineComponent implements ICodeEventTimeline {
-  
+
+    @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
+    
     intervalMode = 'Minutes'
     @Input() eventItems: ICodedEventType[] = []; 
     listLength = 0;
@@ -24,6 +26,11 @@ export class TimelineComponent implements ICodeEventTimeline {
         this.timelineEventService.eventAdded$.subscribe(
             codingEvent => {
               this.addCodingEvent(codingEvent);
+            });
+
+        this.timelineEventService.mediaLoaded$.subscribe(
+            (e: MediaLoadedEvent) => {
+                this.mediaLoaded(e);
             });
     }
 
@@ -130,34 +137,6 @@ export class TimelineComponent implements ICodeEventTimeline {
         return sHours+':'+sMinutes+':'+sSeconds;
     }
 
-    onDeleteItem(e: MouseEvent, item: ICodedEventItem) {
-        console.info(item)
-    }
-
-    onShowInformation(e: MouseEvent, item: ICodedEventItem) {
-        alert(`color: ${item.color}, seconds: ${item.seconds}`)
-    }
-}
-
-
-@Component({
-    selector: 'timeline2',
-    templateUrl: './timeline.component.1.html',
-    styles: []
-})
-export class TimelineComponent2 extends TimelineComponent implements ICodeEventTimeline {
-
-    @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
-    
-    constructor(timelineEventService: TimelineEventService){
-        super(timelineEventService);
-
-        this.timelineEventService.mediaLoaded$.subscribe(
-            (e: MediaLoadedEvent) => {
-              this.mediaLoaded(e);
-            });
-    }
-
     onEventItemClicked(codingEventItem: ICodedEventItem) {
         this.timelineEventService.navigateTo(codingEventItem);
     }
@@ -167,9 +146,52 @@ export class TimelineComponent2 extends TimelineComponent implements ICodeEventT
         this.videoDuration = e.duration;
      }
 
-     onContextItemClicked(item: ICodedEventItem) {
-         alert(`You clicked on a ${item.color} colored button at ${item.seconds} seconds.`)
-     }
+    onCommentItemClicked(item: ICodedEventItem) {
+        alert(`Comment clicked for ${item.color} at ${item.seconds} seconds.`)
+    }
+
+    onDeleteItemClicked(item: ICodedEventItem) {
+    // this.timelineEventService.navigateTo(codingEventItem);
+    alert(`Delete clicked for ${item.color} at ${item.seconds} seconds.`)
+}
+}
+
+
+// @Component({
+//     selector: 'timeline2',
+//     templateUrl: './timeline.component.1.html',
+//     styles: []
+// })
+// export class TimelineComponent2 extends TimelineComponent implements ICodeEventTimeline {
+
+//     // @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
+    
+//     constructor(timelineEventService: TimelineEventService){
+//         super(timelineEventService);
+
+//         // this.timelineEventService.mediaLoaded$.subscribe(
+//         //     (e: MediaLoadedEvent) => {
+//         //       this.mediaLoaded(e);
+//         //     });
+//     }
+
+//     // onEventItemClicked(codingEventItem: ICodedEventItem) {
+//     //     this.timelineEventService.navigateTo(codingEventItem);
+//     // }
+
+
+//     // mediaLoaded(e: MediaLoadedEvent) {
+//     //     this.videoDuration = e.duration;
+//     //  }
+
+//     //  onCommentItemClicked(item: ICodedEventItem) {
+//     //      alert(`Comment clicked for ${item.color} at ${item.seconds} seconds.`)
+//     //  }
+
+//     //  onDeleteItemClicked(item: ICodedEventItem) {
+//     //     // this.timelineEventService.navigateTo(codingEventItem);
+//     //     alert(`Delete clicked for ${item.color} at ${item.seconds} seconds.`)
+//     // }
 
      
-}
+// }

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule, MatInputModule, MatMenuModule, MatTooltipModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatCheckboxModule, MatDialogModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatAutocompleteModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatMenuModule, MatTooltipModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatCheckboxModule, MatDialogModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatAutocompleteModule, MatCardModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatDialogModule,
@@ -23,6 +24,7 @@ import { MatIconModule, MatInputModule, MatMenuModule, MatTooltipModule, MatTool
   exports: [
     MatAutocompleteModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatDialogModule,

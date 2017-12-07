@@ -2,15 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICodeToolHostComponent } from '../../typings/domain';
 import { TimerService } from '../../services/timer.service';
 import { IMatchMetadata } from '../../typings/model-metadata';
-import { MatchDataService } from '../../services/match-data.service';
+import { MatchService } from '../../services/match.service';
 import { TimelineEventService } from '../../services/timeline-event.service';
 import { MatDialog } from '@angular/material';
 import { AddGameDialog } from './add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
 
-import { AngularFirestore } from 'angularfire2/firestore';
-import * as firebase from 'firebase/app';
+
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -27,11 +27,12 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
   allMatches$: Observable<IMatchMetadata[]>;
   opened = true;
 
-  constructor(private db: AngularFirestore, 
+  constructor(
+      public authService: AuthService,
       private timerService: TimerService, 
-      private matchDataService: MatchDataService,
+      private matchDataService: MatchService,
       private timelineEventService: TimelineEventService,
-      public dialog: MatDialog,
+      public dialog: MatDialog
     ) { }
 
     

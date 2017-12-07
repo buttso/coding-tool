@@ -9,10 +9,10 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
  
 @Injectable()
-export class MatchDataService {
+export class MatchService {
     
     private matchesCollection: AngularFirestoreCollection<IMatchMetadata>;
-    matches: Observable<IMatchMetadata[]>;
+    matches$: Observable<IMatchMetadata[]>;
     currentUser: firebase.User;
 
     constructor(private db: AngularFirestore, public auth: AngularFireAuth) {
@@ -20,17 +20,24 @@ export class MatchDataService {
         this.currentUser = auth.auth.currentUser;
 
         if(this.currentUser == null) {
-            this.matches =  Observable.of<IMatchMetadata[]>();
+            this.matches$ =  Observable.of<IMatchMetadata[]>();
         }else {
             let uid = this.currentUser.uid;
             this.matchesCollection = db.collection<IMatchMetadata>(`${uid}/matches`);
-            this.matches = this.matchesCollection.valueChanges();
+            this.matches$ = this.matchesCollection.valueChanges();
         }
         
     }
 
-    addMatch(match: IMatchMetadata): void {
-        this.matchesCollection.add(match);
+    addMatch(match: IMatchMetadata): Promise<void> {
+        this.currentUser = this.auth.auth.currentUser;
+        let uid = this.currentUser.uid;
+            this.matchesCollection = this.db.collection<IMatchMetadata>(`${uid}/matches`);
+            this.matches$ = this.matchesCollection.valueChanges();
+
+        return this.matchesCollection.add(match)
+            .then(_ => console.log('success'))
+            .catch(error => console.log(error));
     }
 
     getAllMatches(): Observable<IMatchMetadata[]> {
@@ -39,7 +46,7 @@ export class MatchDataService {
             return Observable.of<IMatchMetadata[]>();
         }
 
-        return this.matches
+        return this.matches$
           .catch(this.errorHandler);
     }
 

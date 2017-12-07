@@ -7,7 +7,7 @@ export class JsonDataService {
     }
 
     findByIdentifier(identifier: string): IMatchMetadata {
-        let foundItem = this.matchData.filter(e => e.identifier === identifier);
+        let foundItem = this.matchData.filter(e => e.$key === identifier);
 
         if (foundItem !== undefined) {
             return foundItem[0];
@@ -18,7 +18,7 @@ export class JsonDataService {
 
     private matchData: IMatchMetadata[] = [
         {
-            identifier: "1",
+            key$: "1",
             properties: {
                 matchName: "Preliminary Final",
                 year: 2017,
@@ -26,10 +26,10 @@ export class JsonDataService {
                 grade: "PLM",
                 homeTeam: "Adelaide",
                 awayTeam: "Forestville",
-                venue: "State Hockey Centre"
+                venue: "State Hockey Centre",
+                date: new Date().toString()
             },
             media: {
-                name: "2017 PLM Preliminary Final",
                 src: "https://codingtoolproto.blob.core.windows.net/asset-f44bed4f-598a-4467-94c3-503426b3f1e9/R24_PF_AHCvFHC_FullGame.mp4?sv=2015-07-08&sr=c&si=cb841b3c-ffc9-4d6f-b18c-188877b38fa8&sig=frdhRSpqbMGHjVuJVIRbwjjhx4HyKJx2nit71zSv0F0%3D&st=2017-11-28T05%3A31%3A15Z&se=2117-11-28T05%3A31%3A15Z",
                 type: "video/mp4",
                 offlineSrc: ""
@@ -128,6 +128,7 @@ export class JsonDataService {
             ]
         } as IMatchMetadata,
         {
+            key$: "2",
             "properties": {
                 "awayTeam": "AHC PLM",
                 "homeTeam": "Seacliff",
@@ -1244,7 +1245,6 @@ export class JsonDataService {
                 }
             ],
             media: {
-                name: "2017 PLM Grand Final",
                 src: "https://codingtoolproto.blob.core.windows.net/asset-883ab032-7cb1-4d85-b6fb-e882a8c8ae2d/R25_GF_SHCvAHC_FullGame_1920x1080_AACAudio_5690.mp4?sv=2015-07-08&sr=c&si=3701f404-eb15-4ab8-8b7d-4a2648be8db7&sig=lXNXI3xytOuT7fWayOOcTdZqBYW3m5H%2B2d0oCaxaZqI%3D&st=2017-11-28T20%3A57%3A26Z&se=2117-11-28T20%3A57%3A26Z",
                 type: "video/mp4",
                 offlineSrc: ""

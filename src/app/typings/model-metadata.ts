@@ -1,7 +1,7 @@
 import { ICodingEvent, IButtonConfiguration } from "./domain";
 
 export interface IMatchMetadata {
-    identifier: string;
+    $key?: string;
     properties: IMatchProperties, 
     media: IMediaSource,
     events: ICodedEventType[],
@@ -20,7 +20,6 @@ export interface IMatchProperties {
 }
 
 export interface IMediaSource {
-    name: string,
     src: string,
     type: string,
     offlineSrc?: string
