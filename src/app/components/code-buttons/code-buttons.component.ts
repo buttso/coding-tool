@@ -35,7 +35,7 @@ export class CodeButtonsComponent implements ICodeButtonPanel, OnInit {
   }
 
 
-  getDefaultButtons():  IButtonConfiguration[] {
+  getDefaultButtons(): IButtonConfiguration[] {
     return [
       { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
       { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
@@ -48,7 +48,7 @@ export class CodeButtonsComponent implements ICodeButtonPanel, OnInit {
       { eventType: "APC", color: "blue", lagSeconds: 5, leadSeconds: 5 },
       { eventType: "DPC", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
       { eventType: "Special", color: "red", lagSeconds: 5, leadSeconds: 5 },
-  ];
+    ];
   }
 
 }

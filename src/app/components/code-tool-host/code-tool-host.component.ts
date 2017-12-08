@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ICodeToolHostComponent } from '../../typings/domain';
+import { ICodeToolHostComponent, IButtonConfiguration } from '../../typings/domain';
 import { TimerService } from '../../services/timer.service';
 import { IMatchMetadata } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
@@ -115,11 +115,27 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
           offlineSrc: '' 
         },
         events: [],
-        buttonConfiguration: []
+        buttonConfiguration: this.getDefaultButtons()
       } as IMatchMetadata;
 
       this.matchService.addMatch(match);
     });
+  }
+
+  getDefaultButtons(): IButtonConfiguration[] {
+    return [
+      { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Circle Entry For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Circle Entry Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Goal Shot Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Goal Shot For.", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Goal For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Goal Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "APC", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "DPC", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Special", color: "red", lagSeconds: 5, leadSeconds: 5 },
+    ];
   }
 
 

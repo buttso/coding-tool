@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { AddGameDialog } from '../dialogs/add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
 import { AuthService } from '../../services/auth.service';
+import { IButtonConfiguration } from '../../typings/domain';
 
 @Component({
   selector: 'match-list',
@@ -36,8 +37,7 @@ export class MatchListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: CreateGameModel) => {
-      // db.collection('items').valueChanges()
-      //   .subscribe(console.log);
+      
       let match = {
         properties: {
           awayTeam: result.awayTeam,
@@ -55,10 +55,26 @@ export class MatchListComponent implements OnInit {
           offlineSrc: '' 
         },
         events: [],
-        buttonConfiguration: []
+        buttonConfiguration: this.getDefaultButtons()
       } as IMatchMetadata;
 
       this.matchService.addMatch(match);
     });
+  }
+
+  getDefaultButtons(): IButtonConfiguration[] {
+    return [
+      { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Circle Entry For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Circle Entry Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Goal Shot Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Goal Shot For.", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Goal For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Goal Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "APC", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "DPC", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { eventType: "Special", color: "red", lagSeconds: 5, leadSeconds: 5 },
+    ];
   }
 }
