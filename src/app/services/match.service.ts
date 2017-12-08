@@ -30,15 +30,6 @@ export class MatchService {
         });
     }
 
-    // addMatch(match: IMatchMetadata): Promise<void> {
-    //     this.currentUser = this.auth.auth.currentUser;
-    //     let uid = this.currentUser.uid;
-
-    //     // return this.db.collection(`users/${uid}/matches`).doc(match.properties.matchName).set(match)
-    //     //     .then(_ => console.log('success'))
-    //     //     .catch(error => console.log(error));
-    // }
-
     getMatches() {
         return this.matches;
     }

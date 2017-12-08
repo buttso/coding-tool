@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Edit Game</h1>
+<div mat-dialog-content>
+    <form #editGameForm name="editGameForm">
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="model.matchDate" name="matchDate"  placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput [matAutocomplete]="clubList" [(ngModel)]="model.homeTeam" name="homeTeam"  placeholder="Home Team">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput [matAutocomplete]="clubList" [(ngModel)]="model.awayTeam" name="awayTeam"  placeholder="Away Team">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput [matAutocomplete]="venueList" [(ngModel)]="model.venue" name="venue"  placeholder="Venue">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput [(ngModel)]="model.videoUrl" name="videoUrl" required  placeholder="Video Url">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput [(ngModel)]="model.videoType" name="videoType" required  placeholder="Video Type">
+        </mat-form-field>
+        <!-- <mat-form-field>
+            <textarea matInput [(ngModel)]="model.media.offlineSrc" name="importContent" placeholder="Import coded content " matTextareaAutosize matAutosizeMinRows="2"
+            matAutosizeMaxRows="5"></textarea>
+        </mat-form-field> -->
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSaveClick()"  ng-disabled="editGameForm.$invalid" type="submit" class="mat-primary">Save</button>
+  <button mat-button (click)="onNoClick()"  tabindex="-1">Cancel</button>
+</div>
+
+<mat-autocomplete #clubList="matAutocomplete">
+    <mat-option *ngFor="let club of clubs" [value]="club">
+        {{ club }}
+    </mat-option>
+</mat-autocomplete>
+
+<mat-autocomplete #venueList="matAutocomplete">
+    <mat-option *ngFor="let venue of venues" [value]="venue">
+        {{ venue }}
+    </mat-option>
+</mat-autocomplete>

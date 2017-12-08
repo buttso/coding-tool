@@ -5,13 +5,15 @@ import { IMatchMetadata } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
 import { TimelineEventService } from '../../services/timeline-event.service';
 import { MatDialog } from '@angular/material';
-import { AddGameDialog } from './add-game-dialog.component';
+import { AddGameDialog } from '../dialogs/add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
 
 
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EditGameDialog } from '../dialogs/edit-game-dialog.component';
+import { EditGameModel } from '../../models/edit-game-model';
 
 
 
@@ -66,6 +68,29 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
    this.timelineEventService.matchChanged(this.currentMatch);
   }
 
+  editGame(): void {
+    let dialogRef = this.dialog.open(EditGameDialog, {
+      data: this.currentMatch,
+      width: '350px',
+    });
+
+    dialogRef.afterClosed().subscribe((model: EditGameModel) => {
+      this.currentMatch.properties.date = model.matchDate.toString();
+      this.currentMatch.properties.awayTeam = model.awayTeam;
+      this.currentMatch.properties.grade = model.grade;
+      this.currentMatch.properties.homeTeam = model.homeTeam;
+      this.currentMatch.properties.venue = model.venue;
+      this.currentMatch.media.src = model.videoUrl;
+      this.currentMatch.media.type = model.videoType;
+      this.currentMatch.properties.matchName = `${model.homeTeam} vs ${model.awayTeam}`;
+      this.currentMatch.$key = this.matchKey;
+
+      console.log(this.currentMatch)
+      
+      this.matchService.updateMatch(this.currentMatch);
+    });
+  }
+
 
   newGame(): void {
     let dialogRef = this.dialog.open(AddGameDialog, {
@@ -73,8 +98,27 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     });
 
     dialogRef.afterClosed().subscribe((result: CreateGameModel) => {
-      // db.collection('items').valueChanges()
-      //   .subscribe(console.log);
+      let match = {
+        properties: {
+          awayTeam: result.awayTeam,
+          date: result.matchDate.toString(),
+          grade: '',
+          homeTeam: result.homeTeam,
+          matchName: `${result.homeTeam} vs ${result.awayTeam}`,
+          roundNumber: 0,
+          venue: result.venue,
+          year: result.matchDate.getFullYear()
+        },
+        media: {
+          src: result.videoUrl,
+          type: result.videoType,
+          offlineSrc: '' 
+        },
+        events: [],
+        buttonConfiguration: []
+      } as IMatchMetadata;
+
+      this.matchService.addMatch(match);
     });
   }
 

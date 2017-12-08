@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IMatchMetadata } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
 import { MatDialog } from '@angular/material';
-import { AddGameDialog } from '../code-tool-host/add-game-dialog.component';
+import { AddGameDialog } from '../dialogs/add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
 import { AuthService } from '../../services/auth.service';
 
@@ -19,7 +19,6 @@ export class MatchListComponent implements OnInit {
 
   ngOnInit() {
     this.matchService.getMatches().subscribe(matches => {
-      console.log(matches);
       this.matches = matches;
     });
   }

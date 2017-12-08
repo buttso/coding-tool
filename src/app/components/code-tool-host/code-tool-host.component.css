@@ -1,5 +1,10 @@
-button[mat-fab] {
+#add-button {
     position: fixed;
     bottom: 25px;
+    right: 25px;
+}
+
+#edit-button {
+    position: fixed;
     right: 25px;
 }

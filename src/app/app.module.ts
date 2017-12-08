@@ -22,7 +22,8 @@ import { AppMaterialModule } from './modules/app-material.module';
 import { ContextMenuModule } from 'ngx-contextmenu';
 import { MatchListComponent } from './components/match-list/match-list.component'
 import { AppRoutingModule } from './modules/app-routing.module';
-import { AddGameDialog } from './components/code-tool-host/add-game-dialog.component';
+import { AddGameDialog } from './components/dialogs/add-game-dialog.component';
+import { EditGameDialog } from './components/dialogs/edit-game-dialog.component';
 
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
@@ -38,7 +39,8 @@ import { AuthService } from './services/auth.service';
     MediaPlayerControlsComponent, 
     TimerProgressComponent,
     MatchListComponent,
-    AddGameDialog
+    AddGameDialog,
+    EditGameDialog
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { AuthService } from './services/auth.service';
     AuthService
   ],
   entryComponents: [
-    AddGameDialog
+    AddGameDialog,
+    EditGameDialog
   ],
   bootstrap: [AppComponent]
 })

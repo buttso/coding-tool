@@ -1,26 +1,18 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
         
-        <mat-form-field *ngIf="(allMatches$ | async)?.length > 0">
-            <mat-select placeholder="Select game" [(value)]="currentMatch" (ngModelChange)="onGameChanged()">
-                <mat-option *ngFor="let game of allMatches" [value]="game">
-                {{ game.properties.matchName }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <div *ngIf="(authService.user$ | async)?.uid">
-            Logged in as {{(authService.user$ | async)?.displayName}}
-        </div>
-            
         <div style="color: black; padding-left: 3px" *ngIf="currentMatch">
             <strong>Information</strong>
             <p>{{currentMatch.properties.year}} {{currentMatch.properties.matchName}}</p>
             <p>{{currentMatch.properties.homeTeam}} vs {{currentMatch.properties.awayTeam}}</p>
+
+            <button mat-fab id="edit-button"
+                matTooltip="Edit Match" matTooltipPosition="below" 
+                (click)="editGame(currentMatch)"> <mat-icon>mode_edit</mat-icon> </button>
         </div>
 
-        <button mat-fab 
-            matTooltip="New Game" matTooltipPosition="right" 
+        <button mat-fab id="add-button"
+            matTooltip="Add Game" matTooltipPosition="above" 
             (click)="newGame()"> <mat-icon>add</mat-icon> </button>
 
     </mat-sidenav>
