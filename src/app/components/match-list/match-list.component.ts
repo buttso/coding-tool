@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { IMatchMetadata } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
 import { MatDialog } from '@angular/material';
 import { AddGameDialog } from '../code-tool-host/add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
-import { IButtonConfiguration } from '../../typings/domain';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'match-list',
@@ -14,12 +13,22 @@ import { IButtonConfiguration } from '../../typings/domain';
 })
 export class MatchListComponent implements OnInit {
 
-  matches$: Observable<IMatchMetadata[]>;
+  matches: IMatchMetadata[];
 
-  constructor(private matchDataService: MatchService, public dialog: MatDialog) { }
+  constructor(private matchService: MatchService, public dialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit() {
-    this.matches$ = this.matchDataService.getAllMatches();
+    this.matchService.getMatches().subscribe(matches => {
+      console.log(matches);
+      this.matches = matches;
+    });
+  }
+
+  deleteMatch(match: IMatchMetadata): void {
+    const response = confirm('are you sure you want to delete?');
+    if (response ) {
+      this.matchService.deleteMatch(match);
+    }
   }
 
   newGame(): void {
@@ -47,9 +56,10 @@ export class MatchListComponent implements OnInit {
           offlineSrc: '' 
         },
         events: [],
-        buttonConfiguration: [] as IButtonConfiguration[]
+        buttonConfiguration: []
       } as IMatchMetadata;
-      this.matchDataService.addMatch(match);
+
+      this.matchService.addMatch(match);
     });
   }
 }

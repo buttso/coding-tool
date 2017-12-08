@@ -3,9 +3,22 @@
     
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-card *ngFor="let match of matches$ | async" fxLayoutAlign="space-between center">
-          <span>{{match.properties.matchName}}</span>
-          <button mat-button [routerLink]="['/match-view', match.identifier]">Edit</button>
+        <mat-card *ngFor="let match of matches" fxLayoutAlign="space-between center" class="match-card">
+            <mat-card-header>
+                <span>{{match.properties.matchName}}</span>
+            </mat-card-header>
+            <mat-card-content>
+                TODO: Insert card content
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-button [routerLink]="['/match-view', match.identifier]"
+                        matTooltip="View" matTooltipPosition="below">
+                    <mat-icon>mode_edit</mat-icon>
+                </button>
+                <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteMatch(match)">
+                     <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
         </mat-card>
 
         <button mat-fab 

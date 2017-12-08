@@ -19,6 +19,7 @@ export class JsonDataService {
     private matchData: IMatchMetadata[] = [
         {
             key$: "1",
+            userId: "<empty>",
             properties: {
                 matchName: "Preliminary Final",
                 year: 2017,
@@ -129,6 +130,7 @@ export class JsonDataService {
         } as IMatchMetadata,
         {
             key$: "2",
+            userId: "<empty>",
             "properties": {
                 "awayTeam": "AHC PLM",
                 "homeTeam": "Seacliff",

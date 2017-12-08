@@ -24,13 +24,12 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   private timerChangedHandle: any;
   currentMatch: IMatchMetadata;
-  allMatches$: Observable<IMatchMetadata[]>;
   opened = true;
 
   constructor(
       public authService: AuthService,
       private timerService: TimerService, 
-      private matchDataService: MatchService,
+      private matchService: MatchService,
       private timelineEventService: TimelineEventService,
       public dialog: MatDialog
     ) { }
@@ -39,10 +38,6 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   ngOnInit() {
     this.timerChangedHandle = this.timerService.onTimeChange.subscribe((args: number) => this.timerChanged(args));
-    this.allMatches$ = this.matchDataService.getAllMatches();
-
-    
-    
     // this.setCurrentMatch("1");
   }
 

@@ -2,6 +2,7 @@ import { ICodingEvent, IButtonConfiguration } from "./domain";
 
 export interface IMatchMetadata {
     $key?: string;
+    userId: string;
     properties: IMatchProperties, 
     media: IMediaSource,
     events: ICodedEventType[],
