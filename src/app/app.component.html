@@ -1,16 +1,12 @@
 <mat-toolbar color="primary">
     <span>Coding Tool</span>
     <span class="toolbar-spacer"></span>
-    <!-- <button mat-button [routerLink]="['/editor']"
-            matTooltip="Editor" matTooltipPosition="above"> <mat-icon>mode_edit</mat-icon> </button> -->
-    <!-- <button mat-button
-            matTooltip="Save changes" matTooltipPosition="above"> <mat-icon>save</mat-icon> </button> -->
-
+    
     <div *ngIf="!(authService.user$ | async)?.uid">
         <button mat-button (click)="authService.login()"> <mat-icon>perm_identity</mat-icon> Login </button>
     </div>
     <div *ngIf="(authService.user$ | async)?.uid">
-        <button mat-button [routerLink]="['/list']" matTooltip="Matches" matTooltipPosition="below"> <mat-icon>list</mat-icon> </button>
+        <button mat-button [routerLink]="['/list']" matTooltip="Matches" matTooltipPosition="below"> <mat-icon>view_list</mat-icon> </button>
         <button mat-button (click)="authService.logout()"> <mat-icon>power_settings_new</mat-icon> {{(authService.user$ | async)?.displayName}} </button>
     </div>
 
