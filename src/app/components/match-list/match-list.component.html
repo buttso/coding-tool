@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side" opened="false">
+    <mat-sidenav #sidenav mode="side" opened="false"> 
     
     </mat-sidenav>
     <mat-sidenav-content>
@@ -8,10 +8,15 @@
                 <span>{{match.properties.matchName}}</span>
             </mat-card-header>
             <mat-card-content>
-                TODO: Insert card content
+                <ul>
+                    <li><strong>Venue:</strong> {{match.properties.venue}}</li>
+                    <li><strong>Date:</strong> {{match.properties.date | date:'dd-MMM-yyyy'}}</li>
+                    <!-- <li><strong>Video Source:</strong> {{match.media.src}}</li> -->
+                    <li><strong>Video Type:</strong> {{match.media.type}}</li>
+                </ul>
             </mat-card-content>
             <mat-card-actions align="end">
-                <button mat-button [routerLink]="['/match-view', match.identifier]"
+                <button mat-button [routerLink]="['/editor', match.$key]"
                         matTooltip="View" matTooltipPosition="below">
                     <mat-icon>mode_edit</mat-icon>
                 </button>

@@ -11,6 +11,7 @@ import { CreateGameModel } from '../../models/create-game-model';
 
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -26,7 +27,12 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
   currentMatch: IMatchMetadata;
   opened = true;
 
+  isNewMatch: boolean;
+  matchKey: string;
+
   constructor(
+      private router: Router,
+      private activatedRoute: ActivatedRoute,
       public authService: AuthService,
       private timerService: TimerService, 
       private matchService: MatchService,
@@ -38,7 +44,10 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   ngOnInit() {
     this.timerChangedHandle = this.timerService.onTimeChange.subscribe((args: number) => this.timerChanged(args));
-    // this.setCurrentMatch("1");
+    
+    this.matchKey = this.activatedRoute.snapshot.params['id'];
+    this.isNewMatch = this.matchKey === 'new';
+    if (!this.isNewMatch) { this.getMatch(); };
   }
 
   ngOnDestroy() {
@@ -67,6 +76,14 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
       // db.collection('items').valueChanges()
       //   .subscribe(console.log);
     });
+  }
+
+
+  getMatch() {
+    this.matchService.getMatch(this.matchKey)
+      .subscribe(match => {
+        this.currentMatch = match;
+      });
   }
 
 }

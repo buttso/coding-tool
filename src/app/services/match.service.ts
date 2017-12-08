@@ -43,6 +43,11 @@ export class MatchService {
         return this.matches;
     }
 
+    getMatch(matchKey: string): Observable<IMatchMetadata> {
+        this.matchDoc = this.afs.doc<IMatchMetadata>(`matches/${matchKey}`);
+        return this.matchDoc.valueChanges();        
+    }
+
 
     addMatch(match: IMatchMetadata) {
         this.matchesCollection.add(match);

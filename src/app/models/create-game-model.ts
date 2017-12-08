@@ -7,6 +7,7 @@ export class CreateGameModel {
         public venue: string,
         public grade: string,
         public videoUrl: string,
+        public videoType: string,
         public importContent: string
       ) {  }
 }

@@ -6,7 +6,7 @@ import { MatchListComponent } from '../components/match-list/match-list.componen
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'list' },
   { path: 'list', component: MatchListComponent },
-  { path: 'editor', component: CodeToolHostComponent }
+  { path: 'editor/:id', component: CodeToolHostComponent }
 ];
 
 @NgModule({

@@ -52,7 +52,7 @@ export class MatchListComponent implements OnInit {
         },
         media: {
           src: result.videoUrl,
-          type: 'video/mp4',
+          type: result.videoType,
           offlineSrc: '' 
         },
         events: [],

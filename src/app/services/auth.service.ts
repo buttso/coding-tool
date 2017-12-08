@@ -17,13 +17,13 @@ export class AuthService {
 
   login() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(_ => this.router.navigate([`/editor`]))
+      .then(_ => this.router.navigate([`/list`]))
       .catch(error => console.log('auth error', error));
   }
 
-  logout() {
+  logout() { 
     this.afAuth.auth.signOut();
-    this.router.navigate([`/editor`]);
+    this.router.navigate([`/list`]);
   }
 
 }
