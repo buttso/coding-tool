@@ -57,15 +57,18 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       poster: "https://openclipart.org/image/1200px/svg_to_png/272339/angular.png"
     };
 
+    /* docs: http://amp.azure.net/libs/amp/latest/docs/index.html */
     this.player = amp("azuremediaplayer", playerOptions);
 
     this.player.addEventListener('timeupdate', e => {
       let currentTime = this.player.currentTime();
       this.timerService.setTime(currentTime);
     });
-
+    
     this.player.addEventListener('durationchange', (e: ProgressEvent) => {
-      this.timelineEventService.mediaLoaded({ duration: this.player.duration() });
+      const duration = this.player.duration();
+      console.info(`[video loaded] duration: ${duration}`)
+      this.timelineEventService.mediaLoaded({ duration: duration });
     });
 
     this.player.src(this.source);

@@ -13,10 +13,10 @@ export class TimelineComponent implements ICodeEventTimeline {
 
     @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
     
-    intervalMode = 'Minutes'
     @Input() eventItems: ICodedEventType[] = []; 
+    intervalMode = 'Minutes'
     listLength = 0;
-    protected videoDuration = 60 * 60; // 60 minutes in seconds
+    videoDuration = 60 * 60; // 60 minutes in seconds
     timerSegments = 12;
     segments: number[]; // = [1,2,3,4,5,6,7,8,9,10,11,12];
 
@@ -143,6 +143,7 @@ export class TimelineComponent implements ICodeEventTimeline {
 
 
     mediaLoaded(e: MediaLoadedEvent) {
+        console.info(`[timeline.mediaLoaded] - duration ${e.duration}`)
         this.videoDuration = e.duration;
      }
 
@@ -151,9 +152,9 @@ export class TimelineComponent implements ICodeEventTimeline {
     }
 
     onDeleteItemClicked(item: ICodedEventItem) {
-    // this.timelineEventService.navigateTo(codingEventItem);
-    alert(`Delete clicked for ${item.color} at ${item.seconds} seconds.`)
-}
+        // this.timelineEventService.navigateTo(codingEventItem);
+        alert(`Delete clicked for ${item.color} at ${item.seconds} seconds.`)
+    }
 }
 
 

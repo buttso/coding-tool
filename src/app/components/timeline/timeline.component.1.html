@@ -1,7 +1,7 @@
 <div class="container-fluid" style="padding: 0px; margin-top: -1px;">
     <div class="timeline2">
         <div>
-            <ul class="accordian accordian-list">
+            <ul class="accordian accordian-list" *ngIf="videoDuration != null">
                 <li *ngFor="let item of eventItems" class="timeline-row2">
                     <div class="row-title">
                         <strong>{{item.eventType}}</strong>
