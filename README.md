@@ -2,22 +2,14 @@
 
 This project is a prototype for a simple coding tool that enables the identification of specific points of interest within a video, and the storage of them to enable them to be recalled and aligned with the video for future viewing.
 
-To run the app, type the following command:
+## Getting started
 
-  > npm start
-
-Article on [how to deploy to Azure](https://johnpapa.net/deploy-angular-to-azure-vsts-angular-cli/):
+* Read the [getting started article](https://github.com/dneimke/coding-tool/wiki/Getting-Started) to get up and running in your environment.
+* View the [User Stories](https://github.com/dneimke/coding-tool/wiki) to get an idea of what the tool does
 
 ## High level component overview
 
 ![Coding Tool Components](https://github.com/dneimke/coding-tool/blob/master/images/coding-tool-components.png?raw=true)
-
-## User Stories
-
-* [User logs in](https://github.com/dneimke/coding-tool/wiki/Login-User-Story).
-* [User creates a new game](https://github.com/dneimke/coding-tool/wiki/Create-Game-User-Story).
-
-## Ideas
 
 * [Work with video located on the filesystem](https://stackoverflow.com/questions/8885701/play-local-hard-drive-video-file-with-html5-video-tag)
 
