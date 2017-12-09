@@ -6,8 +6,8 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
     selector: 'timeline',
-    templateUrl: './timeline.component.1.html',
-    styles: []
+    templateUrl: './timeline.component.html',
+    styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements ICodeEventTimeline {
 

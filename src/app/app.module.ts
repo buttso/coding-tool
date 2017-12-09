@@ -29,6 +29,7 @@ import { AuthService } from './services/auth.service';
 import { AngularFireModule } from 'angularfire2/angularfire2';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { VideoPlayerModule } from './modules/video-player.module';
+import { PublicHostComponent } from './components/public-host/public-host.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { VideoPlayerModule } from './modules/video-player.module';
     MatchListComponent,
     AddGameDialog,
     EditGameDialog,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    PublicHostComponent
   ],
   imports: [
     BrowserModule,

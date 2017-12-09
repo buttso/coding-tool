@@ -11,6 +11,7 @@ import { CreateGameModel } from '../../models/create-game-model';
   export class AddGameDialog implements OnInit {
     
     public model: CreateGameModel;
+    importedEvents: any;
         
     clubs: string[] = ["Adelaide", "Adelaide Uni", "Burnside", "Forestville", "Grange", "North East", "Port Adelaide", "Seacliff", "Woodville"];
     venues: string[] = ["Adelaide HC", "Adelaide Uni HC", "North East HC", "Port Adelaide HC", "Seacliff HC", "Woodville HC"];
