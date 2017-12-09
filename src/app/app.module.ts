@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
@@ -27,6 +26,9 @@ import { EditGameDialog } from './components/dialogs/edit-game-dialog.component'
 
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
+import { AngularFireModule } from 'angularfire2/angularfire2';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { VideoPlayerModule } from './modules/video-player.module';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { AuthService } from './services/auth.service';
     TimerProgressComponent,
     MatchListComponent,
     AddGameDialog,
-    EditGameDialog
+    EditGameDialog,
+    VideoPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +51,10 @@ import { AuthService } from './services/auth.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireDatabaseModule,
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AppMaterialModule,
+    VideoPlayerModule,
     ContextMenuModule
   ],
   providers: [

@@ -19,7 +19,9 @@ export class MatchListComponent implements OnInit {
   constructor(private matchService: MatchService, public dialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit() {
+    console.log(`[init]`)
     this.matchService.getMatches().subscribe(matches => {
+      console.log(`setting matches`)
       this.matches = matches;
     });
   }

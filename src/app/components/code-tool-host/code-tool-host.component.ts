@@ -52,6 +52,19 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     if (!this.isNewMatch) { this.getMatch(); };
   }
 
+  getMatch() {
+    console.log(`[host] getting match`)
+    this.matchService.getMatch(this.matchKey)
+      .subscribe(match => {
+        if(match.events == undefined) {
+          match.events = [];
+        }
+        console.log(`[host] match retrieved`)
+        console.info(match)
+        this.currentMatch = match;
+      });
+  }
+
   ngOnDestroy() {
     this.timerChangedHandle.unsubscribe();
   }
@@ -83,7 +96,7 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
       this.currentMatch.media.src = model.videoUrl;
       this.currentMatch.media.type = model.videoType;
       this.currentMatch.properties.matchName = `${model.homeTeam} vs ${model.awayTeam}`;
-      this.currentMatch.$key = this.matchKey;
+      // this.currentMatch.$key = this.matchKey;
 
       console.log(this.currentMatch)
       
@@ -138,16 +151,4 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     ];
   }
 
-
-  getMatch() {
-    this.matchService.getMatch(this.matchKey)
-      .subscribe(match => {
-        this.currentMatch = match;
-      });
-  }
-
 }
-
-
-
-

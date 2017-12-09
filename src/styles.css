@@ -7,9 +7,9 @@ body {
     background-color: #555;
   }
   
-  .basic-container {
+.basic-container {
     padding: 5px;
-  }
+}
 
 .mat-sidenav {
     padding: 10px;
@@ -49,41 +49,10 @@ azure-media-player, .media-presenter {
     background-color: #193549;
 }
 
-code-buttons, .button-panel {
-    width: 15%;
+video-player {
+    width: 85%;
     height: 499px;
-    float: left;
     padding: 3px;
-    background-color: #193549;
-}
-    
-    
-.button-list {
-    margin-top: 48px;
-    font-size: 1.2em;
-    list-style: none;
-}
-
-.button-list>li {
-    margin: 4px 8px 0px 0px;
-}
-
-.button-list>li>a {
-    display: block;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #555;
-    padding: 4px 0px;
-    width: 110px;
-}
-
-.button-list>li>a:active {
-    color: #ffc600;
-    background-color: #555;
-    border-radius: 10px;
-    border: 1px solid #555;
-    padding: 4px 2px;
-    width: 110px;
 }
 
 /* Second version of timeline */

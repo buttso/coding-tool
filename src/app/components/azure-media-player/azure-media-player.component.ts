@@ -58,6 +58,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
     };
 
     /* docs: http://amp.azure.net/libs/amp/latest/docs/index.html */
+    /* samples: https://azure.microsoft.com/en-us/resources/samples/?service=media-services&sort=0 */
     this.player = amp("azuremediaplayer", playerOptions);
 
     this.player.addEventListener('timeupdate', e => {
@@ -70,8 +71,13 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
       console.info(`[video loaded] duration: ${duration}`)
       this.timelineEventService.mediaLoaded({ duration: duration });
     });
+    
+    console.info(`[player] setting source: ${this.source.src}; ${this.source.type}`)
 
-    this.player.src(this.source);
+    // this.player.src(this.source);
+    // this.player.src([{ src: this.source.src, type: this.source.type } ]);
+    this.player.src([{ src: '//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest',
+                       type: 'application/vnd.ms-sstr+xml' } ]);
   }
 
   play(): void {

@@ -9,6 +9,8 @@
             <button mat-fab id="edit-button"
                 matTooltip="Edit Match" matTooltipPosition="below" 
                 (click)="editGame(currentMatch)"> <mat-icon>mode_edit</mat-icon> </button>
+
+                <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>
         </div>
 
         <button mat-fab id="add-button"
@@ -17,31 +19,23 @@
 
     </mat-sidenav>
     <mat-sidenav-content>
+        <div>
             <button mat-button (click)="sidenav.toggle()" *ngIf="(allMatches$ | async)?.length > 0">
-                 <mat-icon>slideshow</mat-icon> </button>
-            <div *ngIf="currentMatch">
-                <div class="container-fluid">
-                    <div class="row">
-                        <azure-media-player [source]="currentMatch.media"></azure-media-player>    
-                        <code-buttons [buttons]="currentMatch.buttonConfiguration"></code-buttons>
-                    </div>
+                 <mat-icon>slideshow</mat-icon> 
+            </button>
+        </div>
+        <div *ngIf="currentMatch">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- <azure-media-player [source]="currentMatch.media"></azure-media-player>  -->
+                    <video-player [source]="currentMatch.media">
+                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    </video-player>   
                 </div>
-                <timeline [eventItems]="currentMatch.events"></timeline>
             </div>
+            <timeline [eventItems]="currentMatch.events"></timeline>
+        </div>
             
 
     </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- <hr />
-
-<pre>
-    {{currentMatch | json}}
-</pre> -->
-
-<!-- <div class="row" *ngIf="false">
-    <media-player-controls 
-        (onplay)="onPlay($event)"
-        (onpause)="onPause($event)"
-        (onreset)="onReset($event)"></media-player-controls>
-</div> -->
