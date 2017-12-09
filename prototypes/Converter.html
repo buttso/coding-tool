@@ -4,8 +4,11 @@
   <meta charset="utf-8">
   <title>Converter</title>
 
-  
-  <script src="FileConverter.js"></script>
+  <script type="text/javascript">
+    var exports = {};
+  </script>
+  <script src="LongoFileConverter.js"></script>
+  <script src="SportsCodeFileConverter.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -26,12 +29,21 @@
             var input = document.getElementById("input");
             var output = document.getElementById("output");
             
+            // link.addEventListener("click", function() {
+            //     var obj = JSON.parse(input.value);
+            //     var converter = new LongoFileConverter();
+            //     var convertedText = converter.Convert(obj);
+            //     var json = JSON.stringify(convertedText, null, 4);
+            //     // console.log(json);
+            //     output.innerHTML = json;
+            // }, false);
+
             link.addEventListener("click", function() {
-                var obj = JSON.parse(input.value);
-                var converter = new FileConverter();
-                var convertedText = converter.Convert(obj);
+                var xml = input.value;
+                var converter = new SportsCodeFileConverter();
+                var convertedText = converter.Convert(xml);
                 var json = JSON.stringify(convertedText, null, 4);
-                // console.log(json);
+                console.log(json);
                 output.innerHTML = json;
             }, false);
         });

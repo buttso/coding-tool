@@ -1,16 +1,14 @@
 "use strict";
-console.info('loading');
 // Object.defineProperty(exports, "__esModule", { value: true });
 var FileConverter = /** @class */ (function () {
-    
     function FileConverter() {
     }
-
     FileConverter.prototype.Convert = function (input) {
         var properties = this.ProcessProperties(input.Description);
         var buttonConfiguration = this.ProcessButtonConfiguration(input.Dashboard);
         var events = this.ProcessCodedEvents(input.Timeline, buttonConfiguration);
         return {
+            userId: '',
             properties: properties,
             events: events,
             buttonConfiguration: buttonConfiguration,
@@ -19,11 +17,10 @@ var FileConverter = /** @class */ (function () {
         };
     };
     FileConverter.prototype.ProcessButtonConfiguration = function (dashboard) {
-       
         if (dashboard !== undefined && dashboard !== null) {
             var events = dashboard.List.map(function (e) {
-                if(e.EventType !== undefined && e.EventType.$id !== undefined)
-                {
+                if (e.EventType !== undefined && e.EventType.$id !== undefined) {
+                    var identifier = e.EventType.$id;
                     return {
                         identifier: e.EventType.$id,
                         eventType: e.Name,
@@ -32,10 +29,8 @@ var FileConverter = /** @class */ (function () {
                         lagSeconds: e.Stop / 1000
                     };
                 }
-                
             });
-
-            return events.filter(e => e !== undefined);
+            return events;
         }
         return [];
     };
@@ -43,12 +38,8 @@ var FileConverter = /** @class */ (function () {
         if (timeline !== undefined && timeline !== null) {
             var codedEventTypes_1 = [];
             var events = timeline.forEach(function (e) {
-                console.log(e.EventType.$ref)
-                
-                var button = buttons.filter((b) => { return b.identifier.toString() === e.EventType.$ref; })[0];
-
-                if(button !== undefined) {
-                    console.log(button)
+                var button = buttons.find(function (b) { return b.identifier === e.EventType.$ref; })[0];
+                if (button !== undefined) {
                     var item = codedEventTypes_1.find(function (e) { return e.eventType == button.eventType; });
                     if (item === null || item === undefined) {
                         item = {
@@ -62,9 +53,9 @@ var FileConverter = /** @class */ (function () {
                         seconds: e.EventTime / 1000
                     });
                 }
-                
             });
-            return codedEventTypes_1.filter(e => e !== undefined);
+            return codedEventTypes_1.filter(function (e) { return e !== undefined; });
+            ;
         }
         return [];
     };
@@ -76,7 +67,9 @@ var FileConverter = /** @class */ (function () {
                 grade: metadata.Competition,
                 year: metadata.Season,
                 matchName: metadata.Description,
-                date: metadata.MatchDate
+                date: metadata.MatchDate,
+                roundNumber: 1,
+                venue: ""
             };
             return properties;
         }
@@ -85,6 +78,4 @@ var FileConverter = /** @class */ (function () {
     return FileConverter;
 }());
 // exports.FileConverter = FileConverter;
-
-console.info('loaded');
-//# sourceMappingURL=FileConverter.js.map
+//# sourceMappingURL=LongoFileConverter.js.map

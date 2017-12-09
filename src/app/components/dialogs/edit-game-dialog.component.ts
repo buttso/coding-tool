@@ -12,6 +12,7 @@ import { EditGameModel } from '../../models/edit-game-model';
   export class EditGameDialog implements OnInit {
     
     public model: EditGameModel;
+    importedEvents: any;
         
     clubs: string[] = ["Adelaide", "Adelaide Uni", "Burnside", "Forestville", "Grange", "North East", "Port Adelaide", "Seacliff", "Woodville"];
     venues: string[] = ["Adelaide HC", "Adelaide Uni HC", "North East HC", "Port Adelaide HC", "Seacliff HC", "Woodville HC"];

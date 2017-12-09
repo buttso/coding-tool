@@ -10,6 +10,7 @@ export class FileConverter {
         let events = this.ProcessCodedEvents(input.Timeline, buttonConfiguration);
         
         return {
+            userId: '',
             properties: properties,
             events: events,
             buttonConfiguration: buttonConfiguration,
