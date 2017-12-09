@@ -87,17 +87,8 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
       width: '350px',
     });
 
-    dialogRef.afterClosed().subscribe((model: EditGameModel) => {
-      this.currentMatch.properties.date = model.matchDate.toString();
-      this.currentMatch.properties.awayTeam = model.awayTeam;
-      this.currentMatch.properties.grade = model.grade;
-      this.currentMatch.properties.homeTeam = model.homeTeam;
-      this.currentMatch.properties.venue = model.venue;
-      this.currentMatch.media.src = model.videoUrl;
-      this.currentMatch.media.type = model.videoType;
-      this.currentMatch.properties.matchName = `${model.homeTeam} vs ${model.awayTeam}`;
-      // this.currentMatch.$key = this.matchKey;
-
+    dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
+      this.currentMatch = match;
       console.log(this.currentMatch)
       
       this.matchService.updateMatch(this.currentMatch);
@@ -110,45 +101,8 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
       width: '350px',
     });
 
-    dialogRef.afterClosed().subscribe((result: CreateGameModel) => {
-      let match = {
-        properties: {
-          awayTeam: result.awayTeam,
-          date: result.matchDate.toString(),
-          grade: '',
-          homeTeam: result.homeTeam,
-          matchName: `${result.homeTeam} vs ${result.awayTeam}`,
-          roundNumber: 0,
-          venue: result.venue,
-          year: result.matchDate.getFullYear()
-        },
-        media: {
-          src: result.videoUrl,
-          type: result.videoType,
-          offlineSrc: '' 
-        },
-        events: [],
-        buttonConfiguration: this.getDefaultButtons()
-      } as IMatchMetadata;
-
+    dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
       this.matchService.addMatch(match);
     });
   }
-
-  getDefaultButtons(): IButtonConfiguration[] {
-    return [
-      { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Circle Entry For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Circle Entry Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Goal Shot Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Goal Shot For.", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Goal For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Goal Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "APC", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "DPC", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Special", color: "red", lagSeconds: 5, leadSeconds: 5 },
-    ];
-  }
-
 }

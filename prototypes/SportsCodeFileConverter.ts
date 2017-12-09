@@ -35,15 +35,19 @@ export class SportsCodeFileConverter {
                 let identifier = instances[i].getElementsByTagName('ID')[0].textContent;
                 let code = instances[i].getElementsByTagName('code')[0].textContent;
 
-                buttonConfiguration.push(
-                    {
-                        identifier: identifier,
-                        eventType: code,
-                        color: "blue",
-                        leadSeconds: 5,
-                        lagSeconds: 5
-                    } as IButtonConfiguration
-                )
+                let item = buttonConfiguration.find(e => e.eventType ==code);
+
+                if(item === null || item === undefined) {
+                    buttonConfiguration.push(
+                        {
+                            identifier: identifier,
+                            eventType: code,
+                            color: "blue",
+                            leadSeconds: 5,
+                            lagSeconds: 5
+                        } as IButtonConfiguration
+                    )
+                }
             }
         }
         
@@ -75,7 +79,7 @@ export class SportsCodeFileConverter {
                     codedEventTypes.push(item);
                 }
 
-                let seconds = (+start + +end / 2)
+                let seconds = ((+start + +end) / 2)
 
                 item.events.push({
                     color: 'blue',

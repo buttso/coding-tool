@@ -32,10 +32,28 @@ import { EditGameModel } from '../../models/edit-game-model';
     }
 
     onSaveClick(): void {
-        this.dialogRef.close(this.model);
+
+        this.data.properties.date = this.model.matchDate.toString();
+        this.data.properties.awayTeam = this.model.awayTeam;
+        this.data.properties.grade = this.model.grade;
+        this.data.properties.homeTeam = this.model.homeTeam;
+        this.data.properties.venue = this.model.venue;
+        this.data.media.src = this.model.videoUrl;
+        this.data.media.type = this.model.videoType;
+        this.data.properties.matchName = `${this.model.homeTeam} vs ${this.model.awayTeam}`;
+     
+        if(this.importedEvents !== undefined) {
+            let json = JSON.parse(this.importedEvents);
+            if(json !== undefined) {
+                this.data.events = json.events;
+                this.data.buttonConfiguration = json.buttonConfiguration;
+            }
+        } 
+
+        this.dialogRef.close(this.data);
     }
   
     onNoClick(): void {
-      this.dialogRef.close();
+        this.dialogRef.close();
     }
   }

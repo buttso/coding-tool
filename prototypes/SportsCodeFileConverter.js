@@ -24,16 +24,22 @@ var SportsCodeFileConverter = /** @class */ (function () {
         var buttonConfiguration = [];
         if (dom !== undefined && dom !== null) {
             var instances = dom.getElementsByTagName("instance");
-            for (var i = 0; i < instances.length; i++) {
+            var _loop_1 = function (i) {
                 var identifier = instances[i].getElementsByTagName('ID')[0].textContent;
                 var code = instances[i].getElementsByTagName('code')[0].textContent;
-                buttonConfiguration.push({
-                    identifier: identifier,
-                    eventType: code,
-                    color: "blue",
-                    leadSeconds: 5,
-                    lagSeconds: 5
-                });
+                var item = buttonConfiguration.find(function (e) { return e.eventType == code; });
+                if (item === null || item === undefined) {
+                    buttonConfiguration.push({
+                        identifier: identifier,
+                        eventType: code,
+                        color: "blue",
+                        leadSeconds: 5,
+                        lagSeconds: 5
+                    });
+                }
+            };
+            for (var i = 0; i < instances.length; i++) {
+                _loop_1(i);
             }
         }
         return buttonConfiguration;
@@ -42,7 +48,7 @@ var SportsCodeFileConverter = /** @class */ (function () {
         var codedEventTypes = [];
         if (dom !== undefined && dom !== null) {
             var instances = dom.getElementsByTagName("instance");
-            var _loop_1 = function (i) {
+            var _loop_2 = function (i) {
                 var identifier = instances[i].getElementsByTagName('ID')[0].textContent;
                 var code = instances[i].getElementsByTagName('code')[0].textContent;
                 var start = instances[i].getElementsByTagName('start')[0].textContent;
@@ -55,14 +61,14 @@ var SportsCodeFileConverter = /** @class */ (function () {
                     };
                     codedEventTypes.push(item);
                 }
-                var seconds = (+start + +end / 2);
+                var seconds = ((+start + +end) / 2)
                 item.events.push({
                     color: 'blue',
                     seconds: seconds
                 });
             };
             for (var i = 0; i < instances.length; i++) {
-                _loop_1(i);
+                _loop_2(i);
             }
         }
         return codedEventTypes.filter(function (e) { return e !== undefined; });

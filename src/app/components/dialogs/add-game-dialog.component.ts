@@ -1,6 +1,7 @@
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CreateGameModel } from '../../models/create-game-model';
+import { IButtonConfiguration } from '../../typings/domain';
 
 
 @Component({
@@ -30,18 +31,49 @@ import { CreateGameModel } from '../../models/create-game-model';
             "video/mp4",
             ""
         );
-    }
+    } 
 
     onSaveClick(): void {
-        this.dialogRef.close(this.model);
+        this.data.properties.date = this.model.matchDate.toString();
+        this.data.properties.awayTeam = this.model.awayTeam;
+        this.data.properties.grade = this.model.grade;
+        this.data.properties.homeTeam = this.model.homeTeam;
+        this.data.properties.venue = this.model.venue;
+        this.data.media.src = this.model.videoUrl;
+        this.data.media.type = this.model.videoType;
+        this.data.properties.matchName = `${this.model.homeTeam} vs ${this.model.awayTeam}`;
+     
+        if(this.importedEvents !== undefined) {
+            let json = JSON.parse(this.importedEvents);
+            if(json !== undefined) {
+                this.data.events = json.events;
+                this.data.buttonConfiguration = json.buttonConfiguration;
+            }
+        }else{
+            this.data.events = [];
+            this.data.buttonConfiguration = this.getDefaultButtons();
+        }
+
+        this.dialogRef.close(this.data);
     }
   
     onNoClick(): void {
       this.dialogRef.close();
     }
-  }
 
-  export class Foo {
-      first: string;
-      second: number;
+    getDefaultButtons(): IButtonConfiguration[] {
+        return [
+          { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "Circle Entry For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "Circle Entry Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "Goal Shot Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "Goal Shot For.", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "Goal For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "Goal Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "APC", color: "blue", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "DPC", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+          { eventType: "Special", color: "red", lagSeconds: 5, leadSeconds: 5 },
+        ];
+      }
   }

@@ -64,6 +64,7 @@ export class VideoPlayerComponent implements OnInit {
 
   navigateTo(codingEvent: ICodedEventItem): void {
     // this.currentTime(codingEvent.seconds);
+    this.api.currentTime = codingEvent.seconds;
     console.log(`vg:navigateTo ${codingEvent.seconds}`)
   }
 
