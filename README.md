@@ -1,11 +1,12 @@
-# Coding Tool
+# Game Sharing Tool
 
-This project is a prototype for a simple coding tool that enables the identification of specific points of interest within a video, and the storage of them to enable them to be recalled and aligned with the video for future viewing.
+A simple game sharing tool that enables sharing of video with coded points of interest.  View the [User Stories](https://github.com/dneimke/coding-tool/wiki) to get an idea of what the tool does.
+
+Unlike other coding tools, this tool is based on the idea of social sharing.  The goal is to allow coded games to be easily shared and copied to grow a pool of metadata around specific games and their points of interest. 
 
 ## Getting started
 
-* Read the [getting started article](https://github.com/dneimke/coding-tool/wiki/Getting-Started) to get up and running in your environment.
-* View the [User Stories](https://github.com/dneimke/coding-tool/wiki) to get an idea of what the tool does
+Read the [getting started article](https://github.com/dneimke/coding-tool/wiki/Getting-Started) to get up and running in your environment.
 
 ## High level component overview
 
