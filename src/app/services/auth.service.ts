@@ -10,19 +10,29 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private afAuth: AngularFireAuth
+    private firebase: AngularFireAuth
   ) {
-    this.user$ = this.afAuth.authState;
+
+    /*
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+      } else {
+        // No user is signed in.
+      }
+    });
+    */
+    this.user$ = this.firebase.authState;
   }
 
   login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    this.firebase.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(_ => this.router.navigate([`/list`]))
       .catch(error => console.log('auth error', error));
   }
 
   logout() { 
-    this.afAuth.auth.signOut();
+    this.firebase.auth.signOut();
     this.router.navigate([`/list`]);
   }
 

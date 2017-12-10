@@ -1,0 +1,63 @@
+[debug] [2017-12-10T00:22:42.105Z] ----------------------------------------------------------------------
+[debug] [2017-12-10T00:22:42.108Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\DarrenNeimke\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-12-10T00:22:42.108Z] CLI Version:   3.16.0
+[debug] [2017-12-10T00:22:42.108Z] Platform:      win32
+[debug] [2017-12-10T00:22:42.108Z] Node Version:  v6.11.3
+[debug] [2017-12-10T00:22:42.109Z] Time:          Sun Dec 10 2017 10:52:42 GMT+1030 (Cen. Australia Daylight Time)
+[debug] [2017-12-10T00:22:42.109Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-10T00:22:42.126Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-10T00:22:42.126Z] > authorizing via signed-in user
+[debug] [2017-12-10T00:22:42.128Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-10T00:22:42.129Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/-Ts20pU2W9ZymITLMX3QNask61wsqYiJ40J840RVfg-zUeqegklByjaF80JPIC3C',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sun Dec 10 2017 10:52:42 GMT+1030 (Cen. Australia Daylight Time)
+[debug] [2017-12-10T00:22:42.735Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-10T00:22:42.745Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/coding-tool  
+  
+ Sun Dec 10 2017 10:52:42 GMT+1030 (Cen. Australia Daylight Time)
+[debug] [2017-12-10T00:22:43.985Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-10T00:22:43.987Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/coding-tool/tokens  
+  
+ Sun Dec 10 2017 10:52:43 GMT+1030 (Cen. Australia Daylight Time)
+[debug] [2017-12-10T00:22:45.111Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'coding-tool'...
+[info] 
+[info] i  deploying database, firestore, hosting
+[info] i  database: checking rules syntax...
+[debug] [2017-12-10T00:22:46.525Z] >>> HTTP REQUEST PUT https://coding-tool.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+ 
+ Sun Dec 10 2017 10:52:46 GMT+1030 (Cen. Australia Daylight Time)
+[debug] [2017-12-10T00:22:47.400Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database coding-tool is valid
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2017-12-10T00:22:47.409Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/coding-tool:test  
+ { source: { files: [ [Object] ] } } 
+ Sun Dec 10 2017 10:52:47 GMT+1030 (Cen. Australia Daylight Time)
+[debug] [2017-12-10T00:22:48.956Z] <<< HTTP RESPONSE 200
+[info] +  firestore: rules file firestore.rules compiled successfully
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2017-12-10T00:22:48.972Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/coding-tool/rulesets  
+ { source: { files: [ [Object] ] } } 
+ Sun Dec 10 2017 10:52:48 GMT+1030 (Cen. Australia Daylight Time)
+[debug] [2017-12-10T00:22:48.975Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta1/projects/coding-tool/databases/(default)/indexes  
+  
+ Sun Dec 10 2017 10:52:48 GMT+1030 (Cen. Australia Daylight Time)
+[debug] [2017-12-10T00:22:50.361Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-10T00:22:50.362Z] [rules] created ruleset projects/coding-tool/rulesets/965f0cdc-0261-4a85-ae3f-f781db4f8ec6
+[debug] [2017-12-10T00:22:51.003Z] <<< HTTP RESPONSE 200
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2017-12-10T00:22:51.594Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/coding-tool/uploads/-L-xnNpbiqnos4-cD-DM?fileCount=19&message=  
+  
+ Sun Dec 10 2017 10:52:51 GMT+1030 (Cen. Australia Daylight Time)

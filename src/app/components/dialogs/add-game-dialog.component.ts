@@ -2,6 +2,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CreateGameModel } from '../../models/create-game-model';
 import { IButtonConfiguration } from '../../typings/domain';
+import { IMatchMetadata } from '../../typings/model-metadata';
 
 
 @Component({
@@ -34,27 +35,33 @@ import { IButtonConfiguration } from '../../typings/domain';
     } 
 
     onSaveClick(): void {
-        this.data.properties.date = this.model.matchDate.toString();
-        this.data.properties.awayTeam = this.model.awayTeam;
-        this.data.properties.grade = this.model.grade;
-        this.data.properties.homeTeam = this.model.homeTeam;
-        this.data.properties.venue = this.model.venue;
-        this.data.media.src = this.model.videoUrl;
-        this.data.media.type = this.model.videoType;
-        this.data.properties.matchName = `${this.model.homeTeam} vs ${this.model.awayTeam}`;
+        let data = {
+            properties: {},
+            buttonConfiguration: [],
+            events: [],
+            media: {}
+        } as IMatchMetadata;
+
+        data.properties.date = this.model.matchDate.toString();
+        data.properties.awayTeam = this.model.awayTeam;
+        data.properties.grade = this.model.grade;
+        data.properties.homeTeam = this.model.homeTeam;
+        data.properties.venue = this.model.venue;
+        data.media.src = this.model.videoUrl;
+        data.media.type = this.model.videoType;
+        data.properties.matchName = `${this.model.homeTeam} vs ${this.model.awayTeam}`;
      
         if(this.importedEvents !== undefined) {
             let json = JSON.parse(this.importedEvents);
             if(json !== undefined) {
-                this.data.events = json.events;
-                this.data.buttonConfiguration = json.buttonConfiguration;
+                data.events = json.events;
+                data.buttonConfiguration = json.buttonConfiguration;
             }
         }else{
-            this.data.events = [];
-            this.data.buttonConfiguration = this.getDefaultButtons();
+            data.buttonConfiguration = this.getDefaultButtons();
         }
 
-        this.dialogRef.close(this.data);
+        this.dialogRef.close(data);
     }
   
     onNoClick(): void {

@@ -13,7 +13,8 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/catch';
-import { Subscription } from 'rxjs';
+import { AuthService } from './auth.service';
+
 
 @Injectable()
 export class MatchService {
@@ -23,21 +24,19 @@ export class MatchService {
     // matchDoc: AngularFirestoreDocument<IMatchMetadata>;
 
     // matches$: Observable<IMatchMetadata>;
-    matches$: FirebaseListObservable<IMatchMetadata[]>;
+    userMatches$: FirebaseListObservable<IMatchMetadata[]>;
+    uid: string = '';
     // company$: FirebaseObjectObservable<IMatchMetadata>;
 
 
-    constructor(private db: AngularFireDatabase/*private afs: AngularFirestore*/) {
-        // this.matchesCollection = this.afs.collection('matches');
-        // this.matches = this.matchesCollection.snapshotChanges().map(changes => {
-        //     return changes.map(a => {
-        //         const data = a.payload.doc.data() as IMatchMetadata;
-        //         data.$key = a.payload.doc.id;
-        //         return data;
-        //     });
-        // });
+    constructor(private db: AngularFireDatabase, private authService: AuthService/*private afs: AngularFirestore*/) {
+        let user  = this.authService.user$.subscribe(auth => {
 
-        this.matches$ = this.db.list(`matches`);
+            if(auth != null) {
+              this.uid = auth.uid;
+              this.userMatches$ = this.db.list(`users/${this.uid}/matches`)
+            }
+        });
 
         // this.matches$ = this.db.list<IMatchMetadata>(`matches`).snapshotChanges().map(actions => {
         //         return actions.map(action => ({ key: action.key, ...action.payload.val() }));
@@ -45,7 +44,8 @@ export class MatchService {
     }
 
     getMatches() {
-        return this.matches$;
+        return this.userMatches$;
+            
         // return this.matches;
     }
 
@@ -59,21 +59,39 @@ export class MatchService {
 
 
     addMatch(match: IMatchMetadata) {
-        return this.matches$.push(match)
-            .then(_ => console.log('match added'))
-            .catch(error => console.log(error));
+
+        // Get a key for a new Match.
+        var newPostKey = firebase.database().ref().child('matches').push().key;
+
+        // Write the new post's data simultaneously in the posts list and the user's post list.
+        var updates = {};
+        updates[`matches/${newPostKey}`] = match;
+        updates[`users/${this.uid}/matches/${newPostKey}`] = match;
+
+        return firebase.database().ref().update(updates)
+                        .then(_ => console.log('match added'))
+                        .catch(error => console.log(error));
     }
 
     deleteMatch(match: IMatchMetadata) {
-        return this.matches$.remove(match.$key)
+        return this.userMatches$.remove(match.$key)
             .then(_ => console.log('match deleted'))
             .catch(error => console.log(error));
     }
 
     updateMatch(match: IMatchMetadata) {
-        return this.matches$.update(match.$key, match)
-            .then(_ => console.log('match updated'))
-            .catch(error => console.log(error));
+        // return this.matches$.update(match.$key, match)
+        //     .then(_ => console.log('match updated'))
+        //     .catch(error => console.log(error));
+
+        // Write the new post's data simultaneously in the posts list and the user's post list.
+        var updates = {};
+        updates[`matches/${match.$key}`] = match;
+        updates[`users/${this.uid}/matches/${match.$key}`] = match;
+
+        return firebase.database().ref().update(updates)
+                        .then(_ => console.log('match added'))
+                        .catch(error => console.log(error));
     }
 
     private errorHandler(error) {
