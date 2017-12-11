@@ -1,13 +1,16 @@
 import { IMatchMetadata, IMatchProperties, IMediaSource, ICodedEventType, ICodedEventItem } from '../src/app/typings/model-metadata'
 import { IButtonConfiguration } from '../src/app/typings/domain';
 
-export class FileConverter {
+export class LongoFileConverter {
 
     Convert(input: any): IMatchMetadata {
 
         let properties = this.ProcessProperties(input.Description);
+        console.info('got properties')
         let buttonConfiguration = this.ProcessButtonConfiguration(input.Dashboard);
+        console.info('got buttons')
         let events = this.ProcessCodedEvents(input.Timeline, buttonConfiguration);
+        console.info('got events')
         
         return {
             userId: '',
@@ -42,7 +45,7 @@ export class FileConverter {
                 
             }) as IButtonConfiguration[];     
             
-            return events;
+            return events.filter(e => e !== undefined);
         }
         
         return [] as IButtonConfiguration[];
@@ -53,34 +56,52 @@ export class FileConverter {
 
         if(timeline !== undefined && timeline !== null) {
 
+            console.info(`found timeline: ${timeline.length}`)
             let codedEventTypes = [] as ICodedEventType[];
             
             let events = (timeline as any[]).forEach(e => {
 
-                let button = buttons.find(b => b.identifier === e.EventType.$ref)[0];
+                console.info(`Looking for ${e.EventType.$ref}`)
 
-                if(button !== undefined) {
-                    let item = codedEventTypes.find(e => e.eventType == button.eventType);
+                let button = buttons.find(b => {
+                    try {
+                        return b.identifier.toString() == e.EventType.$ref.toString();
+                    } catch {
+                        return false;
+                    }
+                });
+               
+                if( button!== undefined) {
+
+                    let btn = button;
+                    console.info(`found button: ${btn.eventType}`)
+                    let item = codedEventTypes.find(e => e.eventType == btn.eventType);
                     
                     if(item === null || item === undefined) {
                         item = {
-                            eventType: button.eventType,
+                            eventType: btn.eventType,
                             events: []
                         } as ICodedEventType;
     
                         codedEventTypes.push(item);
                     }
     
+                    let s = (e.EventTime / 1000) - button.leadSeconds;
                     item.events.push({
-                        color: button.color,
-                        seconds: e.EventTime / 1000
+                        color: btn.color,
+                        seconds: Math.max(s, 0)
+                        
                     } as ICodedEventItem);
+                }else{
+                    console.info(`button was undefined`)
                 }
             });
 
-            return codedEventTypes.filter(e => e !== undefined);;
+            console.info(`return 1`)
+            return codedEventTypes.filter(e => e !== undefined);
         }
         
+        console.info(`return 2`)
         return [] as ICodedEventType[];
     }
 

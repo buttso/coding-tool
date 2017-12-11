@@ -3,6 +3,19 @@
     
     </mat-sidenav>
     <mat-sidenav-content>
+        <div class="container" style="background-color: #fff; min-height: 480px" *ngIf="!loggedIn">
+                <div _ngcontent-c18="" class="docs-homepage-promo-desc">
+                    <h2 _ngcontent-c18="">Welcome</h2>
+                    <p _ngcontent-c18="">Please login to get started.  Once you have logged in you will be able to create and code matches such as this one: </p>
+                    <p style="padding: 25px">
+                        <a [routerLink]="['/public', '-L01rPXFd0x4S_hB1rjH']">2017 PLM Preliminary Final</a>
+                    </p>
+                </div>
+        </div>
+        <div class="container" style="background-color: #fff; min-height: 480px" *ngIf="loggedIn && !hasMatches">
+                <h2 _ngcontent-c18="">Hello {{(authService.user$ | async)?.displayName}}</h2>
+                <p _ngcontent-c18="">You don't appear to have any matches as yet.  Click the + button at the bottom of the page to get started!</p>
+        </div>
         <mat-card *ngFor="let match of matches" fxLayoutAlign="space-between center" class="match-card">
             <mat-card-header>
                 <span>{{match.properties.matchName}}</span>
@@ -25,9 +38,12 @@
             </mat-card-actions>
         </mat-card>
 
-        <button mat-fab  id="add-button"
-                matTooltip="New Game" matTooltipPosition="right" 
-                (click)="newGame()"> <mat-icon>add</mat-icon> </button>
+        <div *ngIf="(authService.user$ | async)?.uid">
+            <button mat-fab  id="add-button"
+                    matTooltip="New Game" matTooltipPosition="right" 
+                    (click)="newGame()"> <mat-icon>add</mat-icon> </button>
+        </div>
+
     </mat-sidenav-content>
 </mat-sidenav-container>
         

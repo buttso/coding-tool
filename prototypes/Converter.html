@@ -34,23 +34,24 @@
             var output = document.getElementById("output");
             var copyButton = document.getElementById("copyToClipboard");
 
-            // link.addEventListener("click", function() {
-            //     var obj = JSON.parse(input.value);
-            //     var converter = new LongoFileConverter();
-            //     var convertedText = converter.Convert(obj);
-            //     var json = JSON.stringify(convertedText, null, 4);
-            //     // console.log(json);
-            //     output.innerHTML = json;
-            // }, false);
-
-            link.addEventListener("click", function () {
-                var xml = input.value;
-                var converter = new SportsCodeFileConverter();
-                var convertedText = converter.Convert(xml);
+            link.addEventListener("click", function() {
+                var obj = JSON.parse(input.value);
+                var converter = new LongoFileConverter();
+                var convertedText = converter.Convert(obj);
+                console.log('done')
                 var json = JSON.stringify(convertedText, null, 4);
                 console.log(json);
-                output.innerHTML = json;
+                output.innerText = json;
             }, false);
+
+            // link.addEventListener("click", function () {
+            //     var xml = input.value;
+            //     var converter = new SportsCodeFileConverter();
+            //     var convertedText = converter.Convert(xml);
+            //     var json = JSON.stringify(convertedText, null, 4);
+            //     console.log(json);
+            //     output.innerHTML = json;
+            // }, false);
 
             copyButton.addEventListener('click', function (event) {
                 var content = output.innerHTML;

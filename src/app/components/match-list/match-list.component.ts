@@ -16,6 +16,8 @@ export class MatchListComponent implements OnInit {
 
   matches: IMatchMetadata[];
   uid: string;
+  loggedIn = false;
+  hasMatches = false;
   
   constructor(private matchService: MatchService, public dialog: MatDialog, private authService: AuthService) { }
 
@@ -25,14 +27,18 @@ export class MatchListComponent implements OnInit {
 
       if(auth != null) {
         this.uid = auth.uid;
+        this.loggedIn = true;
 
         this.matchService.getMatches().subscribe(matches => {
           console.log(`setting matches`)
           this.matches = matches;
+          this.hasMatches = matches.length > 0;
         });
       }else{
         this.uid = '';
         this.matches = [];
+        this.loggedIn = false;
+        this.hasMatches = false;
       }
 
       
