@@ -40,9 +40,6 @@ export class MatchListComponent implements OnInit {
         this.loggedIn = false;
         this.hasMatches = false;
       }
-
-      
-    
     });
 
     
@@ -61,9 +58,9 @@ export class MatchListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
-      
-      
-      this.matchService.addMatch(match);
+      if(match !== undefined) {
+        this.matchService.addMatch(match);
+      }
     });
   }
 

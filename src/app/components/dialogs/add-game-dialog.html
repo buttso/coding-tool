@@ -1,16 +1,16 @@
 <h1 mat-dialog-title>Add New Game</h1>
 <div mat-dialog-content>
-    <form #addGameForm name="addGameForm">
+    <form #addGameForm="ngForm" name="addGameForm">
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="model.matchDate" name="matchDate"  placeholder="Choose a date">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="model.matchDate" name="matchDate" placeholder="Choose a date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-            <input type="text" matInput [matAutocomplete]="clubList" [(ngModel)]="model.homeTeam" name="homeTeam"  placeholder="Home Team">
+            <input type="text" matInput [matAutocomplete]="clubList" [(ngModel)]="model.homeTeam" name="homeTeam" required placeholder="Home Team">
         </mat-form-field>
         <mat-form-field>
-            <input type="text" matInput [matAutocomplete]="clubList" [(ngModel)]="model.awayTeam" name="awayTeam"  placeholder="Away Team">
+            <input type="text" matInput [matAutocomplete]="clubList" [(ngModel)]="model.awayTeam" name="awayTeam" required placeholder="Away Team">
         </mat-form-field>
         <mat-form-field>
             <input type="text" matInput [matAutocomplete]="venueList" [(ngModel)]="model.venue" name="venue"  placeholder="Venue">
@@ -28,7 +28,7 @@
     </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onSaveClick()"  ng-disabled="addGameForm.$invalid" type="submit" class="mat-primary">Add</button>
+  <button mat-button [disabled]="!addGameForm.form.valid" (click)="onSaveClick()" type="submit" class="mat-primary">Add</button>
   <button mat-button (click)="onNoClick()"  tabindex="-1">Cancel</button>
 </div>
 

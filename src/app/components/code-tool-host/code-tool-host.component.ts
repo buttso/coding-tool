@@ -88,10 +88,13 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     });
 
     dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
-      this.currentMatch = match;
-      console.log(this.currentMatch)
+      if(match !== undefined) {
+        this.currentMatch = match;
+        console.log(this.currentMatch)
+        
+        this.matchService.updateMatch(this.currentMatch);
+      }
       
-      this.matchService.updateMatch(this.currentMatch);
     });
   }
 
@@ -102,7 +105,9 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     });
 
     dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
-      this.matchService.addMatch(match);
+      if(match !== undefined) {
+        this.matchService.addMatch(match);
+      }
     });
   }
 }
