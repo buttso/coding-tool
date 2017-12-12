@@ -21,6 +21,8 @@ export class JsonDataService {
             key$: "1",
             userId: "<empty>",
             properties: {
+                competitionName: 'SA Metro',
+                seasonName: 'Winter',
                 matchName: "Preliminary Final",
                 year: 2017,
                 roundNumber: 24,
@@ -28,7 +30,7 @@ export class JsonDataService {
                 homeTeam: "Adelaide",
                 awayTeam: "Forestville",
                 venue: "State Hockey Centre",
-                date: new Date().toString()
+                matchDate: new Date().toString()
             },
             media: {
                 src: "https://codingtoolproto.blob.core.windows.net/asset-f44bed4f-598a-4467-94c3-503426b3f1e9/R24_PF_AHCvFHC_FullGame.mp4?sv=2015-07-08&sr=c&si=cb841b3c-ffc9-4d6f-b18c-188877b38fa8&sig=frdhRSpqbMGHjVuJVIRbwjjhx4HyKJx2nit71zSv0F0%3D&st=2017-11-28T05%3A31%3A15Z&se=2117-11-28T05%3A31%3A15Z",
@@ -132,12 +134,14 @@ export class JsonDataService {
             key$: "2",
             userId: "<empty>",
             "properties": {
+                competitionName: 'SA Metro',
+                seasonName: 'Winter',
                 "awayTeam": "AHC PLM",
                 "homeTeam": "Seacliff",
                 "grade": "PLM",
                 "year": 2017,
                 "matchName": "Grand Final",
-                "date": "2017-09-16T08:16:57.615007Z",
+                "matchDate": "2017-09-16T08:16:57.615007Z",
                 roundNumber: 1,
                 venue: ""
             } as IMatchProperties,

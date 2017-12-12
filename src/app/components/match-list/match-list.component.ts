@@ -31,6 +31,7 @@ export class MatchListComponent implements OnInit {
 
         this.matchService.getMatches().subscribe(matches => {
           console.log(`setting matches`)
+          
           this.matches = matches;
           this.hasMatches = matches.length > 0;
         });
@@ -53,15 +54,13 @@ export class MatchListComponent implements OnInit {
   }
 
   newGame(): void {
-    let dialogRef = this.dialog.open(AddGameDialog, {
-      width: '350px',
-    });
+    let dialogRef = this.dialog.open(AddGameDialog);
 
-    dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
-      if(match !== undefined) {
-        this.matchService.addMatch(match);
-      }
-    });
+    // dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
+    //   if(match !== undefined) {
+    //     // this.matchService.addMatch(match);
+    //   }
+    // });
   }
 
   

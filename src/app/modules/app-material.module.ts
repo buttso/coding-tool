@@ -16,7 +16,8 @@ import {
   MatNativeDateModule, 
   MatAutocompleteModule, 
   MatCardModule, 
-  MatProgressBarModule} from '@angular/material';
+  MatProgressBarModule,
+  MatStepperModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import {
     MatProgressBarModule,
     MatSelectModule,
     MatSidenavModule,
+    MatStepperModule,
     MatTooltipModule,
     MatToolbarModule
   ],
@@ -53,6 +55,7 @@ import {
     MatProgressBarModule,
     MatSelectModule,
     MatSidenavModule,
+    MatStepperModule,
     MatTooltipModule,
     MatToolbarModule
   ],

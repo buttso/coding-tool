@@ -11,13 +11,14 @@ export interface IMatchMetadata {
 
 export interface IMatchProperties {
     matchName: string, 
+    competitionName: string;
     year: number, 
-    roundNumber: number, 
-    grade: string, 
+    roundNumber?: number, 
+    grade?: string, 
     homeTeam: string, 
     awayTeam: string, 
     venue: string,
-    date: string
+    matchDate: string 
 }
 
 export interface IMediaSource {

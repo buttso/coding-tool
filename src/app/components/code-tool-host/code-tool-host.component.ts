@@ -83,8 +83,7 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   editGame(): void {
     let dialogRef = this.dialog.open(EditGameDialog, {
-      data: this.currentMatch,
-      width: '350px',
+      data: this.currentMatch
     });
 
     dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
@@ -92,7 +91,7 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
         this.currentMatch = match;
         console.log(this.currentMatch)
         
-        this.matchService.updateMatch(this.currentMatch);
+        // this.matchService.updateMatch(this.currentMatch);
       }
       
     });
@@ -100,14 +99,12 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
 
   newGame(): void {
-    let dialogRef = this.dialog.open(AddGameDialog, {
-      width: '350px',
-    });
+    let dialogRef = this.dialog.open(AddGameDialog);
 
-    dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
-      if(match !== undefined) {
-        this.matchService.addMatch(match);
-      }
-    });
+    // dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
+    //   if(match !== undefined) {
+    //     this.matchService.addMatch(match);
+    //   }
+    // });
   }
 }
