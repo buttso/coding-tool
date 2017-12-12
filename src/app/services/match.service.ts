@@ -69,8 +69,10 @@ export class MatchService {
         updates[`users/${this.uid}/matches/${newPostKey}`] = match;
 
         return firebase.database().ref().update(updates)
-                        .then(_ => console.log('match added'))
-                        .catch(error => console.log(error));
+                .then(_ => {
+                    console.log(`[matchService.addMatch] match added`);
+                })
+                .catch(error => console.log(error));
     }
 
     deleteMatch(match: IMatchMetadata) {

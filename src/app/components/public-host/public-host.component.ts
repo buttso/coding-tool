@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { IMatchMetadata } from '../../typings/model-metadata';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatchService } from '../../services/match.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'public-host',
   templateUrl: './public-host.component.html',
-  styles: []
+  styleUrls: ['./public-host.component.css']
 })
 export class PublicHostComponent implements OnInit {
 
@@ -15,7 +16,8 @@ export class PublicHostComponent implements OnInit {
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private matchService: MatchService,) { }
+              private matchService: MatchService, 
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.matchKey = this.activatedRoute.snapshot.params['id'];
@@ -33,6 +35,14 @@ export class PublicHostComponent implements OnInit {
         console.log(`[host] match retrieved`)
         console.info(match)
         this.currentMatch = match;
+      });
+  }
+
+
+  cloneGame() {
+    this.matchService.addMatch(this.currentMatch)
+      .then(r => {
+        this.router.navigateByUrl('/list');
       });
   }
 
