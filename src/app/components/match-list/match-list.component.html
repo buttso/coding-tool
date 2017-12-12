@@ -28,13 +28,15 @@
                 </ul>
             </mat-card-content>
             <mat-card-actions align="end">
-                <button mat-button [routerLink]="['/editor', match.$key]"
-                        matTooltip="View" matTooltipPosition="below">
-                    <mat-icon>mode_edit</mat-icon>
-                </button>
-                <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteMatch(match)">
-                     <mat-icon>delete</mat-icon>
-                </button>
+                    <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteMatch(match)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-button (click)="editMatch(match)" matTooltip="Edit" matTooltipPosition="below">
+                        <mat-icon>mode_edit</mat-icon>
+                    </button>
+                    <button mat-button [routerLink]="['/editor', match.$key]" matTooltip="View" matTooltipPosition="below">
+                        <mat-icon>ondemand_video</mat-icon>
+                    </button>
             </mat-card-actions>
         </mat-card>
 

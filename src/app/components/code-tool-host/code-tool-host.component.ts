@@ -78,7 +78,7 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
   }
 
   onGameChanged(){
-   this.timelineEventService.matchChanged(this.currentMatch);
+    this.timelineEventService.matchChanged(this.currentMatch);
   }
 
   editGame(): void {

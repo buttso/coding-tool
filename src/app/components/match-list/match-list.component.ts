@@ -6,6 +6,7 @@ import { AddGameDialog } from '../dialogs/add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
 import { AuthService } from '../../services/auth.service';
 import { IButtonConfiguration } from '../../typings/domain';
+import { EditGameDialog } from '../dialogs/edit-game-dialog.component';
 
 @Component({
   selector: 'match-list',
@@ -51,6 +52,22 @@ export class MatchListComponent implements OnInit {
     if (response ) {
       this.matchService.deleteMatch(match);
     }
+  }
+
+  editMatch(match: IMatchMetadata): void {
+    let dialogRef = this.dialog.open(EditGameDialog, {
+      data: match
+    });
+
+    dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
+      if(match !== undefined) {
+        // this.currentMatch = match;
+        console.log(`Updated match ${match.$key}`)
+        
+        // this.matchService.updateMatch(this.currentMatch);
+      }
+      
+    });
   }
 
   newGame(): void {
