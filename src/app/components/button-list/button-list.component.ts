@@ -19,6 +19,7 @@ export class ButtonListComponent implements OnInit {
   uid: string;
   loggedIn = false;
   hasButtons = false;
+  opened = true;
   
   constructor(private buttonService: ButtonService, public dialog: MatDialog, private authService: AuthService) { }
 
