@@ -13,7 +13,8 @@ interface ICodeButtonPanel {
 }
 
 interface IButtonConfiguration {
-    identifier?: string;
+    $key?: string;
+    identifier?: string;  // obsolete
     eventType: string;
     color: string;
     leadSeconds: number;

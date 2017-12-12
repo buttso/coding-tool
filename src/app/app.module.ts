@@ -31,6 +31,8 @@ import { AngularFireModule } from 'angularfire2/angularfire2';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { VideoPlayerModule } from './modules/video-player.module';
 import { PublicHostComponent } from './components/public-host/public-host.component';
+import { ButtonListComponent } from './components/button-list/button-list.component';
+import { ButtonService } from './services/button.service';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { PublicHostComponent } from './components/public-host/public-host.compon
     MediaPlayerControlsComponent, 
     TimerProgressComponent,
     MatchListComponent,
+    ButtonListComponent,
     AddGameDialog,
     EditGameDialog,
     VideoPlayerComponent,
@@ -64,6 +67,7 @@ import { PublicHostComponent } from './components/public-host/public-host.compon
   providers: [
     JsonDataService, 
     MatchService,
+    ButtonService,
     TimelineEventService, 
     TimerService,
     AuthService

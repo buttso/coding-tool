@@ -19,6 +19,9 @@ import {
   MatProgressBarModule,
   MatStepperModule} from '@angular/material';
 
+  import {MatListModule} from '@angular/material/list';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -33,6 +36,7 @@ import {
     MatInputModule,  
     MatMenuModule,
     MatNativeDateModule,
+    MatListModule,
     MatProgressBarModule,
     MatSelectModule,
     MatSidenavModule,
@@ -50,6 +54,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatListModule,
     MatMenuModule,
     MatNativeDateModule,
     MatProgressBarModule,

@@ -6,6 +6,7 @@
         <button mat-button (click)="authService.login()"> <mat-icon>perm_identity</mat-icon> Login </button>
     </div>
     <div *ngIf="(authService.user$ | async)?.uid">
+            <button mat-button [routerLink]="['/buttons']" matTooltip="Buttons" matTooltipPosition="below"> <mat-icon>keyboard</mat-icon> </button>
         <button mat-button [routerLink]="['/list']" matTooltip="Matches" matTooltipPosition="below"> <mat-icon>view_list</mat-icon> </button>
         <button mat-button (click)="authService.logout()"> <mat-icon>power_settings_new</mat-icon> {{(authService.user$ | async)?.displayName}} </button>
     </div>
