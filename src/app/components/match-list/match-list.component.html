@@ -1,52 +1,64 @@
-<mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side" opened="false"> 
-    
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <div class="container" style="background-color: #fff; min-height: 480px" *ngIf="!loggedIn">
-                <div>
-                    <h2 _ngcontent-c18="">Welcome</h2>
-                    <p _ngcontent-c18="">Please login to get started.  Once you have logged in you will be able to create and code matches such as this one: </p>
-                    <p style="padding: 25px">
-                        <a [routerLink]="['/public', '-L01rPXFd0x4S_hB1rjH']">2017 PLM Preliminary Final</a>
-                    </p>
+<div style="background-color: #fff; min-height: 480px" *ngIf="!loggedIn">
+        <header class="home-header-background">
+            <div class="home-header-section">
+                <div class="home-header-headline">
+                    <h1 class="mat-h1">Match Share</h1>
+                    <h2>Create, code, and share your matches.</h2>
                 </div>
-        </div>
-        <div class="container" style="background-color: #fff; min-height: 480px" *ngIf="loggedIn && !hasMatches">
-                <h2 _ngcontent-c18="">Hello {{(authService.user$ | async)?.displayName}}</h2>
-                <p _ngcontent-c18="">You don't appear to have any matches as yet.  Click the + button at the bottom of the page to get started!</p>
-        </div>
-        <mat-card *ngFor="let match of matches" fxLayoutAlign="space-between center" class="match-card">
-            <mat-card-header>
-                <span>{{match.properties.matchName}}</span>
-            </mat-card-header>
-            <mat-card-content>
-                <ul>
-                    <li><strong>Venue:</strong> {{match.properties.venue}}</li>
-                    <li><strong>Date:</strong> {{match.properties.matchDate | date:'dd-MMM-yyyy'}}</li>
-                    <li><strong>Video Type:</strong> {{match.media.type}}</li>
-                </ul>
-            </mat-card-content>
-            <mat-card-actions align="end">
-                    <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteMatch(match)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                    <button mat-button (click)="editMatch(match)" matTooltip="Edit" matTooltipPosition="below">
-                        <mat-icon>mode_edit</mat-icon>
-                    </button>
-                    <button mat-button [routerLink]="['/editor', match.$key]" matTooltip="View" matTooltipPosition="below">
-                        <mat-icon>ondemand_video</mat-icon>
-                    </button>
-            </mat-card-actions>
-        </mat-card>
+                <div  class="home-header-start">
+                    <a class="home-button mat-raised-button"  style="color: #000"
+                        mat-raised-button="" 
+                        tabindex="0" aria-disabled="false" (click)="authService.login()">
+                        Login to Get started
+                    </a>
+                </div>
+            </div>
+        </header>
 
-        <div *ngIf="(authService.user$ | async)?.uid">
-            <button mat-fab  id="add-button"
-                    matTooltip="New Game" matTooltipPosition="right" 
-                    (click)="newGame()"> <mat-icon>add</mat-icon> </button>
+        <div class="home-homepage-promo">
+            <div class="home-homepage-row">
+                <div class="home-homepage-promo-img">
+        
+                </div>
+                <div class="home-homepage-promo-desc">
+                    <h2>From Zero to Hero in no time!</h2>
+                    <a style="margin-top: 25px" [routerLink]="['/public', '-L01rPXFd0x4S_hB1rjH']" mat-raised-button color="accent">View Example Match</a>
+                </div>
+            </div>
         </div>
+</div>
+<div class="container" style="background-color: #fff; min-height: 480px" *ngIf="loggedIn && !hasMatches">
+        <h2 _ngcontent-c18="">Hello {{(authService.user$ | async)?.displayName}}</h2>
+        <p _ngcontent-c18="">You don't appear to have any matches as yet.  Click the + button at the bottom of the page to get started!</p>
+</div>
+<mat-card *ngFor="let match of matches" fxLayoutAlign="space-between center" class="match-card">
+    <mat-card-header>
+        <span>{{match.properties.matchName}}</span>
+    </mat-card-header>
+    <mat-card-content>
+        <ul>
+            <li><strong>Venue:</strong> {{match.properties.venue}}</li>
+            <li><strong>Date:</strong> {{match.properties.matchDate | date:'dd-MMM-yyyy'}}</li>
+            <li><strong>Video Type:</strong> {{match.media.type}}</li>
+        </ul>
+    </mat-card-content>
+    <mat-card-actions align="end">
+            <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteMatch(match)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-button (click)="editMatch(match)" matTooltip="Edit" matTooltipPosition="below">
+                <mat-icon>mode_edit</mat-icon>
+            </button>
+            <button mat-button [routerLink]="['/editor', match.$key]" matTooltip="View" matTooltipPosition="below">
+                <mat-icon>ondemand_video</mat-icon>
+            </button>
+    </mat-card-actions>
+</mat-card>
 
-    </mat-sidenav-content>
-</mat-sidenav-container>
+<div *ngIf="(authService.user$ | async)?.uid">
+    <button mat-fab  id="add-button"
+            matTooltip="New Game" matTooltipPosition="right" 
+            (click)="newGame()"> <mat-icon>add</mat-icon> </button>
+</div>
         
        

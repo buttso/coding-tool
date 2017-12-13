@@ -1,5 +1,5 @@
-<mat-toolbar color="primary">
-    <span>Match Share - <em>match sharing for the internet!</em></span>
+<mat-toolbar class='top-toolbar' color="primary">
+    <a mat-button [routerLink]="['/list']"> <mat-icon>home</mat-icon> Match Share </a>
     <span class="toolbar-spacer"></span>
     
     <div *ngIf="!(authService.user$ | async)?.uid">
@@ -12,4 +12,5 @@
     </div>
 
 </mat-toolbar>
-<router-outlet></router-outlet>
+<div style="clear: both; margin-bottom: 65px"></div>
+<router-outlet></router-outlet> 

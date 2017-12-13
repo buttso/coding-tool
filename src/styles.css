@@ -5,6 +5,8 @@ body {
     margin: 0;
     color: #fff;
     background-color: #555;
+    margin-left: 0px;
+    margin-right: 0px;
   }
   
 .basic-container {
@@ -24,6 +26,8 @@ a { text-decoration: none; }
     border: none;
     box-shadow: none;
 }
+
+
 
 
 .toolbar-spacer {

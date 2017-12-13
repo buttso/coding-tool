@@ -20,7 +20,7 @@ export class MatchListComponent implements OnInit {
   loggedIn = false;
   hasMatches = false;
   
-  constructor(private matchService: MatchService, public dialog: MatDialog, private authService: AuthService) { }
+  constructor(private matchService: MatchService, public dialog: MatDialog, public authService: AuthService) { }
 
   ngOnInit() {
     console.log(`[match-list]:init`)
@@ -62,9 +62,7 @@ export class MatchListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
       if(match !== undefined) {
         // this.currentMatch = match;
-        console.log(`Updated match ${match.$key}`)
-        
-        // this.matchService.updateMatch(this.currentMatch);
+        console.log(`Updated match ${match.$key}`);
       }
       
     });
@@ -72,12 +70,6 @@ export class MatchListComponent implements OnInit {
 
   newGame(): void {
     let dialogRef = this.dialog.open(AddGameDialog);
-
-    // dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
-    //   if(match !== undefined) {
-    //     // this.matchService.addMatch(match);
-    //   }
-    // });
   }
 
   
