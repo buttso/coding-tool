@@ -3,7 +3,7 @@
 import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { IMediaPlayer, IMediaPlayerControls, ICodingEvent } from '../../typings/domain';
-import { TimelineEventService } from '../../services/timeline-event.service';
+import { MatchEventService } from '../../services/match-event.service';
 import { IMediaSource, IMatchMetadata, ICodedEventItem } from '../../typings/model-metadata';
 
 @Component({
@@ -21,12 +21,12 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
   onpause = new EventEmitter(); // TODO: strong typed event args
   onreset = new EventEmitter(); // TODO: strong typed event args
 
-  constructor(private timerService: TimerService, private timelineEventService: TimelineEventService) {
-      timelineEventService.navigateTo$.subscribe((codingEvent: ICodedEventItem) => {
+  constructor(private timerService: TimerService, private matchEventService: MatchEventService) {
+      matchEventService.navigateTo$.subscribe((codingEvent: ICodedEventItem) => {
         this.navigateTo(codingEvent);
       });
 
-      timelineEventService.matchChanged$.subscribe((matchMetadata: IMatchMetadata) => {
+      matchEventService.matchChanged$.subscribe((matchMetadata: IMatchMetadata) => {
         this.changeMedia(matchMetadata.media);
       });
   }
@@ -69,7 +69,7 @@ export class AzureMediaPlayerComponent implements OnInit, IMediaPlayer, IMediaPl
     this.player.addEventListener('durationchange', (e: ProgressEvent) => {
       const duration = this.player.duration();
       console.info(`[video loaded] duration: ${duration}`)
-      this.timelineEventService.mediaLoaded({ duration: duration });
+      this.matchEventService.mediaLoaded({ duration: duration });
     });
     
     console.info(`[player] setting source: ${this.source.src}; ${this.source.type}`)

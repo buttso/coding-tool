@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { CodeToolHostComponent } from '../code-tool-host/code-tool-host.component';
 import { IButtonConfiguration, ICodeButtonPanel, ICodingEvent } from '../../typings/domain';
-import { TimelineEventService } from '../../services/timeline-event.service';
+import { MatchEventService } from '../../services/match-event.service';
 
 @Component({
   selector: 'code-buttons',
@@ -13,7 +13,7 @@ export class CodeButtonsComponent implements ICodeButtonPanel, OnInit {
   
   @Input() buttons: IButtonConfiguration[];
   
-  constructor(private timerService: TimerService, private timelineEventService: TimelineEventService) { }
+  constructor(private timerService: TimerService, private matchEventService: MatchEventService) { }
 
   ngOnInit(): void {
     let hasButtons = this.buttons !== undefined && this.buttons !== null && this.buttons.length > 0;
@@ -31,7 +31,7 @@ export class CodeButtonsComponent implements ICodeButtonPanel, OnInit {
         lagSeconds: button.lagSeconds
       } as ICodingEvent;
 
-      this.timelineEventService.addCodingEvent(codingEvent);
+      this.matchEventService.addCodingEvent(codingEvent);
   }
 
 

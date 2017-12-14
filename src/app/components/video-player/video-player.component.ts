@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VgAPI } from 'videogular2/core';
 import { IMediaSource, ICodedEventItem, IMatchMetadata } from '../../typings/model-metadata';
-import { TimelineEventService } from '../../services/timeline-event.service';
+import { MatchEventService } from '../../services/match-event.service';
 import { TimerService } from '../../services/timer.service';
 
 @Component({
@@ -14,23 +14,18 @@ export class VideoPlayerComponent implements OnInit {
   @Input() source: IMediaSource;
   api:VgAPI;
 
-  constructor(private timerService: TimerService, private timelineEventService: TimelineEventService) {
-    timelineEventService.navigateTo$.subscribe((codingEvent: ICodedEventItem) => {
+  constructor(private timerService: TimerService, private matchEventService: MatchEventService) {
+    matchEventService.navigateTo$.subscribe((codingEvent: ICodedEventItem) => {
       this.navigateTo(codingEvent);
     });
 
-    timelineEventService.matchChanged$.subscribe((matchMetadata: IMatchMetadata) => {
+    matchEventService.matchChanged$.subscribe((matchMetadata: IMatchMetadata) => {
       this.changeMedia(matchMetadata.media);
     });
   }
 
   ngOnInit() {
     console.info(`[player] setting source: ${this.source.src}; ${this.source.type}`)
-
-    // this.player.src(this.source);
-    // this.player.src([{ src: this.source.src, type: this.source.type } ]);
-    // this.player.src([{ src: '//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest',
-    //                    type: 'application/vnd.ms-sstr+xml' } ]);
   }
 
 
@@ -50,7 +45,7 @@ export class VideoPlayerComponent implements OnInit {
       () => {
         const duration = this.api.duration;
         console.info(`vg:durationChanged ${duration}`)
-        this.timelineEventService.mediaLoaded({ duration: duration });
+        this.matchEventService.mediaLoaded({ duration: duration });
       }
     );
   }

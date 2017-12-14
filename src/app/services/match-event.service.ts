@@ -5,7 +5,7 @@ import { Subject }    from 'rxjs/Subject';
 import { ICodingEvent, MediaLoadedEvent } from '../typings/domain';
 import { IMatchMetadata, ICodedEventItem } from '../typings/model-metadata';
  
-export class TimelineEventService {
+export class MatchEventService {
 
   // Observable string source
   private eventAddedSource = new Subject<ICodingEvent>();

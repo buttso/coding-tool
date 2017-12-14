@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ICodeEventTimeline, ICodingEvent, MediaLoadedEvent } from '../../typings/domain';
-import { TimelineEventService } from '../../services/timeline-event.service';
+import { MatchEventService } from '../../services/match-event.service';
 import { ICodedEventType, ICodedEventItem } from '../../typings/model-metadata';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 
@@ -20,15 +20,15 @@ export class TimelineComponent implements ICodeEventTimeline {
     timerSegments = 12;
     segments: number[]; // = [1,2,3,4,5,6,7,8,9,10,11,12];
 
-    constructor(protected timelineEventService: TimelineEventService) {
+    constructor(protected matchEventService: MatchEventService) {
         this.segments = Array(this.timerSegments).fill(1).map((x,i)=>i + 1);
 
-        this.timelineEventService.eventAdded$.subscribe(
+        this.matchEventService.eventAdded$.subscribe(
             codingEvent => {
               this.addCodingEvent(codingEvent);
             });
 
-        this.timelineEventService.mediaLoaded$.subscribe(
+        this.matchEventService.mediaLoaded$.subscribe(
             (e: MediaLoadedEvent) => {
                 this.mediaLoaded(e);
             });
@@ -138,7 +138,7 @@ export class TimelineComponent implements ICodeEventTimeline {
     }
 
     onEventItemClicked(codingEventItem: ICodedEventItem) {
-        this.timelineEventService.navigateTo(codingEventItem);
+        this.matchEventService.navigateTo(codingEventItem);
     }
 
 

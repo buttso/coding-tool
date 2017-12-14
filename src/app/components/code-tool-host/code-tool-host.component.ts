@@ -3,7 +3,7 @@ import { ICodeToolHostComponent, IButtonConfiguration } from '../../typings/doma
 import { TimerService } from '../../services/timer.service';
 import { IMatchMetadata } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
-import { TimelineEventService } from '../../services/timeline-event.service';
+import { MatchEventService } from '../../services/match-event.service';
 import { MatDialog } from '@angular/material';
 import { AddGameDialog } from '../dialogs/add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
@@ -38,7 +38,7 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
       public authService: AuthService,
       private timerService: TimerService, 
       private matchService: MatchService,
-      private timelineEventService: TimelineEventService,
+      private matchEventService: MatchEventService,
       public dialog: MatDialog
     ) { }
 
@@ -69,16 +69,12 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     this.timerChangedHandle.unsubscribe();
   }
 
-  // setCurrentMatch(identifier: string) {
-  //   this.currentMatch = this.matchDataService.getMatch(identifier);
-  // }
-
   timerChanged(args: any): void {
     console.log('CodeTool - Timer Change')
   }
 
   onGameChanged(){
-    this.timelineEventService.matchChanged(this.currentMatch);
+    this.matchEventService.matchChanged(this.currentMatch);
   }
 
   editGame(): void {
@@ -90,8 +86,6 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
       if(match !== undefined) {
         this.currentMatch = match;
         console.log(this.currentMatch)
-        
-        // this.matchService.updateMatch(this.currentMatch);
       }
       
     });
@@ -100,11 +94,5 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
 
   newGame(): void {
     let dialogRef = this.dialog.open(AddGameDialog);
-
-    // dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
-    //   if(match !== undefined) {
-    //     this.matchService.addMatch(match);
-    //   }
-    // });
   }
 }

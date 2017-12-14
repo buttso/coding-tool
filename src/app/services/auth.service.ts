@@ -8,20 +8,7 @@ import { Observable } from 'rxjs/Observable';
 export class AuthService {
   user$: Observable<firebase.User>;
 
-  constructor(
-    private router: Router,
-    private firebase: AngularFireAuth
-  ) {
-
-    /*
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-      } else {
-        // No user is signed in.
-      }
-    });
-    */
+  constructor(private router: Router, private firebase: AngularFireAuth) {
     this.user$ = this.firebase.authState;
   }
 
