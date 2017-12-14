@@ -32,29 +32,40 @@
         <h2 _ngcontent-c18="">Hello {{(authService.user$ | async)?.displayName}}</h2>
         <p _ngcontent-c18="">You don't appear to have any matches as yet.  Click the + button at the bottom of the page to get started!</p>
 </div>
-<mat-card *ngFor="let match of matches" fxLayoutAlign="space-between center" class="match-card">
-    <mat-card-header>
-        <span>{{match.properties.matchName}}</span>
-    </mat-card-header>
-    <mat-card-content>
-        <ul>
-            <li><strong>Venue:</strong> {{match.properties.venue}}</li>
-            <li><strong>Date:</strong> {{match.properties.matchDate | date:'dd-MMM-yyyy'}}</li>
-            <li><strong>Video Type:</strong> {{match.media.type}}</li>
-        </ul>
-    </mat-card-content>
-    <mat-card-actions align="end">
-            <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteMatch(match)">
-                <mat-icon>delete</mat-icon>
-            </button>
-            <button mat-button (click)="editMatch(match)" matTooltip="Edit" matTooltipPosition="below">
-                <mat-icon>mode_edit</mat-icon>
-            </button>
-            <button mat-button [routerLink]="['/editor', match.$key]" matTooltip="View" matTooltipPosition="below">
-                <mat-icon>ondemand_video</mat-icon>
-            </button>
-    </mat-card-actions>
-</mat-card>
+
+<mat-grid-list cols="4">
+        <mat-grid-tile
+        *ngFor="let match of matches">
+          
+        <mat-card class="match-card">
+                <mat-card-header>
+                    <span>{{match.properties.matchName}}</span>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li><strong>Venue:</strong> {{match.properties.venue}}</li>
+                        <li><strong>Date:</strong> {{match.properties.matchDate | date:'dd-MMM-yyyy'}}</li>
+                        <li><strong>Video Type:</strong> {{match.media.type}}</li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                        <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteMatch(match)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-button (click)="editMatch(match)" matTooltip="Edit" matTooltipPosition="below">
+                            <mat-icon>mode_edit</mat-icon>
+                        </button>
+                        <button mat-button [routerLink]="['/editor', match.$key]" matTooltip="View" matTooltipPosition="below">
+                            <mat-icon>ondemand_video</mat-icon>
+                        </button>
+                </mat-card-actions>
+            </mat-card>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+
 
 <div *ngIf="(authService.user$ | async)?.uid">
     <button mat-fab  id="add-button"
