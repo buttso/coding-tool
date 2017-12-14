@@ -7,6 +7,7 @@ import { CreateGameModel } from '../../models/create-game-model';
 import { AuthService } from '../../services/auth.service';
 import { IButtonConfiguration } from '../../typings/domain';
 import { EditGameDialog } from '../dialogs/edit-game-dialog.component';
+import { ImportEventsDialog } from '../dialogs/import-events-dialog.component';
 
 @Component({
   selector: 'match-list',
@@ -52,6 +53,20 @@ export class MatchListComponent implements OnInit {
     if (response ) {
       this.matchService.deleteMatch(match);
     }
+  }
+
+  importEvents(match: IMatchMetadata): void {
+    let dialogRef = this.dialog.open(ImportEventsDialog, {
+      data: match
+    });
+
+    dialogRef.afterClosed().subscribe((match: IMatchMetadata) => {
+      if(match !== undefined) {
+        // this.currentMatch = match;
+        console.log(`Imported events ${match.$key}`);
+      }
+      
+    });
   }
 
   editMatch(match: IMatchMetadata): void {

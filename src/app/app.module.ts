@@ -25,6 +25,7 @@ import { EditGameDialog } from './components/dialogs/edit-game-dialog.component'
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { PublicHostComponent } from './components/public-host/public-host.component';
 import { ButtonListComponent } from './components/button-list/button-list.component';
+import { ImportEventsDialog } from './components/dialogs/import-events-dialog.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ButtonListComponent } from './components/button-list/button-list.compon
     ButtonListComponent,
     AddGameDialog,
     EditGameDialog,
+    ImportEventsDialog,
     VideoPlayerComponent,
     PublicHostComponent
   ],
@@ -58,7 +60,8 @@ import { ButtonListComponent } from './components/button-list/button-list.compon
   providers: [],
   entryComponents: [
     AddGameDialog,
-    EditGameDialog
+    EditGameDialog,
+    ImportEventsDialog
   ],
   bootstrap: [AppComponent]
 })

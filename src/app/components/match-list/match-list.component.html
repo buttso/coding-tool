@@ -39,10 +39,11 @@
           
         <mat-card class="match-card">
                 <mat-card-header>
-                    <span>{{match.properties.matchName}}</span>
+                    <strong>{{match.properties.matchName}}</strong>
                 </mat-card-header>
                 <mat-card-content>
-                    <ul>
+                    <ul style="list-style-type: none">
+                        <li>{{match.properties.homeTeam}} vs {{match.properties.awayTeam}}</li>
                         <li><strong>Venue:</strong> {{match.properties.venue}}</li>
                         <li><strong>Date:</strong> {{match.properties.matchDate | date:'dd-MMM-yyyy'}}</li>
                         <li><strong>Video Type:</strong> {{match.media.type}}</li>
@@ -52,6 +53,9 @@
                         <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteMatch(match)">
                             <mat-icon>delete</mat-icon>
                         </button>
+                        <button mat-button matTooltip="Import" matTooltipPosition="below" (click)="importEvents(match)">
+                                <mat-icon>linear_scale</mat-icon>
+                            </button>
                         <button mat-button (click)="editMatch(match)" matTooltip="Edit" matTooltipPosition="below">
                             <mat-icon>mode_edit</mat-icon>
                         </button>

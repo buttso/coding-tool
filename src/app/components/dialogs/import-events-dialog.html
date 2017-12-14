@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Import Events</h1>
+<div mat-dialog-content>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step>
+            <ng-template matStepLabel>Import Events</ng-template>
+            <form>
+                <mat-form-field>
+                    <input matInput 
+                        name="name" [(ngModel)]="importedEvents" 
+                        #name="ngModel" required placeholder="Imported content">
+                    <mat-hint align="start"><strong>Add imported content and click Next</strong> </mat-hint>
+                </mat-form-field>
+            </form>
+                
+            <div>
+                <button mat-button (click)="processImportText()">Next</button>
+            </div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Import Summary</ng-template>
+            <p>This operation will import the following events and buttons to your match.</p>
+            <ul>
+                <li><strong>Events: </strong>{{events.length}}</li>
+                <li><strong>Buttons: </strong>{{buttons.length}}</li>
+            </ul>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+                <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+            </div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Confirm</ng-template>
+            <p>This operation will overwrite any existing events and buttons that you have for this match.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                
+                <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+                <button mat-button (click)="onImportClick()" type="submit" class="mat-primary">Import</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
