@@ -3,13 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var LongoFileConverter = /** @class */ (function () {
     function LongoFileConverter() {
     }
-    LongoFileConverter.prototype.Convert = function (input) {
-        var properties = this.ProcessProperties(input.Description);
+    LongoFileConverter.convert = function (input) {
+        var properties = LongoFileConverter.processProperties(input.Description);
         console.info('got properties');
-        var buttonConfiguration = this.ProcessButtonConfiguration(input.Dashboard);
-        console.info('got buttons');
-        var events = this.ProcessCodedEvents(input.Timeline, buttonConfiguration);
-        console.info('got events');
+        var buttonConfiguration = LongoFileConverter.processButtonConfiguration(input.Dashboard);
+        console.info("got " + buttonConfiguration.length + " buttons");
+        var events = LongoFileConverter.processCodedEvents(input.Timeline, buttonConfiguration);
+        console.info("got " + events.length + " events");
         return {
             userId: '',
             properties: properties,
@@ -19,9 +19,10 @@ var LongoFileConverter = /** @class */ (function () {
             identifier: ""
         };
     };
-    LongoFileConverter.prototype.ProcessButtonConfiguration = function (dashboard) {
+    LongoFileConverter.processButtonConfiguration = function (dashboard) {
         if (dashboard !== undefined && dashboard !== null) {
             var events = dashboard.List.map(function (e) {
+                console.info("[processButtonConfiguration]:: " + e.EventType.$id);
                 if (e.EventType !== undefined && e.EventType.$id !== undefined) {
                     var identifier = e.EventType.$id;
                     return {
@@ -33,27 +34,29 @@ var LongoFileConverter = /** @class */ (function () {
                     };
                 }
             });
+            console.info(events);
             return events.filter(function (e) { return e !== undefined; });
         }
         return [];
     };
-    LongoFileConverter.prototype.ProcessCodedEvents = function (timeline, buttons) {
+    LongoFileConverter.processCodedEvents = function (timeline, buttons) {
         if (timeline !== undefined && timeline !== null) {
             console.info("found timeline: " + timeline.length);
             var codedEventTypes_1 = [];
             var events = timeline.forEach(function (e) {
                 console.info("Looking for " + e.EventType.$ref);
-                var button = buttons.find(function (b) {
+                var button = buttons.filter(function (b) {
                     try {
                         return b.identifier.toString() == e.EventType.$ref.toString();
                     }
-                    catch (_a) {
-                        return false;
+                    catch (e) {
+                        console.log(e);
+                        //
                     }
+                    return false;
                 });
-                
                 if (button !== undefined) {
-                    var btn_1 = button;
+                    var btn_1 = buttons[0];
                     console.info("found button: " + btn_1.eventType);
                     var item = codedEventTypes_1.find(function (e) { return e.eventType == btn_1.eventType; });
                     if (item === null || item === undefined) {
@@ -63,8 +66,7 @@ var LongoFileConverter = /** @class */ (function () {
                         };
                         codedEventTypes_1.push(item);
                     }
-
-                    var s = (e.EventTime / 1000) - button.leadSeconds;
+                    var s = (e.EventTime / 1000) - btn_1.leadSeconds;
                     item.events.push({
                         color: btn_1.color,
                         seconds: Math.max(s, 0)
@@ -80,15 +82,16 @@ var LongoFileConverter = /** @class */ (function () {
         console.info("return 2");
         return [];
     };
-    LongoFileConverter.prototype.ProcessProperties = function (metadata) {
+    LongoFileConverter.processProperties = function (metadata) {
         if (metadata !== undefined && metadata !== null) {
             var properties = {
+                competitionName: '',
                 awayTeam: metadata.VisitorName,
                 homeTeam: metadata.LocalName,
                 grade: metadata.Competition,
                 year: metadata.Season,
                 matchName: metadata.Description,
-                date: metadata.MatchDate,
+                matchDate: metadata.MatchDate,
                 roundNumber: 1,
                 venue: ""
             };

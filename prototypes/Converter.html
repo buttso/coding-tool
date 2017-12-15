@@ -36,12 +36,12 @@
 
             link.addEventListener("click", function() {
                 var obj = JSON.parse(input.value);
-                var converter = new LongoFileConverter();
-                var convertedText = converter.Convert(obj);
+                var converted = LongoFileConverter.convert(obj);
                 console.log('done')
-                var json = JSON.stringify(convertedText, null, 4);
-                console.log(json);
-                output.innerText = json;
+                var convertedText = JSON.stringify(converted, null, 4);
+                // console.log(json);
+                console.log('... and done')
+                output.innerText = convertedText;
             }, false);
 
             // link.addEventListener("click", function () {

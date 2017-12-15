@@ -1,10 +1,10 @@
-import { IMatchMetadata, IMatchProperties, IMediaSource, ICodedEventType, ICodedEventItem } from '../src/app/typings/model-metadata'
-import { IButtonConfiguration } from '../src/app/typings/domain';
+import { IMatchMetadata, IMatchProperties, IMediaSource, ICodedEventType, ICodedEventItem } from '../typings/model-metadata'
+import { IButtonConfiguration } from '../typings/domain';
 
 export class LongoFileConverter {
 
     public static convert(input: any): IMatchMetadata {
-
+        console.log(input)
         let properties = LongoFileConverter.processProperties(input.Description);
         console.info('got properties')
         let buttonConfiguration = LongoFileConverter.processButtonConfiguration(input.Dashboard);
@@ -25,8 +25,9 @@ export class LongoFileConverter {
 
     static processButtonConfiguration(dashboard: any): IButtonConfiguration[] {
         
+        console.info(`buttons: begin`)
         if(dashboard !== undefined && dashboard !== null) {
-            
+            console.info(`buttons: got a dashboard`)
             let events = (dashboard.List as any[]).map(e => {
 
                 console.info(`[processButtonConfiguration]:: ${e.EventType.$id}`)
@@ -66,7 +67,7 @@ export class LongoFileConverter {
 
                 console.info(`Looking for ${e.EventType.$ref}`)
 
-                let button = buttons.filter(b => {
+                let btns = buttons.filter(b => {
                     try {
                         return b.identifier.toString() == e.EventType.$ref.toString();
                     } catch(e) {
@@ -76,9 +77,10 @@ export class LongoFileConverter {
                     return false;
                 });
                
-                if( button!== undefined) {
+                if( btns!== undefined && btns[0] !== undefined) {
 
-                    let btn = buttons[0];
+                    let btn = btns[0];
+                    console.log(btn)
                     console.info(`found button: ${btn.eventType}`)
                     let item = codedEventTypes.find(e => e.eventType == btn.eventType);
                     
@@ -102,11 +104,11 @@ export class LongoFileConverter {
                 }
             });
 
-            console.info(`return 1`)
+            console.info(codedEventTypes);
             return codedEventTypes.filter(e => e !== undefined);
         }
         
-        console.info(`return 2`)
+        console.info(`no coded events types found`)
         return [] as ICodedEventType[];
     }
 

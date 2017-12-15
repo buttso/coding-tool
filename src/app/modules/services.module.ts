@@ -6,6 +6,7 @@ import { JsonDataService } from '../services/json-data.service';
 import { MatchEventService } from '../services/match-event.service';
 import { MatchService } from '../services/match.service';
 import { TimerService } from '../services/timer.service';
+import { MatchParserService } from '../services/match-parser.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { TimerService } from '../services/timer.service';
     ButtonService,
     JsonDataService,
     MatchEventService,
+    MatchParserService,
     MatchService,
     TimerService
   ],

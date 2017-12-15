@@ -3,6 +3,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { IMatchMetadata, ICodedEventType } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
 import { IButtonConfiguration } from '../../typings/domain';
+import { MatchParserService } from '../../services/match-parser.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ import { IButtonConfiguration } from '../../typings/domain';
         
     constructor(public dialogRef: MatDialogRef<ImportEventsDialog>,
                 public matchService: MatchService,
+                private matchParser: MatchParserService,
                 @Inject(MAT_DIALOG_DATA) public match: IMatchMetadata) { }
 
     ngOnInit(): void {
@@ -29,6 +31,14 @@ import { IButtonConfiguration } from '../../typings/domain';
 
 
     processImportText() {
+        // console.log(this.importedEvents)
+        if(this.importedEvents !== undefined) {
+            let json = this.matchParser.parse(this.importedEvents);
+            if(json !== undefined) {
+                this.events = json.events;
+                this.buttons = json.buttonConfiguration;
+            }
+        }
         this.stepper.selectedIndex = 1;
     }
 
@@ -37,13 +47,8 @@ import { IButtonConfiguration } from '../../typings/domain';
 
     onImportClick(): void {
 
-        if(this.importedEvents !== undefined) {
-            let json = JSON.parse(this.importedEvents);
-            if(json !== undefined) {
-                this.events = json.events;
-                this.buttons = json.buttonConfiguration;
-            }
-        }
+        this.match.events = this.events;
+        this.match.buttonConfiguration = this.buttons;
 
         this.matchService.updateMatch(this.match)
             .then(() => this.dialogRef.close(this.match));
