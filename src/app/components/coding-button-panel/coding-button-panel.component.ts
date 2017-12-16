@@ -1,15 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { CodeToolHostComponent } from '../code-tool-host/code-tool-host.component';
-import { IButtonConfiguration, ICodeButtonPanel, ICodingEvent, ICodingButtonSet } from '../../typings/domain';
+import { ICodeButtonPanel, ICodingEvent } from '../../typings/domain';
+import { IButtonConfiguration, ICodingButtonSet } from '../../typings/model-metadata';
 import { MatchEventService } from '../../services/match-event.service';
 
 @Component({
-  selector: 'code-buttons',
-  templateUrl: './code-buttons.component.html',
-  styleUrls: ['./code-buttons.component.css']
+  selector: 'coding-button-panel',
+  templateUrl: './coding-button-panel.component.html',
+  styleUrls: ['./coding-button-panel.component.css']
 })
-export class CodeButtonsComponent implements ICodeButtonPanel, OnInit {
+export class CodingButtonPanelComponent implements ICodeButtonPanel, OnInit {
   
   @Input() buttons: IButtonConfiguration[];
   

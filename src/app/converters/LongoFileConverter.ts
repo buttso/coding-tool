@@ -1,5 +1,10 @@
-import { IMatchMetadata, IMatchProperties, IMediaSource, ICodedEventType, ICodedEventItem } from '../typings/model-metadata'
-import { IButtonConfiguration, ICodingButtonSet } from '../typings/domain';
+import { IMatchMetadata, 
+        IMatchProperties, 
+        IMediaSource, 
+        ICodedEventType, 
+        ICodedEventItem, 
+        IButtonConfiguration, 
+        ICodingButtonSet } from '../typings/model-metadata'
 
 export class LongoFileConverter {
 

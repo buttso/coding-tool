@@ -14,7 +14,7 @@ import { VideoPlayerModule } from './modules/video-player.module';
 
 import { AppComponent } from './app.component';
 import { CodeToolHostComponent } from './components/code-tool-host/code-tool-host.component';
-import { CodeButtonsComponent } from './components/code-buttons/code-buttons.component';
+import { CodingButtonPanelComponent } from './components/coding-button-panel/coding-button-panel.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { MediaPlayerControlsComponent } from './components/media-player-controls/media-player-controls.component';
 import { TimerProgressComponent } from './components/timer-progress/timer-progress.component';
@@ -33,7 +33,7 @@ import { ImportEventsDialog } from './components/dialogs/import-events-dialog.co
     AppComponent,
     CodeToolHostComponent,
     AzureMediaPlayerComponent,
-    CodeButtonsComponent,
+    CodingButtonPanelComponent,
     TimelineComponent,
     MediaPlayerControlsComponent, 
     TimerProgressComponent,

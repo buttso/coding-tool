@@ -1,8 +1,7 @@
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { IMatchMetadata, ICodedEventType } from '../../typings/model-metadata';
+import { IMatchMetadata, ICodedEventType, IButtonConfiguration } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
-import { IButtonConfiguration } from '../../typings/domain';
 import { MatchParserService } from '../../services/match-parser.service';
 
 

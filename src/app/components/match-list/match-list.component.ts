@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IMatchMetadata } from '../../typings/model-metadata';
+import { IMatchMetadata, IButtonConfiguration } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
 import { MatDialog } from '@angular/material';
 import { AddGameDialog } from '../dialogs/add-game-dialog.component';
 import { CreateGameModel } from '../../models/create-game-model';
 import { AuthService } from '../../services/auth.service';
-import { IButtonConfiguration } from '../../typings/domain';
 import { EditGameDialog } from '../dialogs/edit-game-dialog.component';
 import { ImportEventsDialog } from '../dialogs/import-events-dialog.component';
 

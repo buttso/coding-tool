@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ICodeToolHostComponent, IButtonConfiguration } from '../../typings/domain';
+import { ICodeToolHostComponent } from '../../typings/domain';
 import { TimerService } from '../../services/timer.service';
-import { IMatchMetadata } from '../../typings/model-metadata';
+import { IMatchMetadata, IButtonConfiguration } from '../../typings/model-metadata';
 import { MatchService } from '../../services/match.service';
 import { MatchEventService } from '../../services/match-event.service';
 import { MatDialog } from '@angular/material';

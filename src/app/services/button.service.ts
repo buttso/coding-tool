@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/catch';
 import { AuthService } from './auth.service';
-import { IButtonConfiguration, ICodingButtonSet } from '../typings/domain';
+import { IButtonConfiguration, ICodingButtonSet } from '../typings/model-metadata';
 
 
 @Injectable()

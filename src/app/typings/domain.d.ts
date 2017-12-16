@@ -12,26 +12,7 @@ interface ICodeButtonPanel {
 
 }
 
-interface ICodingButtonSet {
-    $key?: string;
-    name: string;
-    buttons: IButtonConfiguration[]
-}
 
-interface IButtonType {
-    name: string;
-}
-
-interface IButtonConfiguration {
-    $key?: string;
-    type: IButtonType;
-    identifier?: string;  // obsolete
-    name?: string;
-    eventType: string;  // obsolete
-    color: string;
-    leadSeconds: number;
-    lagSeconds: number;
-}
 
 // model type
 interface ICodingEvent {

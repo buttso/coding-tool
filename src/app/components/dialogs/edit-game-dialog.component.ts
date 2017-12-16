@@ -1,10 +1,9 @@
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, Inject, OnInit } from '@angular/core';
-import { IMatchMetadata } from '../../typings/model-metadata';
+import { IMatchMetadata, IButtonConfiguration } from '../../typings/model-metadata';
 import { EditGameModel } from '../../models/edit-game-model';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatchService } from '../../services/match.service';
-import { IButtonConfiguration } from '../../typings/domain';
 
 
 @Component({

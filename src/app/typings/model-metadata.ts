@@ -1,4 +1,4 @@
-import { ICodingEvent, IButtonConfiguration, ICodingButtonSet } from "./domain";
+import { ICodingEvent } from "./domain";
 
 export interface IMatchMetadata {
     $key?: string;
@@ -37,4 +37,25 @@ export interface ICodedEventType {
 export interface ICodedEventItem {
     seconds: number, 
     color: string
+}
+
+export interface ICodingButtonSet {
+    $key?: string;
+    name: string;
+    buttons: IButtonConfiguration[]
+}
+
+export interface IButtonType {
+    name: string;
+}
+
+export interface IButtonConfiguration {
+    $key?: string;
+    type: IButtonType;
+    identifier?: string;  // obsolete
+    name?: string;
+    eventType: string;  // obsolete
+    color: string;
+    leadSeconds: number;
+    lagSeconds: number;
 }
