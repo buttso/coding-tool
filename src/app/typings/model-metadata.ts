@@ -1,4 +1,4 @@
-import { ICodingEvent, IButtonConfiguration } from "./domain";
+import { ICodingEvent, IButtonConfiguration, ICodingButtonSet } from "./domain";
 
 export interface IMatchMetadata {
     $key?: string;
@@ -6,6 +6,7 @@ export interface IMatchMetadata {
     properties: IMatchProperties, 
     media: IMediaSource,
     events: ICodedEventType[],
+    buttons: ICodingButtonSet,
     buttonConfiguration: IButtonConfiguration[]
 }
 

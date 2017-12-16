@@ -5,6 +5,7 @@ import { IButtonConfiguration } from '../../typings/domain';
 import { IMatchMetadata } from '../../typings/model-metadata';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatchService } from '../../services/match.service';
+import { ButtonService } from '../../services/button.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ import { MatchService } from '../../services/match.service';
     constructor(private _fb: FormBuilder, 
                 public dialogRef: MatDialogRef<AddGameDialog>,
                 public matchService: MatchService, 
+                private buttonService: ButtonService,
                 @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit(): void {
@@ -49,7 +51,7 @@ import { MatchService } from '../../services/match.service';
         let match = {
             userId: '',
             properties: this.firstFormGroup.value,
-            buttonConfiguration: [],
+            buttonConfiguration: {},
             events: [],
             media: this.secondFormGroup.value,
         } as IMatchMetadata;
@@ -59,14 +61,18 @@ import { MatchService } from '../../services/match.service';
 
         match.properties.matchDate = t.toString()
 
-        if(this.importedEvents !== undefined) {
+        if(this.importedEvents !== undefined) 
+        {
             let json = JSON.parse(this.importedEvents);
-            if(json !== undefined) {
+            if(json !== undefined) 
+            {
                 match.events = json.events;
                 match.buttonConfiguration = json.buttonConfiguration;
             }
-        }else{
-            match.buttonConfiguration = this.getDefaultButtons();
+        }
+        else
+        {
+            match.buttons = this.buttonService.getDefaultButtonSet();
         }
 
         this.matchService.addMatch(match)
@@ -76,21 +82,5 @@ import { MatchService } from '../../services/match.service';
   
     onNoClick(): void {
       this.dialogRef.close();
-    }
-
-    getDefaultButtons(): IButtonConfiguration[] {
-        return [
-            { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "Circle Entry For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "Circle Entry Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "Goal Shot Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "Goal Shot For.", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "Goal For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "Goal Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "APC", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "DPC", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-            { eventType: "Special", color: "red", lagSeconds: 5, leadSeconds: 5 },
-        ];
     }
   }

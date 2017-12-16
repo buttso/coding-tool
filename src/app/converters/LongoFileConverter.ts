@@ -1,5 +1,5 @@
 import { IMatchMetadata, IMatchProperties, IMediaSource, ICodedEventType, ICodedEventItem } from '../typings/model-metadata'
-import { IButtonConfiguration } from '../typings/domain';
+import { IButtonConfiguration, ICodingButtonSet } from '../typings/domain';
 
 export class LongoFileConverter {
 
@@ -7,23 +7,24 @@ export class LongoFileConverter {
         console.log(input)
         let properties = LongoFileConverter.processProperties(input.Description);
         console.info('got properties')
-        let buttonConfiguration = LongoFileConverter.processButtonConfiguration(input.Dashboard);
-        console.info(`got ${buttonConfiguration.length} buttons`)
-        let events = LongoFileConverter.processCodedEvents(input.Timeline, buttonConfiguration);
+        let buttonSet = LongoFileConverter.processButtonConfiguration(input.Dashboard);
+        console.info(`got ${buttonSet.buttons.length} buttons`)
+        let events = LongoFileConverter.processCodedEvents(input.Timeline, buttonSet.buttons);
         console.info(`got ${events.length} events`)
         
         return {
             userId: '',
             properties: properties,
             events: events,
-            buttonConfiguration: buttonConfiguration,
+            buttons: buttonSet,
+            buttonConfiguration: null,
             media: {} as IMediaSource,
             identifier: ""
         } as IMatchMetadata;
     }
 
 
-    static processButtonConfiguration(dashboard: any): IButtonConfiguration[] {
+    static processButtonConfiguration(dashboard: any): ICodingButtonSet {
         
         console.info(`buttons: begin`)
         if(dashboard !== undefined && dashboard !== null) {
@@ -48,11 +49,15 @@ export class LongoFileConverter {
             }) as IButtonConfiguration[];     
 
             console.info(events);
-            
-            return events.filter(e => e !== undefined);
+            let buttonConfiguration = events.filter(e => e !== undefined);
+
+            return {
+                name: "",
+                buttons: buttonConfiguration    
+            };
         }
         
-        return [] as IButtonConfiguration[];
+        return {} as ICodingButtonSet;
     }
 
 

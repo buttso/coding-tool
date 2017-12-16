@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { AddGameDialog } from '../dialogs/add-game-dialog.component';
 import { EditGameDialog } from '../dialogs/edit-game-dialog.component';
 import { AuthService } from '../../services/auth.service';
-import { IButtonConfiguration } from '../../typings/domain';
+import { IButtonConfiguration, ICodingButtonSet } from '../../typings/domain';
 import { ButtonService } from '../../services/button.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { ButtonService } from '../../services/button.service';
 })
 export class ButtonListComponent implements OnInit {
 
-  buttonConfigurations: IButtonConfiguration[];
+  buttonSets: ICodingButtonSet[];
   uid: string;
   loggedIn = false;
   hasButtons = false;
@@ -24,22 +24,20 @@ export class ButtonListComponent implements OnInit {
   constructor(private buttonService: ButtonService, public dialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit() {
-    console.log(`[button-list]:init`)
+    console.log(`[ButtonListComponent]:init`)
     let user  = this.authService.user$.subscribe(auth => {
 
       if(auth != null) {
         this.uid = auth.uid;
         this.loggedIn = true;
 
-        this.buttonService.getButtonConfigurations().subscribe(buttons => {
-          console.log(`setting buttons`)
-          
-          this.buttonConfigurations = buttons;
+        this.buttonService.getButtonSets().subscribe(buttons => {
+          this.buttonSets = buttons;
           this.hasButtons = buttons.length > 0;
         });
       }else{
         this.uid = '';
-        this.buttonConfigurations = [];
+        this.buttonSets = [];
         this.loggedIn = false;
         this.hasButtons = false; 
       }
@@ -48,24 +46,22 @@ export class ButtonListComponent implements OnInit {
     
   }
 
-  deleteButtonConfiguration(buttonConfiguration: IButtonConfiguration): void {
+  deleteButtonSet(buttonSet: ICodingButtonSet): void {
     const response = confirm('are you sure you want to delete?');
     if (response ) {
-      this.buttonService.deleteButtonConfiguration(buttonConfiguration);
+      this.buttonService.deleteButtonSet(buttonSet);
     }
   }
 
-  editButtonConfiguration(buttonConfiguration: IButtonConfiguration): void {
+  editButtonSet(buttonSet: ICodingButtonSet): void {
     let dialogRef = this.dialog.open(EditGameDialog, {
-      data: buttonConfiguration
+      data: buttonSet
     });
 
-    dialogRef.afterClosed().subscribe((buttonConfiguration: IButtonConfiguration) => {
-      if(buttonConfiguration !== undefined) {
-        // this.currentMatch = match;
-        console.log(`Updated button configuration ${buttonConfiguration.$key}`)
-      }
-      
+    dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
+      if(buttonSet !== undefined) {
+        console.log(`Updated buttonSet ${buttonSet.$key}`)
+      }      
     });
   }
 

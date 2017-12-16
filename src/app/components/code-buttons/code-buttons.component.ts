@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TimerService } from '../../services/timer.service';
 import { CodeToolHostComponent } from '../code-tool-host/code-tool-host.component';
-import { IButtonConfiguration, ICodeButtonPanel, ICodingEvent } from '../../typings/domain';
+import { IButtonConfiguration, ICodeButtonPanel, ICodingEvent, ICodingButtonSet } from '../../typings/domain';
 import { MatchEventService } from '../../services/match-event.service';
 
 @Component({
@@ -37,18 +37,18 @@ export class CodeButtonsComponent implements ICodeButtonPanel, OnInit {
 
   getDefaultButtons(): IButtonConfiguration[] {
     return [
-      { eventType: "Press", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Outlet", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Circle Entry For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Circle Entry Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Goal Shot Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Goal Shot For.", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Goal For", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Goal Ag.", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "APC", color: "blue", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "DPC", color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-      { eventType: "Special", color: "red", lagSeconds: 5, leadSeconds: 5 },
-    ];
+      { name: "Press", eventType: "Press", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { name: "Outlet", eventType: "Outlet", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { name: "Circle Entry For", eventType: "Circle Entry For", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { name: "Circle Entry Ag.", eventType: "Circle Entry Ag.", type: {name: ''}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { name: "Goal Shot Ag.", eventType: "Goal Shot Ag.", type: {name: ''}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { name: "Goal Shot For.", eventType: "Goal Shot For.", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { name: "Goal For", eventType: "Goal For", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { name: "Goal Ag.", eventType: "Goal Ag.", type: {name: ''}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { name: "APC", eventType: "APC", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+      { name: "DPC", eventType: "DPC", type: {name: ''}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+      { name: "Special", eventType: "Special", type: {name: ''}, color: "red", lagSeconds: 5, leadSeconds: 5 },
+    ] as IButtonConfiguration[];
   }
 
 }
