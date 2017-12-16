@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,61 +8,42 @@ import { environment } from '../environments/environment';
 import { AppMaterialModule } from './modules/app-material.module';
 import { ContextMenuModule } from 'ngx-contextmenu';
 import { FirebaseModule } from './modules/firebase.module';
-import { AppRoutingModule } from './modules/app-routing.module';
-import { ServicesModule } from './modules/services.module';
+import { ServicesModule } from './services/services.module';
 import { VideoPlayerModule } from './modules/video-player.module';
 
+import { CoreComponentsModule } from './core-components/core-components.module';
+import { MatchModule } from './matches/match.module';
+
 import { AppComponent } from './app.component';
-import { CodeToolHostComponent } from './components/code-tool-host/code-tool-host.component';
-import { CodingButtonPanelComponent } from './components/coding-button-panel/coding-button-panel.component';
-import { TimelineComponent } from './components/timeline/timeline.component';
-import { MediaPlayerControlsComponent } from './components/media-player-controls/media-player-controls.component';
-import { TimerProgressComponent } from './components/timer-progress/timer-progress.component';
-import { AzureMediaPlayerComponent } from './components/azure-media-player/azure-media-player.component';
-import { MatchListComponent } from './components/match-list/match-list.component'
-import { AddGameDialog } from './components/dialogs/add-game-dialog.component';
-import { EditGameDialog } from './components/dialogs/edit-game-dialog.component';
-import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { PublicHostComponent } from './components/public-host/public-host.component';
-import { ButtonListComponent } from './components/button-list/button-list.component';
-import { ImportEventsDialog } from './components/dialogs/import-events-dialog.component';
+import { HomeComponent } from './components/home/home.component';
+import { AppRoutingModule } from './modules/app-routing.module';
+import { ButtonSetsModule } from './buttonsets/buttonset.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CodeToolHostComponent,
-    AzureMediaPlayerComponent,
-    CodingButtonPanelComponent,
-    TimelineComponent,
-    MediaPlayerControlsComponent, 
-    TimerProgressComponent,
-    MatchListComponent,
-    ButtonListComponent,
-    AddGameDialog,
-    EditGameDialog,
-    ImportEventsDialog,
-    VideoPlayerComponent,
-    PublicHostComponent
+    HomeComponent,
+    PublicHostComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     AppMaterialModule,
     FirebaseModule,
     ContextMenuModule,
     ServicesModule,
-    VideoPlayerModule
+    VideoPlayerModule,
+    CoreComponentsModule,    
+    MatchModule,
+    ButtonSetsModule,
+    AppRoutingModule
   ],
   providers: [],
-  entryComponents: [
-    AddGameDialog,
-    EditGameDialog,
-    ImportEventsDialog
-  ],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { MatchService } from '../../services/match.service';
 import { MatDialog } from '@angular/material';
-import { AddGameDialog } from '../dialogs/add-game-dialog.component';
-import { EditGameDialog } from '../dialogs/edit-game-dialog.component';
+import { AddButtonSetDialog } from '../dialogs/add-buttonset-dialog.component';
+import { EditButtonSetDialog } from '../dialogs/edit-buttonset-dialog.component';
 import { AuthService } from '../../services/auth.service';
 import { ButtonService } from '../../services/button.service';
 import { IMatchMetadata, IButtonConfiguration, ICodingButtonSet } from '../../typings/model-metadata';
 
 @Component({
-  selector: 'button-list',
-  templateUrl: './button-list.component.html',
-  styleUrls: ['./button-list.component.css'] 
+  selector: 'buttonset-editor',
+  templateUrl: './buttonset-editor.component.html',
+  styleUrls: ['./buttonset-editor.component.css'] 
 })
-export class ButtonListComponent implements OnInit {
+export class ButtonSetEditorComponent implements OnInit {
 
   buttonSets: ICodingButtonSet[];
+  selectedButtonSet: ICodingButtonSet;
   uid: string;
   loggedIn = false;
   hasButtons = false;
@@ -53,19 +53,19 @@ export class ButtonListComponent implements OnInit {
   }
 
   editButtonSet(buttonSet: ICodingButtonSet): void {
-    let dialogRef = this.dialog.open(EditGameDialog, {
+    let dialogRef = this.dialog.open(EditButtonSetDialog, {
       data: buttonSet
     });
 
-    dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
-      if(buttonSet !== undefined) {
-        console.log(`Updated buttonSet ${buttonSet.$key}`)
-      }      
-    });
+    // dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
+    //   if(buttonSet !== undefined) {
+    //     console.log(`Updated buttonSet ${buttonSet.$key}`)
+    //   }      
+    // });
   }
 
-  newButtonConfiguration(): void {
-    let dialogRef = this.dialog.open(AddGameDialog);
+  newButtonSet(): void {
+    let dialogRef = this.dialog.open(AddButtonSetDialog);
   }
 
 }

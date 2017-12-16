@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Edit New ButtonSet</h1>
+<div mat-dialog-content>
+    <mat-horizontal-stepper [linear]="isLinear">
+        <mat-step>
+            <ng-template matStepLabel>You are now done</ng-template>
+            <p>Press Save to create your ButtonSet</p>
+            <div>
+                <!-- <button mat-button matStepperPrevious>Back</button> -->
+                
+                <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+                <button mat-button (click)="onSaveClick()" type="submit" class="mat-primary">Save</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

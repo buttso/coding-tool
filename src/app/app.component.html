@@ -1,5 +1,7 @@
 <mat-toolbar class='top-toolbar' color="primary">
-    <a mat-button [routerLink]="['/list']"> <mat-icon>home</mat-icon> Match Share </a>
+    <a *ngIf="!(authService.user$ | async)?.uid" mat-button [routerLink]="['/']"> <mat-icon>home</mat-icon> Match Share </a>
+    <a *ngIf="(authService.user$ | async)?.uid" mat-button [routerLink]="['/list']"> <mat-icon>home</mat-icon> Match Share </a>
+    
     <span class="toolbar-spacer"></span>
     
     <div *ngIf="!(authService.user$ | async)?.uid">
@@ -10,7 +12,8 @@
         <button mat-button [routerLink]="['/list']" matTooltip="Matches" matTooltipPosition="below"> <mat-icon>view_list</mat-icon> </button>
         <button mat-button (click)="authService.logout()"> <mat-icon>power_settings_new</mat-icon> {{(authService.user$ | async)?.displayName}} </button>
     </div>
-
 </mat-toolbar>
+
 <div style="clear: both; margin-bottom: 65px"></div>
+
 <router-outlet></router-outlet> 

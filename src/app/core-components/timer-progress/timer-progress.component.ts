@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable, Subscription } from 'rxjs/Rx';
 import { TimerService } from '../../services/timer.service';
 
 @Component({

@@ -5,12 +5,15 @@
             <video-player [source]="currentMatch.media">
                 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
             </video-player>  
-
+            
             <button mat-fab  id="clone-button"
-                        matTooltip="Copy Game" matTooltipPosition="right" 
-                        *ngIf="(authService.user$ | async)?.uid"
-                        (click)="cloneGame()"> <mat-icon>content_copy</mat-icon> </button>
+                    *ngIf="(authService.user$ | async)?.uid"
+                    matTooltip="Copy Game" 
+                    matTooltipPosition="right" 
+                    (click)="cloneGame()"> <mat-icon>content_copy</mat-icon> </button>
         </div>
     </div>
+    
     <timeline [eventItems]="currentMatch.events"></timeline>
+
 </div>

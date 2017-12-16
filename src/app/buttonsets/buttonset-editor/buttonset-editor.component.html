@@ -1,0 +1,34 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+            <mat-nav-list>
+                <a mat-list-item href="#" *ngFor="let buttonConfiguration of buttonConfigurations"> {{ buttonConfiguration.name }} </a>
+            </mat-nav-list>
+    
+                <button mat-fab id="add-buttons" matTooltip="New Button Set" matTooltipPosition="right" (click)="newButtonSet()">
+                    <mat-icon>add</mat-icon>
+                </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class='container' style='background-color: #fff; min-height: 450px'>
+
+            <mat-card *ngIf="selectedButtonSet" fxLayoutAlign="space-between center" class="match-card">
+                <mat-card-header>
+                    <span>{{selectedButtonSet.name}}</span>
+                </mat-card-header>
+                <mat-card-content>
+                    
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteButtonSet(selectedButtonSet)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-button (click)="editButtonSet(selectedButtonSet)" matTooltip="Edit" matTooltipPosition="below">
+                        <mat-icon>mode_edit</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -21,8 +21,7 @@ export class PublicHostComponent implements OnInit {
 
   ngOnInit() {
     this.matchKey = this.activatedRoute.snapshot.params['id'];
-    let isNewMatch = this.matchKey === 'new';
-    if (!isNewMatch) { this.getMatch(); };
+    this.getMatch();
   }
 
   getMatch() {
@@ -32,7 +31,7 @@ export class PublicHostComponent implements OnInit {
         if(match.events == undefined) {
           match.events = [];
         }
-        console.log(`[host] match retrieved`)
+        console.log(`[host] match retrieved`);
         console.info(match)
         this.currentMatch = match;
       });

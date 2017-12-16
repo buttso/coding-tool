@@ -91,7 +91,6 @@ export class CodeToolHostComponent implements OnInit, OnDestroy, ICodeToolHostCo
     });
   }
 
-
   newGame(): void {
     let dialogRef = this.dialog.open(AddGameDialog);
   }
