@@ -10,6 +10,9 @@ import { ButtonService } from '../../services/button.service';
     styles: [ ".mat-form-field { display: block }" ]
   })
   export class AddButtonSetDialog implements OnInit {
+
+    isLinear = true;
+    firstFormGroup: FormGroup;
     
     constructor(private _fb: FormBuilder, 
                 public dialogRef: MatDialogRef<AddButtonSetDialog>,
@@ -17,12 +20,14 @@ import { ButtonService } from '../../services/button.service';
                 @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit(): void {
-
+      this.firstFormGroup = this._fb.group({name: '', description: '', buttons: []});
     } 
 
     onSaveClick(): void {
-        console.info('Create buttonset not implemented');
-        this.dialogRef.close();
+      let buttonSet = this.firstFormGroup.value as ICodingButtonSet;
+
+      this.buttonService.addButtonSet(buttonSet)
+        .then(() => this.dialogRef.close(buttonSet));
     }
   
     onNoClick(): void {

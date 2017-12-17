@@ -1,22 +1,82 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-            <mat-nav-list>
-                <a mat-list-item href="#" *ngFor="let buttonConfiguration of buttonConfigurations"> {{ buttonConfiguration.name }} </a>
-            </mat-nav-list>
+            <div *ngIf="!hasButtonSets" style="padding: 15px">
+                You currently have no ButtonSet's.  Click Add to create one.
+            </div>
+            <nav *ngIf="hasButtonSets" class="sidenav-buttons">
+                <h3>Button Sets</h3>
+                <ul>
+                    <li *ngFor="let buttonSet of buttonSets">
+                        <a (click)="selectButtonSet(buttonSet)"> {{ buttonSet.name }} </a>
+                    </li>
+                </ul>                
+            </nav>
     
-                <button mat-fab id="add-buttons" matTooltip="New Button Set" matTooltipPosition="right" (click)="newButtonSet()">
-                    <mat-icon>add</mat-icon>
-                </button>
+            <button mat-fab id="add-buttons" matTooltip="New Button Set" matTooltipPosition="right" (click)="newButtonSet()">
+                <mat-icon>add</mat-icon>
+            </button>
     </mat-sidenav>
     <mat-sidenav-content>
         <div class='container' style='background-color: #fff; min-height: 450px'>
 
             <mat-card *ngIf="selectedButtonSet" fxLayoutAlign="space-between center" class="match-card">
                 <mat-card-header>
-                    <span>{{selectedButtonSet.name}}</span>
+                   <h2>{{selectedButtonSet.name}}</h2>
                 </mat-card-header>
                 <mat-card-content>
+                    <mat-table [dataSource]="dataSource">
+                        
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="type">
+                            <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.type.name}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="color">
+                            <mat-header-cell *matHeaderCellDef> Color </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <span class="row-item row-item-event" style="padding: 7px; border-radius: 50px;"
+                                    [class.orange]="element.color === 'orange'"
+                                    [class.green]="element.color === 'green'"
+                                    [class.red]="element.color === 'red'"
+                                    [class.blue]="element.color === 'blue'"
+                                    [class.yellow]="element.color === 'yellow'">
+                                    {{element.color}}
+                                </span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="lead">
+                            <mat-header-cell *matHeaderCellDef> Lead </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.leadSeconds}} </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="lag">
+                            <mat-header-cell *matHeaderCellDef> Lag </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.lagSeconds}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="commands">
+                            <mat-header-cell *matHeaderCellDef> &nbsp; </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <button mat-button matTooltip="Delete" matTooltipPosition="below" style="min-width: 10px">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                <button mat-button matTooltip="Edit" matTooltipPosition="below" style="min-width: 10px">
+                                    <mat-icon>mode_edit</mat-icon>
+                                </button>
+
+                            </mat-cell>
+                        </ng-container>
                     
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>                        
                 </mat-card-content>
                 <mat-card-actions align="end">
                     <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteButtonSet(selectedButtonSet)">

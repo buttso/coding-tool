@@ -57,7 +57,8 @@ export class LongoFileConverter {
             let buttonConfiguration = events.filter(e => e !== undefined);
 
             return {
-                name: "",
+                name: '',
+                userId: '',
                 buttons: buttonConfiguration    
             };
         }

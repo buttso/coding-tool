@@ -18,7 +18,9 @@ import {
   MatAutocompleteModule, 
   MatCardModule, 
   MatProgressBarModule,
-  MatStepperModule} from '@angular/material';
+  MatStepperModule,
+  MatTableModule,
+  MatChipsModule} from '@angular/material';
 
   import {MatListModule} from '@angular/material/list';
 
@@ -30,6 +32,7 @@ import {
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -51,6 +54,7 @@ import {
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -64,6 +68,7 @@ import {
     MatSelectModule,
     MatSidenavModule,
     MatStepperModule,
+    MatTableModule,
     MatTooltipModule,
     MatToolbarModule
   ],

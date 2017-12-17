@@ -65,18 +65,19 @@ export class ButtonService {
     public getDefaultButtonSet(): ICodingButtonSet {
         return {
             name: 'Default',
+            description: '',
             buttons: [
-                { name: "Press", eventType: "Press", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
-                { name: "Outlet", eventType: "Outlet", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
-                { name: "Circle Entry For", eventType: "Circle Entry For", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
-                { name: "Circle Entry Ag.", eventType: "Circle Entry Ag.", type: {name: ''}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-                { name: "Goal Shot Ag.", eventType: "Goal Shot Ag.", type: {name: ''}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-                { name: "Goal Shot For.", eventType: "Goal Shot For.", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
-                { name: "Goal For", eventType: "Goal For", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
-                { name: "Goal Ag.", eventType: "Goal Ag.", type: {name: ''}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-                { name: "APC", eventType: "APC", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
-                { name: "DPC", eventType: "DPC", type: {name: ''}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
-                { name: "Special", eventType: "Special", type: {name: ''}, color: "red", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Press", eventType: "Press", type: {name: 'Event'}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Outlet", eventType: "Outlet", type: {name: 'Event'}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Circle Entry For", eventType: "Circle Entry For", type: {name: 'Event'}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Circle Entry Ag.", eventType: "Circle Entry Ag.", type: {name: 'Event'}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Goal Shot Ag.", eventType: "Goal Shot Ag.", type: {name: 'Event'}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Goal Shot For.", eventType: "Goal Shot For.", type: {name: 'Event'}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Goal For", eventType: "Goal For", type: {name: 'Event'}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Goal Ag.", eventType: "Goal Ag.", type: {name: 'Event'}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+                { name: "APC", eventType: "APC", type: {name: 'Event'}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
+                { name: "DPC", eventType: "DPC", type: {name: 'Event'}, color: "yellow", lagSeconds: 5, leadSeconds: 5 },
+                { name: "Special", eventType: "Special", type: {name: 'Event'}, color: "red", lagSeconds: 5, leadSeconds: 5 },
               ]
         } as ICodingButtonSet;
     }

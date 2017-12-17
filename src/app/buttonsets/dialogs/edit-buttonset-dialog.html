@@ -1,11 +1,26 @@
-<h1 mat-dialog-title>Edit New ButtonSet</h1>
+<h1 mat-dialog-title>Edit Button Set</h1>
 <div mat-dialog-content>
     <mat-horizontal-stepper [linear]="isLinear">
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Edit the ButtonSet properties</ng-template>
+                <mat-form-field>
+                    <input type="text" matInput formControlName="name" name="name" required placeholder="Enter a name for your ButtonSet">
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="text" matInput formControlName="description" name="description" placeholder="Optional description">
+                </mat-form-field>
+                <div>
+                    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
         <mat-step>
             <ng-template matStepLabel>You are now done</ng-template>
-            <p>Press Save to create your ButtonSet</p>
+            <p>Press Save to update your Button Set</p>
             <div>
-                <!-- <button mat-button matStepperPrevious>Back</button> -->
+                <button mat-button matStepperPrevious>Back</button>
                 
                 <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
                 <button mat-button (click)="onSaveClick()" type="submit" class="mat-primary">Save</button>

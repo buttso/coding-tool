@@ -41,7 +41,9 @@ export interface ICodedEventItem {
 
 export interface ICodingButtonSet {
     $key?: string;
+    userId: string;
     name: string;
+    description?: string;
     buttons: IButtonConfiguration[]
 }
 

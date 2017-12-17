@@ -11,19 +11,23 @@ import { ButtonService } from '../../services/button.service';
     styles: [ ".mat-form-field { display: block }" ]
   })
   export class EditButtonSetDialog implements OnInit {
+
+    firstFormGroup: FormGroup;
     
     constructor(private _fb: FormBuilder, 
                 public dialogRef: MatDialogRef<EditButtonSetDialog>,
                 private buttonService: ButtonService,
-                @Inject(MAT_DIALOG_DATA) public data: any) { }
+                @Inject(MAT_DIALOG_DATA) public buttonSet: ICodingButtonSet) { }
 
     ngOnInit(): void {
-
+      this.firstFormGroup = this._fb.group(this.buttonSet);
     } 
 
     onSaveClick(): void {
-        console.info('Edit buttonset not implemented');
-        this.dialogRef.close();
+        this.buttonSet = this.firstFormGroup.value;
+        
+        this.buttonService.updateButtonSet(this.buttonSet)
+            .then(() => this.dialogRef.close(this.buttonSet));
     }
   
     onNoClick(): void {

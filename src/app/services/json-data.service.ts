@@ -118,6 +118,7 @@ export class JsonDataService {
             ] as ICodedEventType[],
             buttons: {
                 name: "Default",
+                userId: '',
                 buttons: [
                     { name: "Press", eventType: "Press", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
                     { name: "Outlet", eventType: "Outlet", type: {name: ''}, color: "blue", lagSeconds: 5, leadSeconds: 5 },
