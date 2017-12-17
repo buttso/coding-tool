@@ -1,14 +1,18 @@
-<h1 mat-dialog-title>Add New Button</h1>
+<h1 mat-dialog-title>Edit Button</h1>
 <div mat-dialog-content>
     <mat-horizontal-stepper [linear]="isLinear">
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Edit the Button properties</ng-template>
                 <mat-form-field>
-                    <input type="text" matInput formControlName="name" name="name" required placeholder="Enter a name for your Button">
+                    <input type="text" matInput formControlName="name" readonly name="name" required placeholder="Button name (readonly)">
                 </mat-form-field>
                 <mat-form-field>
-                    <input type="text" matInput formControlName="color" name="color" required placeholder="Select a color">
+                    <mat-select placeholder="Select a color" formControlName="color" name="color" required  [compareWith]="compareFn">
+                        <mat-option *ngFor="let color of colors" [value]="color">
+                            {{ color }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field>
                     <input type="number" matInput formControlName="leadSeconds" name="leadSeconds" required placeholder="Lead Seconds">
@@ -23,7 +27,7 @@
             </form>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>You are now done</ng-template>
+            <ng-template matStepLabel>Finish</ng-template>
             <p>Press Save to add the Button</p>
             <div>
                 <!-- <button mat-button matStepperPrevious>Back</button> -->

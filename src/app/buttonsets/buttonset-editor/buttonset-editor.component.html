@@ -42,11 +42,11 @@
                             <mat-header-cell *matHeaderCellDef> Color </mat-header-cell>
                             <mat-cell *matCellDef="let element">
                                 <div class="row-item row-item-event event-pill"
-                                    [class.orange]="element.color === 'orange'"
-                                    [class.green]="element.color === 'green'"
-                                    [class.red]="element.color === 'red'"
-                                    [class.blue]="element.color === 'blue'"
-                                    [class.yellow]="element.color === 'yellow'">
+                                    [class.orange]="compareColor(element.color, 'orange')"
+                                    [class.green]="compareColor(element.color, 'green')"
+                                    [class.red]="compareColor(element.color, 'red')"
+                                    [class.blue]="compareColor(element.color, 'blue')"
+                                    [class.yellow]="compareColor(element.color, 'yellow')">
                                     {{element.color}}
                             </div>
                             </mat-cell>

@@ -72,11 +72,17 @@ export class ButtonSetEditorComponent implements OnInit {
     // });
   }
 
+  compareColor(elementColor: string, compareColor: string): boolean {
+    return (elementColor && compareColor && elementColor.toLowerCase() == compareColor.toLowerCase())
+  }
+
   selectButtonSet(buttonSet: ICodingButtonSet): void {
     if(!buttonSet.buttons) {
       console.log('adding buttons');      
       buttonSet.buttons = [];
     }
+
+    buttonSet.buttons = this.buttonService.assertIdenfitiers(buttonSet.buttons);
 
     this.dataSource.data = buttonSet.buttons;
     this.selectedButtonSet = buttonSet;

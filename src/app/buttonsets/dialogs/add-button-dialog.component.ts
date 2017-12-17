@@ -13,6 +13,7 @@ import { ButtonService } from '../../services/button.service';
 
     isLinear = true;
     firstFormGroup: FormGroup;
+    colors = ['Red', 'Orange', 'Green', 'Blue', 'Yellow'];
     
     constructor(private _fb: FormBuilder, 
                 public dialogRef: MatDialogRef<AddButtonDialog>,
@@ -20,13 +21,16 @@ import { ButtonService } from '../../services/button.service';
                 @Inject(MAT_DIALOG_DATA) public buttonSet: ICodingButtonSet) { }
 
     ngOnInit(): void {
+        let time = new Date().getTime();
+
         this.firstFormGroup = this._fb.group({
             name: '', 
-            color: '', 
+            color: '',
+            identifier: time.toString(), 
             leadSeconds: 5,
             lagSeconds: 5
-        });
-    } 
+        } as IButtonConfiguration);
+    }
 
     onSaveClick(): void {
         let button = this.firstFormGroup.value as IButtonConfiguration;

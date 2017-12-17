@@ -13,6 +13,7 @@ import { ButtonService } from '../../services/button.service';
 
     isLinear = true;
     firstFormGroup: FormGroup;
+    colors = ['Red', 'Orange', 'Green', 'Blue', 'Yellow'];
 
     public button: IButtonConfiguration;
     public buttonSet: ICodingButtonSet;
@@ -22,22 +23,32 @@ import { ButtonService } from '../../services/button.service';
                 private buttonService: ButtonService) { }
 
     ngOnInit(): void {
+        console.log(this.button)
         this.firstFormGroup = this._fb.group(this.button);
     } 
 
     onSaveClick(): void {
         let button = this.firstFormGroup.value as IButtonConfiguration;
-        let exists = this.buttonSet.buttons.filter(b => b.name == button.name);
-        if(exists.length > 0) {
-            alert(`A button with the name ${button.name} already exists.  Please use a different name or press Cancel to exit.`)
+        let exists = this.buttonSet.buttons.find(b => b.identifier == button.identifier);
+        if(!exists) {
+            alert(`A button with the name ${button.name} was not found.  Press Cancel to exit.`)
         }else{
-            this.buttonSet.buttons.push(button);
-              this.buttonService.addButtonSet(this.buttonSet)
+            exists.color = button.color;
+            exists.leadSeconds = button.leadSeconds;
+            exists.lagSeconds = button.lagSeconds;
+           
+            this.buttonService.updateButtonSet(this.buttonSet)
                 .then(() => this.dialogRef.close(this.buttonSet));
         }
+
+        
     }
   
     onNoClick(): void {
       this.dialogRef.close();
     }
+
+    compareFn(item1: string, item2: string): boolean {
+        return (item1 && item2) && item1.toLowerCase() === item2.toLowerCase();
+      }
   }
