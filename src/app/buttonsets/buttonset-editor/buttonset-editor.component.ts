@@ -21,14 +21,12 @@ export class ButtonSetEditorComponent implements OnInit {
   opened = true;
 
   displayedColumns = ['name', /*'type',*/ 'color', 'lead', 'lag', 'commands'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource: MatTableDataSource<IButtonConfiguration> = new MatTableDataSource([]);
   
   constructor(private buttonService: ButtonService, public dialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit() {
     console.log(`[ButtonSetEditorComponent]:init`);
-
-    
 
     let user  = this.authService.user$.subscribe(auth => {
       // this.dataSource = new MatTableDataSource<IButtonConfiguration>([]);
@@ -56,6 +54,7 @@ export class ButtonSetEditorComponent implements OnInit {
     const response = confirm('are you sure you want to delete?');
     if (response ) {
       this.buttonService.deleteButtonSet(buttonSet);
+      this.selectedButtonSet = undefined;
     }
   }
 
@@ -73,28 +72,38 @@ export class ButtonSetEditorComponent implements OnInit {
 
   selectButtonSet(buttonSet: ICodingButtonSet): void {
     if(!buttonSet.buttons) {
-      console.log('adding buttons')
+      console.log('adding buttons');      
       buttonSet.buttons = [];
     }
-    
-    
-    // this.dataSource = new MatTableDataSource<IButtonConfiguration>(buttonSet.buttons);
-    // this.dataSource.data =  //buttonSet.buttons;
+
+    this.dataSource.data = buttonSet.buttons;
     this.selectedButtonSet = buttonSet;
     console.log(this.selectedButtonSet)
+  }
+
+  addDefaultButtons(buttonSet: ICodingButtonSet): void {
+    const response = confirm('Do you want to reset the buttons for this Button Set?');
+    if (response ) {
+      buttonSet.buttons = this.buttonService.getDefaultButtonSet().buttons;
+      this.buttonService.updateButtonSet(buttonSet)
+      this.dataSource.data = buttonSet.buttons;
+    }
+    
   }
 
   newButtonSet(): void {
     let dialogRef = this.dialog.open(AddButtonSetDialog);
   }
 
+
+  deleteButton(button: IButtonConfiguration): void {
+    const response = confirm('Are you sure you want to delete this button?');
+    if (response ) {
+      let newButtons = this.selectedButtonSet.buttons.filter(b => b.name !== button.name);
+      this.selectedButtonSet.buttons = newButtons;
+      
+      this.buttonService.updateButtonSet(this.selectedButtonSet)
+        .then(() => this.dataSource.data = this.selectedButtonSet.buttons);
+    }
+  }
 }
-
-
-const ELEMENT_DATA: IButtonConfiguration[] = [
-  { name: 'Press', color: 'green', eventType: '', type: {name: 'Event'}, leadSeconds: 7, lagSeconds: 8 },
-  { name: 'Outlet', color: 'green', eventType: '', type: {name: 'Event'}, leadSeconds: 7, lagSeconds: 8 },
-  { name: 'APC', color: 'blue', eventType: '', type: {name: 'Event'}, leadSeconds: 7, lagSeconds: 8 },
-  { name: 'DPC', color: 'yellow', eventType: '', type: {name: 'Event'}, leadSeconds: 7, lagSeconds: 8 },
-  { name: 'Special', color: 'red', eventType: '', type: {name: 'Event'}, leadSeconds: 7, lagSeconds: 8 }
-];

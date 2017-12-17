@@ -56,8 +56,7 @@ import { ButtonService } from '../../services/button.service';
         } as IMatchMetadata;
 
         let t = new Date(this.firstFormGroup.controls.matchDate.value)
-        // console.log(t.toString())
-
+       
         match.properties.matchDate = t.toString()
 
         if(this.importedEvents !== undefined) 

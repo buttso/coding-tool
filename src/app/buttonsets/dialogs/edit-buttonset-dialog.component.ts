@@ -24,8 +24,10 @@ import { ButtonService } from '../../services/button.service';
     } 
 
     onSaveClick(): void {
-        this.buttonSet = this.firstFormGroup.value;
-        
+
+        this.buttonSet.name = this.firstFormGroup.controls.name.value;
+        this.buttonSet.description = this.firstFormGroup.controls.description.value;
+
         this.buttonService.updateButtonSet(this.buttonSet)
             .then(() => this.dialogRef.close(this.buttonSet));
     }

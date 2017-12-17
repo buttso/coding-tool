@@ -25,6 +25,7 @@ import { ButtonService } from '../../services/button.service';
 
     onSaveClick(): void {
       let buttonSet = this.firstFormGroup.value as ICodingButtonSet;
+      buttonSet.buttons = this.buttonService.getDefaultButtonSet().buttons;
 
       this.buttonService.addButtonSet(buttonSet)
         .then(() => this.dialogRef.close(buttonSet));

@@ -21,7 +21,9 @@
 
             <mat-card *ngIf="selectedButtonSet" fxLayoutAlign="space-between center" class="match-card">
                 <mat-card-header>
-                   <h2>{{selectedButtonSet.name}}</h2>
+                    <i mat-card-avatar class="material-icons">code</i>
+                    <mat-card-title>{{selectedButtonSet.name}}</mat-card-title>
+                    <mat-card-subtitle>{{selectedButtonSet.description}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <mat-table [dataSource]="dataSource">
@@ -39,14 +41,14 @@
                         <ng-container matColumnDef="color">
                             <mat-header-cell *matHeaderCellDef> Color </mat-header-cell>
                             <mat-cell *matCellDef="let element">
-                                <span class="row-item row-item-event" style="padding: 7px; border-radius: 50px;"
+                                <div class="row-item row-item-event event-pill"
                                     [class.orange]="element.color === 'orange'"
                                     [class.green]="element.color === 'green'"
                                     [class.red]="element.color === 'red'"
                                     [class.blue]="element.color === 'blue'"
                                     [class.yellow]="element.color === 'yellow'">
                                     {{element.color}}
-                                </span>
+                            </div>
                             </mat-cell>
                         </ng-container>
 
@@ -64,7 +66,7 @@
                         <ng-container matColumnDef="commands">
                             <mat-header-cell *matHeaderCellDef> &nbsp; </mat-header-cell>
                             <mat-cell *matCellDef="let element">
-                                <button mat-button matTooltip="Delete" matTooltipPosition="below" style="min-width: 10px">
+                                <button mat-button matTooltip="Delete" (click)="deleteButton(element)" matTooltipPosition="below" style="min-width: 10px">
                                     <mat-icon>delete</mat-icon>
                                 </button>
                                 <button mat-button matTooltip="Edit" matTooltipPosition="below" style="min-width: 10px">
@@ -79,11 +81,17 @@
                     </mat-table>                        
                 </mat-card-content>
                 <mat-card-actions align="end">
-                    <button mat-button matTooltip="Delete" matTooltipPosition="below" (click)="deleteButtonSet(selectedButtonSet)">
-                        <mat-icon>delete</mat-icon>
+                    <button mat-button (click)="addDefaultButtons(selectedButtonSet)" matTooltip="Reset" matTooltipPosition="below">
+                        <mat-icon>playlist_add</mat-icon>
                     </button>
-                    <button mat-button (click)="editButtonSet(selectedButtonSet)" matTooltip="Edit" matTooltipPosition="below">
+                    <button mat-button matTooltip="Add button" matTooltipPosition="below">
+                        <mat-icon>add_box</mat-icon>
+                    </button>
+                    <button mat-button (click)="editButtonSet(selectedButtonSet)" matTooltip="Edit Button Set" matTooltipPosition="below">
                         <mat-icon>mode_edit</mat-icon>
+                    </button>
+                    <button mat-button matTooltip="Delete Button Set" matTooltipPosition="below" (click)="deleteButtonSet(selectedButtonSet)">
+                        <mat-icon>delete</mat-icon>
                     </button>
                 </mat-card-actions>
             </mat-card>
