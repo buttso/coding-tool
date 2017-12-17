@@ -5,6 +5,8 @@ import { EditButtonSetDialog } from '../dialogs/edit-buttonset-dialog.component'
 import { AuthService } from '../../services/auth.service';
 import { ButtonService } from '../../services/button.service';
 import { IMatchMetadata, IButtonConfiguration, ICodingButtonSet } from '../../typings/model-metadata';
+import { AddButtonDialog } from '../dialogs/add-button-dialog.component';
+import { EditButtonDialog } from '../dialogs/edit-button-dialog.component';
 
 @Component({
   selector: 'buttonset-editor',
@@ -51,7 +53,7 @@ export class ButtonSetEditorComponent implements OnInit {
   }
 
   deleteButtonSet(buttonSet: ICodingButtonSet): void {
-    const response = confirm('are you sure you want to delete?');
+    const response = confirm('are you sure you want to delete this Button Set?');
     if (response ) {
       this.buttonService.deleteButtonSet(buttonSet);
       this.selectedButtonSet = undefined;
@@ -81,14 +83,38 @@ export class ButtonSetEditorComponent implements OnInit {
     console.log(this.selectedButtonSet)
   }
 
+  addButton(buttonSet: ICodingButtonSet): void {
+    let dialogRef = this.dialog.open(AddButtonDialog, {
+      data: buttonSet
+    });
+
+    // dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
+    //   if(buttonSet !== undefined) {
+    //     this.dataSource.data = buttonSet.buttons;
+    //   }      
+    // });
+  }
+
+
+  editButton(button: IButtonConfiguration): void {
+    let dialogRef = this.dialog.open(EditButtonDialog);
+    dialogRef.componentInstance.button = button;
+    dialogRef.componentInstance.buttonSet = this.selectedButtonSet;
+
+    // dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
+    //   if(buttonSet !== undefined) {
+    //     this.dataSource.data = buttonSet.buttons;
+    //   }      
+    // });
+  }
+
   addDefaultButtons(buttonSet: ICodingButtonSet): void {
-    const response = confirm('Do you want to reset the buttons for this Button Set?');
+    const response = confirm('This will reset buttons for this Button Set to the default buttons.  Press OK to Continue.');
     if (response ) {
       buttonSet.buttons = this.buttonService.getDefaultButtonSet().buttons;
       this.buttonService.updateButtonSet(buttonSet)
       this.dataSource.data = buttonSet.buttons;
-    }
-    
+    }    
   }
 
   newButtonSet(): void {

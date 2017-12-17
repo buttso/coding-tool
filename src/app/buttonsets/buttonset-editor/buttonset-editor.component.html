@@ -66,13 +66,12 @@
                         <ng-container matColumnDef="commands">
                             <mat-header-cell *matHeaderCellDef> &nbsp; </mat-header-cell>
                             <mat-cell *matCellDef="let element">
+                                <button mat-button matTooltip="Edit" (click)="editButton(element)" matTooltipPosition="below" style="min-width: 10px">
+                                    <mat-icon>mode_edit</mat-icon>
+                                </button>
                                 <button mat-button matTooltip="Delete" (click)="deleteButton(element)" matTooltipPosition="below" style="min-width: 10px">
                                     <mat-icon>delete</mat-icon>
                                 </button>
-                                <button mat-button matTooltip="Edit" matTooltipPosition="below" style="min-width: 10px">
-                                    <mat-icon>mode_edit</mat-icon>
-                                </button>
-
                             </mat-cell>
                         </ng-container>
                     
@@ -84,8 +83,8 @@
                     <button mat-button (click)="addDefaultButtons(selectedButtonSet)" matTooltip="Reset" matTooltipPosition="below">
                         <mat-icon>playlist_add</mat-icon>
                     </button>
-                    <button mat-button matTooltip="Add button" matTooltipPosition="below">
-                        <mat-icon>add_box</mat-icon>
+                    <button mat-button (click)="addButton(selectedButtonSet)" matTooltip="Add button" matTooltipPosition="below">
+                        <mat-icon>add</mat-icon>
                     </button>
                     <button mat-button (click)="editButtonSet(selectedButtonSet)" matTooltip="Edit Button Set" matTooltipPosition="below">
                         <mat-icon>mode_edit</mat-icon>

@@ -10,14 +10,13 @@ import { ServicesModule } from '../services/services.module';
 import { VideoPlayerModule } from '../modules/video-player.module';
 import { CoreComponentsModule } from '../core-components/core-components.module';
 
-import { ButtonSetEditorComponent } from './buttonset-editor/buttonset-editor.component';
-// import { ButtonSetListComponent } from './buttonset-list/buttonset-list.component';
-// import { AddButtonSetDialog } from './dialogs/add-buttonset-dialog.component';
-// import { EditButtonSetDialog } from './dialogs/edit-buttonset-dialog.component';
-
 import { Routes, Router, RouterModule } from '@angular/router';
+
+import { ButtonSetEditorComponent } from './buttonset-editor/buttonset-editor.component';
 import { AddButtonSetDialog } from './dialogs/add-buttonset-dialog.component';
 import { EditButtonSetDialog } from './dialogs/edit-buttonset-dialog.component';
+import { AddButtonDialog } from './dialogs/add-button-dialog.component';
+import { EditButtonDialog } from './dialogs/edit-button-dialog.component';
 
 
 
@@ -29,7 +28,9 @@ const routes: Routes = [
     declarations: [
       ButtonSetEditorComponent,
       AddButtonSetDialog,
-      EditButtonSetDialog
+      EditButtonSetDialog,
+      AddButtonDialog,
+      EditButtonDialog
     ],
     imports: [
       BrowserModule,
@@ -47,7 +48,9 @@ const routes: Routes = [
     providers: [],
     entryComponents: [
       AddButtonSetDialog,
-      EditButtonSetDialog
+      EditButtonSetDialog,
+      AddButtonDialog,
+      EditButtonDialog
     ]
   })
   export class ButtonSetsModule { }
