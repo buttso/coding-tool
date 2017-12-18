@@ -3,7 +3,7 @@
     <mat-horizontal-stepper [linear]="isLinear">
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Fill in the Button properties</ng-template>
+                <ng-template matStepLabel>Button properties</ng-template>
                 <mat-form-field>
                     <input type="text" matInput formControlName="name" name="name" required placeholder="Enter a name for your Button">
                 </mat-form-field>

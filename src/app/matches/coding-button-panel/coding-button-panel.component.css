@@ -34,3 +34,9 @@ code-buttons, .button-panel {
     padding: 4px 2px;
     width: 110px;
 }
+
+.button-link {
+    line-height: 1.4em;
+    padding: 4px 6px;
+    min-width: 110px
+}

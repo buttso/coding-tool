@@ -6,8 +6,8 @@ export interface IMatchMetadata {
     properties: IMatchProperties, 
     media: IMediaSource,
     events: ICodedEventType[],
-    buttons: ICodingButtonSet,
-    buttonConfiguration: IButtonConfiguration[]
+    buttonSetId?: string,
+    buttonConfiguration?: IButtonConfiguration[]
 }
 
 export interface IMatchProperties {

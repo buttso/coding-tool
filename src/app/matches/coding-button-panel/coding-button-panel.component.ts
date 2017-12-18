@@ -4,6 +4,10 @@ import { CodeToolHostComponent } from '../code-tool-host/code-tool-host.componen
 import { ICodeButtonPanel, ICodingEvent } from '../../typings/domain';
 import { IButtonConfiguration, ICodingButtonSet } from '../../typings/model-metadata';
 import { MatchEventService } from '../../services/match-event.service';
+import { ButtonService } from '../../services/button.service';
+import { Observable } from 'rxjs/Observable';
+import { FirebaseObjectObservable } from 'angularfire2/database';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'coding-button-panel',
@@ -12,14 +16,35 @@ import { MatchEventService } from '../../services/match-event.service';
 })
 export class CodingButtonPanelComponent implements ICodeButtonPanel, OnInit {
   
-  @Input() buttons: IButtonConfiguration[];
+  @Input() buttonSetId: string;
+  buttonSet: ICodingButtonSet;
   
-  constructor(private timerService: TimerService, private matchEventService: MatchEventService) { }
+  constructor(
+    private timerService: TimerService, 
+    private matchEventService: MatchEventService,
+    private buttonService: ButtonService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
-    let hasButtons = this.buttons !== undefined && this.buttons !== null && this.buttons.length > 0;
+    let hasButtonKey = this.buttonSetId !== undefined && this.buttonSetId !== null;
+   
 
-    this.buttons = (hasButtons) ? this.buttons : this.getDefaultButtons();
+    if(hasButtonKey) {
+
+      console.log(`fetching buttons for buttonSet ${this.buttonSetId}`)
+      this.authService.user$.subscribe(auth => {
+        console.info(`Button panel::auth callback`)
+        if(auth != null) {
+          this.buttonService.getButtonSet(this.buttonSetId, auth.uid)
+            .subscribe(buttonSet => {
+              console.info(buttonSet) 
+              this.buttonSet = buttonSet;
+            });
+        }
+      });
+      
+      
+    }
   }
 
   onButtonClick(button: IButtonConfiguration) {

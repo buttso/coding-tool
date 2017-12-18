@@ -1,8 +1,8 @@
-<div class="button-panel">
+<div class="button-panel" *ngIf="buttonSet">
+    <strong>Button Set: {{buttonSet.name}}</strong>
     <ul class="button-list">
-        <li *ngFor="let button of buttons">
+        <li *ngFor="let button of buttonSet.buttons">
                 <button mat-button
-                    style="line-height: 1.4em; padding: 2px 2px;"
                     class="button-link" [class.orange]="button.color === 'orange'"
                     [class.green]="button.color === 'green'"
                     [class.red]="button.color === 'red'"

@@ -10,7 +10,7 @@
                 matTooltip="Edit Match" matTooltipPosition="below" 
                 (click)="editGame(currentMatch)"> <mat-icon>mode_edit</mat-icon> </button>
 
-            <coding-button-panel [buttons]="currentMatch.buttonConfiguration"></coding-button-panel>
+            <coding-button-panel [buttonSetId]="currentMatch.buttonSetId"></coding-button-panel>
         </div>
 
         <button mat-fab id="add-button"

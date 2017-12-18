@@ -13,7 +13,7 @@ import { ButtonService } from '../../services/button.service';
 
     isLinear = true;
     firstFormGroup: FormGroup;
-    colors = ['Red', 'Orange', 'Green', 'Blue', 'Yellow'];
+    colors: string[];
     
     constructor(private _fb: FormBuilder, 
                 public dialogRef: MatDialogRef<AddButtonDialog>,
@@ -22,6 +22,8 @@ import { ButtonService } from '../../services/button.service';
 
     ngOnInit(): void {
         let time = new Date().getTime();
+
+        this.colors = this.buttonService.getDefaultColors();
 
         this.firstFormGroup = this._fb.group({
             name: '', 

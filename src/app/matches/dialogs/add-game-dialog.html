@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>Add New Game</h1>
 <div mat-dialog-content>
     <mat-horizontal-stepper [linear]="isLinear">
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="propertiesFormGroup">
+            <form [formGroup]="propertiesFormGroup">
                 <ng-template matStepLabel>Match properties</ng-template>
                 <mat-form-field>
                     <input type="text" matInput formControlName="competitionName" name="competitionName" required placeholder="Competition - e.g. Metro">
@@ -34,8 +34,25 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
-            <form [formGroup]="secondFormGroup">
+        <mat-step [stepControl]="buttonsFormGroup">
+            <form [formGroup]="buttonsFormGroup">
+                <ng-template matStepLabel>Select Button Set</ng-template>
+                <mat-form-field>
+                    <mat-select placeholder="Button Set" required formControlName="buttonSetId">
+                        <mat-option *ngFor="let b of buttonSets" [value]="b.$key">
+                            {{ b.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="videoFormGroup">
+            <form [formGroup]="videoFormGroup">
                 <ng-template matStepLabel>Select Video</ng-template>
                 <mat-form-field>
                     <input matInput placeholder="Video Url" formControlName="src">

@@ -13,7 +13,7 @@ import { ButtonService } from '../../services/button.service';
 
     isLinear = true;
     firstFormGroup: FormGroup;
-    colors = ['Red', 'Orange', 'Green', 'Blue', 'Yellow'];
+    colors: string[];
 
     public button: IButtonConfiguration;
     public buttonSet: ICodingButtonSet;
@@ -23,7 +23,8 @@ import { ButtonService } from '../../services/button.service';
                 private buttonService: ButtonService) { }
 
     ngOnInit(): void {
-        console.log(this.button)
+        console.log(this.button);
+        this.colors = this.buttonService.getDefaultColors();
         this.firstFormGroup = this._fb.group(this.button);
     } 
 

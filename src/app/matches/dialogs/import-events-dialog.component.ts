@@ -16,7 +16,6 @@ import { MatchParserService } from '../../services/match-parser.service';
     
     importedEvents: any;
     eventCount: number;
-    buttonCount: number;
         
     constructor(public dialogRef: MatDialogRef<ImportEventsDialog>,
                 public matchService: MatchService,
@@ -35,20 +34,16 @@ import { MatchParserService } from '../../services/match-parser.service';
             let json = this.matchParser.parse(this.importedEvents);
             if(json !== undefined) {
                 this.events = json.events;
-                this.buttons = json.buttonConfiguration;
             }
         }
         this.stepper.selectedIndex = 1;
     }
 
     events: ICodedEventType[] = [];
-    buttons: IButtonConfiguration[] = [];
-
+    
     onImportClick(): void {
 
         this.match.events = this.events;
-        this.match.buttonConfiguration = this.buttons;
-
         this.matchService.updateMatch(this.match)
             .then(() => this.dialogRef.close(this.match));
     }

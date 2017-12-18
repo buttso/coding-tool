@@ -15,9 +15,12 @@ export class ButtonService {
     uid: string = '';
     
     constructor(private db: AngularFireDatabase, private authService: AuthService) {
+        console.info(`ButtonService::ctor`)
         let user  = this.authService.user$.subscribe(auth => {
+            console.info(`ButtonService::auth callback`)
             if(auth != null) {
               this.uid = auth.uid;
+              console.info(`ButtonService::auth ${this.uid}`)
               this.userButtons$ = this.db.list(`users/${this.uid}/buttons`)
             }
         });
@@ -39,16 +42,16 @@ export class ButtonService {
         return this.userButtons$;
     }
 
-    getButtonSet(key: string): Observable<ICodingButtonSet> {
-        return this.db.object(`users/${this.uid}/buttons/${key}`)
+    getButtonSet(key: string, uid: string): Observable<ICodingButtonSet> {
+        let url = `users/${uid}/buttons/${key}`;
+        console.info(`fetching buttonSet from ${url}`)
+        return this.db.object(url)
             .catch(this.errorHandler);
     }
-
 
     addButtonSet(buttonSet: ICodingButtonSet) {
 
         var newKey = firebase.database().ref().child(`users/${this.uid}/buttons`).push().key;
-
         var updates = {};
         updates[`users/${this.uid}/buttons/${newKey}`] = buttonSet;
         
@@ -72,6 +75,10 @@ export class ButtonService {
         return firebase.database().ref().update(updates)
                         .then(_ => console.log('[buttonService.updateButtonSet] buttonSet updated'))
                         .catch(error => console.log(error));
+    }
+
+    public getDefaultColors(): string[] {
+        return ["blue", "yellow", "red", "green", "orange"];
     }
 
     public getDefaultButtonSet(): ICodingButtonSet {
