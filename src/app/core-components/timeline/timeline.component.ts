@@ -88,7 +88,7 @@ export class TimelineComponent implements ICodeEventTimeline {
             item.events.push(obj);
         }
 
-        this.sortList();
+        // this.sortList();
         this.listLength = this.eventItems.length;
     }
 

@@ -94,11 +94,11 @@ export class ButtonSetEditorComponent implements OnInit {
       data: buttonSet
     });
 
-    // dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
-    //   if(buttonSet !== undefined) {
-    //     this.dataSource.data = buttonSet.buttons;
-    //   }      
-    // });
+    dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
+      if(buttonSet !== undefined) {
+        this.dataSource.data = buttonSet.buttons;
+      }      
+    });
   }
 
 
@@ -107,11 +107,11 @@ export class ButtonSetEditorComponent implements OnInit {
     dialogRef.componentInstance.button = button;
     dialogRef.componentInstance.buttonSet = this.selectedButtonSet;
 
-    // dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
-    //   if(buttonSet !== undefined) {
-    //     this.dataSource.data = buttonSet.buttons;
-    //   }      
-    // });
+    dialogRef.afterClosed().subscribe((buttonSet: ICodingButtonSet) => {
+      if(buttonSet !== undefined) {
+        this.dataSource.data = buttonSet.buttons;
+      }      
+    });
   }
 
   addDefaultButtons(buttonSet: ICodingButtonSet): void {

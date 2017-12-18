@@ -8,12 +8,12 @@
                     <input type="text" matInput formControlName="name" name="name" required placeholder="Enter a name for your Button">
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-select placeholder="Select a color" formControlName="color" name="color" required>
-                        <mat-option *ngFor="let color of colors" ([value])="color">
-                            {{ color }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                        <mat-select placeholder="Select a color" formControlName="color" name="color" required  [compareWith]="compareFn">
+                            <mat-option *ngFor="let color of colors" [value]="color">
+                                {{ color }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 <mat-form-field>
                     <input type="number" matInput formControlName="leadSeconds" name="leadSeconds" required placeholder="Lead Seconds">
                 </mat-form-field>

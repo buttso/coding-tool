@@ -51,7 +51,7 @@ export class CodingButtonPanelComponent implements ICodeButtonPanel, OnInit {
       let time = this.timerService.getTime();
       let codingEvent = {
         time: time,
-        eventType: button.eventType,
+        eventType: button.name,
         color: button.color,
         leadSeconds: button.leadSeconds,
         lagSeconds: button.lagSeconds

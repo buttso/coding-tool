@@ -41,7 +41,7 @@ import { ButtonService } from '../../services/button.service';
             alert(`A button with the name ${button.name} already exists.  Please use a different name or press Cancel to exit.`)
         }else{
             this.buttonSet.buttons.push(button);
-              this.buttonService.addButtonSet(this.buttonSet)
+            this.buttonService.updateButtonSet(this.buttonSet)
                 .then(() => this.dialogRef.close(this.buttonSet));
         }
     }
@@ -49,4 +49,8 @@ import { ButtonService } from '../../services/button.service';
     onNoClick(): void {
       this.dialogRef.close();
     }
+
+    compareFn(item1: string, item2: string): boolean {
+        return (item1 && item2) && item1.toLowerCase() === item2.toLowerCase();
+      }
   }
