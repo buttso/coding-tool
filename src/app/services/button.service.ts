@@ -21,7 +21,9 @@ export class ButtonService {
             if(auth != null) {
               this.uid = auth.uid;
               console.info(`ButtonService::auth ${this.uid}`)
-              this.userButtons$ = this.db.list(`users/${this.uid}/buttons`)
+              this.userButtons$ = this.db.list(`users/${this.uid}/buttons`);
+              this.assertDefaultButtonSet();
+        
             }
         });
     }
@@ -79,6 +81,15 @@ export class ButtonService {
 
     public getDefaultColors(): string[] {
         return ["blue", "yellow", "red", "green", "orange"];
+    }
+
+    public assertDefaultButtonSet() {
+        this.getButtonSets()
+            .subscribe(b => {
+                if(!b || b.length === 0) {
+                    this.addButtonSet(this.getDefaultButtonSet());
+                }
+            })
     }
 
     public getDefaultButtonSet(): ICodingButtonSet {

@@ -28,7 +28,7 @@
             
         </div>
 </div>
-<div class="container" style="background-color: #fff; min-height: 480px" *ngIf="loggedIn && !hasMatches">
+<div class="container" style="background-color: #fff; min-height: 480px; margin-top: 50px; color: #000" *ngIf="loggedIn && !hasMatches">
         <h2 _ngcontent-c18="">Hello {{(authService.user$ | async)?.displayName}}</h2>
         <p _ngcontent-c18="">You don't appear to have any matches as yet.  Click the + button at the bottom of the page to get started!</p>
 </div>

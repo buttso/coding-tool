@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+import { ButtonService } from './button.service';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,9 @@ export class AuthService {
 
   login() {
     this.firebase.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(_ => this.router.navigate([`/list`]))
+      .then(_ => {
+        this.router.navigate([`/list`])
+      })
       .catch(error => console.log('auth error', error));
   }
 
